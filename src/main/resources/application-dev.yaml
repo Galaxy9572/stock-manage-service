@@ -1,0 +1,55 @@
+spring:
+  application:
+    name: stock-manage-service
+  # 支持 swagger3
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  # 数据库配置
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/stock
+    username: stock_manage
+    password: abcd123456
+    druid:
+      aop-patterns: com.jy.stock
+      filter:
+        stat:
+          log-slow-sql: true
+          slow-sql-millis: 1000
+      filters: stat,wall
+      initial-size: 3
+      max-active: 10
+      max-wait: 60000
+      min-idle: 3
+      stat-view-servlet:
+        enabled: true
+        login-password: admin
+        login-username: admin
+        url-pattern: /druid/*
+      web-stat-filter:
+        enabled: true
+        exclusions: /druid/*,*.js,*.gif,*.jpg,*.bmp,*.png,*.css,*.ico
+        session-stat-enable: true
+        url-pattern: /*
+server:
+  port: 8080
+  servlet:
+    context-path: /stock-manage-service/api
+    # session 30 天过期
+    session:
+      timeout: "P30D"
+      cookie:
+        same-site: none
+        secure: true
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: false
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      # 全局逻辑删除的实体字段名
+      logic-delete-field: logic_delete
+      logic-delete-value: true
+      logic-not-delete-value: false

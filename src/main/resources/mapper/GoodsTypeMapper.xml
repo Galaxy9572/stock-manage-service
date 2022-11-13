@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jy.stock.dao.mapper.goods.GoodsTypeMapper">
+  <resultMap id="BaseResultMap" type="com.jy.stock.dao.entity.goods.GoodsType">
+    <!--@mbg.generated-->
+    <!--@Table goods_type-->
+    <id column="id" property="id" />
+    <result column="type_name" property="typeName" />
+    <result column="parent_type_id" property="parentTypeId" />
+    <result column="create_time" property="createTime" />
+    <result column="update_time" property="updateTime" />
+    <result column="logic_delete" property="logicDelete" />
+    <result column="create_user_id" property="createUserId" />
+    <result column="update_user_id" property="updateUserId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, type_name, parent_type_id, create_time, update_time, logic_delete, create_user_id, 
+    update_user_id
+  </sql>
+  <update id="updateBatchSelective" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update goods_type
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="type_name = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.typeName != null">
+            when id = #{item.id} then #{item.typeName}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="parent_type_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.parentTypeId != null">
+            when id = #{item.id} then #{item.parentTypeId}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="create_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.createTime != null">
+            when id = #{item.id} then #{item.createTime}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="update_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.updateTime != null">
+            when id = #{item.id} then #{item.updateTime}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="logic_delete = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.logicDelete != null">
+            when id = #{item.id} then #{item.logicDelete}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="create_user_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.createUserId != null">
+            when id = #{item.id} then #{item.createUserId}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="update_user_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.updateUserId != null">
+            when id = #{item.id} then #{item.updateUserId}
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id}
+    </foreach>
+  </update>
+  <insert id="batchInsert" parameterType="map">
+    <!--@mbg.generated-->
+    insert into goods_type
+    (id, type_name, parent_type_id, create_time, update_time, logic_delete, create_user_id, 
+      update_user_id)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.id}, #{item.typeName}, #{item.parentTypeId}, #{item.createTime}, #{item.updateTime}, 
+        #{item.logicDelete}, #{item.createUserId}, #{item.updateUserId})
+    </foreach>
+  </insert>
+</mapper>

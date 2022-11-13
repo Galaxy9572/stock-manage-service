@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jy.stock.dao.mapper.user.UserInfoMapper">
+  <resultMap id="BaseResultMap" type="com.jy.stock.dao.entity.user.UserInfo">
+    <!--@mbg.generated-->
+    <!--@Table user_info-->
+    <id column="id" property="id" />
+    <result column="user_name" property="userName" />
+    <result column="encrypted_password" property="encryptedPassword" />
+    <result column="salt" property="salt" />
+    <result column="create_time" property="createTime" />
+    <result column="update_time" property="updateTime" />
+    <result column="logic_delete" property="logicDelete" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, user_name, encrypted_password, salt, create_time, update_time, logic_delete
+  </sql>
+  <update id="updateBatchSelective" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update user_info
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="user_name = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.userName != null">
+            when id = #{item.id} then #{item.userName}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="encrypted_password = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.encryptedPassword != null">
+            when id = #{item.id} then #{item.encryptedPassword}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="salt = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.salt != null">
+            when id = #{item.id} then #{item.salt}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="create_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.createTime != null">
+            when id = #{item.id} then #{item.createTime}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="update_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.updateTime != null">
+            when id = #{item.id} then #{item.updateTime}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="logic_delete = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.logicDelete != null">
+            when id = #{item.id} then #{item.logicDelete}
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id}
+    </foreach>
+  </update>
+  <insert id="batchInsert" parameterType="map">
+    <!--@mbg.generated-->
+    insert into user_info
+    (id, user_name, encrypted_password, salt, create_time, update_time, logic_delete)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.id}, #{item.userName}, #{item.encryptedPassword}, #{item.salt}, #{item.createTime}, 
+        #{item.updateTime}, #{item.logicDelete})
+    </foreach>
+  </insert>
+</mapper>

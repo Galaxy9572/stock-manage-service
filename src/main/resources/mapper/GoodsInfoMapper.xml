@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jy.stock.dao.mapper.goods.GoodsInfoMapper">
+  <resultMap id="BaseResultMap" type="com.jy.stock.dao.entity.goods.GoodsInfo">
+    <!--@mbg.generated-->
+    <!--@Table goods_info-->
+    <result column="id" property="id" />
+    <result column="goods_name" property="goodsName" />
+    <result column="goods_type_id" property="goodsTypeId" />
+    <result column="goods_unit_id" property="goodsUnitId" />
+    <result column="memo" property="memo" />
+    <result column="create_user_id" property="createUserId" />
+    <result column="update_user_id" property="updateUserId" />
+    <result column="create_time" property="createTime" />
+    <result column="update_time" property="updateTime" />
+    <result column="logic_delete" property="logicDelete" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, goods_name, goods_type_id, goods_unit_id, memo, create_user_id, update_user_id, 
+    create_time, update_time, logic_delete
+  </sql>
+  <insert id="batchInsert" parameterType="map">
+    <!--@mbg.generated-->
+    insert into goods_info
+    (id, goods_name, goods_type_id, goods_unit_id, memo, create_user_id, update_user_id, 
+      create_time, update_time, logic_delete)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.id}, #{item.goodsName}, #{item.goodsTypeId}, #{item.goodsUnitId}, #{item.memo}, 
+        #{item.createUserId}, #{item.updateUserId}, #{item.createTime}, #{item.updateTime}, 
+        #{item.logicDelete})
+    </foreach>
+  </insert>
+</mapper>
