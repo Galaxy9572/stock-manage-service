@@ -1,6 +1,6 @@
 package com.jy.stock.common.response;
 
-import com.maimai.miwuyou.user.common.util.SpringBeanUtil;
+import com.jy.stock.common.util.SpringBeanUtil;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;

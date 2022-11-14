@@ -32,6 +32,8 @@ spring:
         exclusions: /druid/*,*.js,*.gif,*.jpg,*.bmp,*.png,*.css,*.ico
         session-stat-enable: true
         url-pattern: /*
+  messages:
+    basename: i18n/Messages
 server:
   port: 8080
   servlet:
@@ -45,7 +47,7 @@ server:
 
 mybatis-plus:
   configuration:
-    map-underscore-to-camel-case: false
+    map-underscore-to-camel-case: true
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   global-config:
     db-config:

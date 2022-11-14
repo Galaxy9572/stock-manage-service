@@ -18,7 +18,7 @@ public class GoodsUnitVO {
     /**
      * 计量单位
      */
-    private Long unitName;
+    private String unitName;
 
     /**
      * 创建时间

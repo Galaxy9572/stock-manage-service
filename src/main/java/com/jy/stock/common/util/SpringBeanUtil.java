@@ -1,4 +1,4 @@
-package com.maimai.miwuyou.user.common.util;
+package com.jy.stock.common.util;
 
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;

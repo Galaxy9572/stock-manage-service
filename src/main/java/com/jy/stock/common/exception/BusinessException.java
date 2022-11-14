@@ -1,12 +1,13 @@
 package com.jy.stock.common.exception;
 
-import com.maimai.miwuyou.user.common.util.SpringBeanUtil;
+import com.jy.stock.common.util.SpringBeanUtil;
 import lombok.Getter;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.HttpStatus;
 
 import java.text.MessageFormat;
+import java.util.Locale;
 
 /**
  * @author JY
@@ -33,6 +34,7 @@ public class BusinessException extends RuntimeException{
     }
 
     public static BusinessException of(String i18nCode) {
+        Locale locale = LocaleContextHolder.getLocale();
         String i18nMessage = MESSAGE_SOURCE.getMessage(i18nCode, null, LocaleContextHolder.getLocale());
         return new BusinessException(i18nMessage);
     }

@@ -27,4 +27,15 @@
         #{item.createUserId}, #{item.updateUserId})
     </foreach>
   </insert>
+
+  <select id="listGoodsUnits" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/>
+    from goods_unit
+    <where>
+      <if test="param.unitName != null and param.unitName != ''">
+        unit_name like concat('%', #{param.unitName}, '%')
+      </if>
+    </where>
+    order by create_time ${sort}
+  </select>
 </mapper>

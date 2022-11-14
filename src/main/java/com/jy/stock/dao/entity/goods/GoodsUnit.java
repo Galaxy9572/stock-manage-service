@@ -1,8 +1,6 @@
 package com.jy.stock.dao.entity.goods;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
 import lombok.Data;
 
 import java.util.Date;
@@ -23,30 +21,35 @@ public class GoodsUnit {
     /**
      * 计量单位
      */
-    private Long unitName;
+    private String unitName;
 
     /**
      * 创建时间
      */
+    @TableField(fill = FieldFill.INSERT)
     private Date createTime;
 
     /**
      * 更新时间
      */
+    @TableField(fill = FieldFill.INSERT_UPDATE)
     private Date updateTime;
 
     /**
      * 逻辑删除
      */
+    @TableLogic
     private Boolean logicDelete;
 
     /**
      * 创建人ID
      */
+    @TableField(fill = FieldFill.INSERT)
     private Long createUserId;
 
     /**
      * 更新人ID
      */
+    @TableField(fill = FieldFill.INSERT_UPDATE)
     private Long updateUserId;
 }
