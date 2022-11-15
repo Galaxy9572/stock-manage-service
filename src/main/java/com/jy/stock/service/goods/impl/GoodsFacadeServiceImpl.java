@@ -39,4 +39,9 @@ public class GoodsFacadeServiceImpl implements GoodsFacadeService {
         return goodsUnitService.listGoodsUnit(request);
     }
 
+    @Override
+    public boolean deleteGoodsUnit(Long id){
+        return goodsUnitService.deleteGoodsUnit(id);
+    }
+
 }

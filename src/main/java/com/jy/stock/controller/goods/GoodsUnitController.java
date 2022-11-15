@@ -10,10 +10,7 @@ import com.jy.stock.pojo.request.goods.AddModifyGoodsUnitReq;
 import com.jy.stock.pojo.request.goods.QueryGoodsUnitReq;
 import com.jy.stock.pojo.response.goods.GoodsUnitVO;
 import com.jy.stock.service.goods.GoodsFacadeService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.validation.Valid;
@@ -42,6 +39,12 @@ public class GoodsUnitController extends EnhancedController<GoodsUnitVO, GoodsUn
         PageDTO<GoodsUnitDTO> pageDTO = goodsFacadeService.listGoodsUnit(req);
         PageVO<GoodsUnitVO> pageVO = toPageVO(pageDTO);
         return ResponseVO.success(pageVO);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseVO<Boolean> deleteGoodsUnit(@PathVariable Long id){
+        boolean isSuccess = goodsFacadeService.deleteGoodsUnit(id);
+        return ResponseVO.success(isSuccess);
     }
 
     @Override

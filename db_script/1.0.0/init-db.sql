@@ -160,7 +160,7 @@ alter table goods_stock
 create table if not exists goods_unit
 (
     id             bigint                  not null,
-    unit_name      bigint                  not null,
+    unit_name      varchar(256)            not null,
     create_time    timestamp default now() not null,
     update_time    timestamp default now() not null,
     logic_delete   boolean   default false not null,
@@ -185,5 +185,70 @@ comment on column goods_unit.create_user_id is '创建人ID';
 comment on column goods_unit.update_user_id is '更新人ID';
 
 alter table goods_unit
+    owner to stock_manage;
+
+create table if not exists customer_info
+(
+    id                          bigint                  not null
+        constraint customer_info_pk
+            primary key,
+    customer_name               varchar(256)            not null,
+    contact_person              varchar(256)            not null,
+    phone                       varchar(256),
+    email                       text,
+    fax                         varchar(256),
+    qq                          varchar(256),
+    wechat                      varchar(256),
+    address                     varchar(256),
+    post_code                   varchar(256),
+    init_accounts_receivable    numeric   default 0.0   not null,
+    current_accounts_receivable numeric   default 0.0   not null,
+    memo                        text,
+    create_time                 timestamp default now() not null,
+    update_time                 timestamp default now() not null,
+    create_user_id              bigint                  not null,
+    update_user_id              bigint                  not null,
+    logic_delete                boolean   default false not null
+);
+
+comment on table customer_info is '客户信息';
+
+comment on column customer_info.id is '主键';
+
+comment on column customer_info.customer_name is '客户名称';
+
+comment on column customer_info.contact_person is '联系人';
+
+comment on column customer_info.phone is '联系电话';
+
+comment on column customer_info.email is '电子邮箱';
+
+comment on column customer_info.fax is '传真';
+
+comment on column customer_info.qq is 'QQ号';
+
+comment on column customer_info.wechat is '微信号';
+
+comment on column customer_info.address is '地址';
+
+comment on column customer_info.post_code is '邮政编码';
+
+comment on column customer_info.init_accounts_receivable is '初始应收款';
+
+comment on column customer_info.current_accounts_receivable is '当前应收款';
+
+comment on column customer_info.memo is '备注';
+
+comment on column customer_info.create_time is '创建时间';
+
+comment on column customer_info.update_time is '更新时间';
+
+comment on column customer_info.create_user_id is '创建人ID';
+
+comment on column customer_info.update_user_id is '更新人ID';
+
+comment on column customer_info.logic_delete is '逻辑删除';
+
+alter table customer_info
     owner to stock_manage;
 

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jy.stock.dao.mapper.customer.CustomerInfoMapper">
+  <resultMap id="BaseResultMap" type="com.jy.stock.dao.entity.customer.CustomerInfo">
+    <!--@mbg.generated-->
+    <!--@Table customer_info-->
+    <id column="id" property="id" />
+    <result column="customer_name" property="customerName" />
+    <result column="contact_person" property="contactPerson" />
+    <result column="phone" property="phone" />
+    <result column="email" property="email" />
+    <result column="fax" property="fax" />
+    <result column="qq" property="qq" />
+    <result column="wechat" property="wechat" />
+    <result column="address" property="address" />
+    <result column="post_code" property="postCode" />
+    <result column="init_accounts_receivable" property="initAccountsReceivable" />
+    <result column="current_accounts_receivable" property="currentAccountsReceivable" />
+    <result column="memo" property="memo" />
+    <result column="create_time" property="createTime" />
+    <result column="update_time" property="updateTime" />
+    <result column="create_user_id" property="createUserId" />
+    <result column="update_user_id" property="updateUserId" />
+    <result column="logic_delete" property="logicDelete" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, customer_name, contact_person, phone, email, fax, qq, wechat, address, post_code, 
+    init_accounts_receivable, current_accounts_receivable, memo, create_time, update_time, 
+    create_user_id, update_user_id, logic_delete
+  </sql>
+</mapper>

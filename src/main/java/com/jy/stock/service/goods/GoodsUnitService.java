@@ -16,4 +16,6 @@ public interface GoodsUnitService extends IService<GoodsUnit>{
     GoodsUnitDTO addModifyGoodsUnit(AddModifyGoodsUnitReq req);
 
     PageDTO<GoodsUnitDTO> listGoodsUnit(QueryGoodsUnitReq request);
+
+    boolean deleteGoodsUnit(Long id);
 }

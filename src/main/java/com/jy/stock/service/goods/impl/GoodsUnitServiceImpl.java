@@ -57,6 +57,13 @@ public class GoodsUnitServiceImpl extends EnhancedServiceImpl<GoodsUnitMapper, G
     }
 
     @Override
+    public boolean deleteGoodsUnit(Long id){
+        GoodsUnit goodsUnit = getById(id);
+        AssertUtils.isNotNull(goodsUnit, "goods.unit.not.exists");
+        return removeById(id);
+    }
+
+    @Override
     public Class<GoodsUnitDTO> getDtoClass() {
         return GoodsUnitDTO.class;
     }

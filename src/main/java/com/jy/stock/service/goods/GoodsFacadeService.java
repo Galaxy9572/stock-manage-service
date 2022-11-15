@@ -15,4 +15,6 @@ public interface GoodsFacadeService {
 
     PageDTO<GoodsUnitDTO> listGoodsUnit(QueryGoodsUnitReq request);
 
+    boolean deleteGoodsUnit(Long id);
+
 }
