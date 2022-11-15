@@ -3,33 +3,26 @@ package com.jy.stock.pojo.response.user;
 import lombok.Data;
 
 import java.util.Date;
-import java.util.List;
 
 /**
- * 用户信息
  * @author liaojunyao
  */
 @Data
-public class UserInfoVO {
+public class UserRoleVO {
     /**
      * 主键
      */
     private Long id;
 
     /**
-     * 用户名
+     * 用户ID
      */
-    private String userName;
+    private Long userId;
 
     /**
-     * 盐值
+     * 角色编码
      */
-    private String salt;
-
-    /**
-     * 用户角色
-     */
-    private List<UserRoleVO> userRoles;
+    private String roleCode;
 
     /**
      * 创建时间

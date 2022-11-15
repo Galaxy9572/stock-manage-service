@@ -12,10 +12,23 @@
     <result column="update_time" property="updateTime" />
     <result column="logic_delete" property="logicDelete" />
   </resultMap>
+
+  <resultMap id="WithRoleResultMap" type="com.jy.stock.pojo.dto.user.UserInfoDTO">
+    <id column="id" property="id" />
+    <result column="user_name" property="userName" />
+    <result column="encrypted_password" property="encryptedPassword" />
+    <result column="salt" property="salt" />
+    <result column="create_time" property="createTime" />
+    <result column="update_time" property="updateTime" />
+    <result column="logic_delete" property="logicDelete" />
+    <collection column="id" property="userRoles" ofType="com.jy.stock.pojo.dto.user.UserRoleDTO" select="com.jy.stock.dao.mapper.user.UserRoleMapper.selectByUserId"/>
+  </resultMap>
+
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
     id, user_name, encrypted_password, salt, create_time, update_time, logic_delete
   </sql>
+
   <update id="updateBatchSelective" parameterType="java.util.List">
     <!--@mbg.generated-->
     update user_info
@@ -68,6 +81,7 @@
       #{item.id}
     </foreach>
   </update>
+
   <insert id="batchInsert" parameterType="map">
     <!--@mbg.generated-->
     insert into user_info
@@ -78,4 +92,18 @@
         #{item.updateTime}, #{item.logicDelete})
     </foreach>
   </insert>
+
+  <select id="getUserInfoById" resultMap="WithRoleResultMap">
+    select <include refid="Base_Column_List"/>
+    from user_info
+    where id = #{userId}
+    and logic_delete = false
+  </select>
+
+  <select id="getUserInfoByName" resultMap="WithRoleResultMap">
+    select <include refid="Base_Column_List"/>
+    from user_info
+    where user_name = #{userName}
+    and logic_delete = false
+  </select>
 </mapper>

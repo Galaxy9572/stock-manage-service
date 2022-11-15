@@ -1,35 +1,29 @@
-package com.jy.stock.pojo.response.user;
+package com.jy.stock.pojo.dto.user;
 
+import com.baomidou.mybatisplus.annotation.*;
 import lombok.Data;
 
 import java.util.Date;
-import java.util.List;
 
 /**
- * 用户信息
  * @author liaojunyao
  */
 @Data
-public class UserInfoVO {
+public class UserRoleDTO {
     /**
      * 主键
      */
     private Long id;
 
     /**
-     * 用户名
+     * 用户ID
      */
-    private String userName;
+    private Long userId;
 
     /**
-     * 盐值
+     * 角色编码
      */
-    private String salt;
-
-    /**
-     * 用户角色
-     */
-    private List<UserRoleVO> userRoles;
+    private String roleCode;
 
     /**
      * 创建时间
@@ -41,4 +35,9 @@ public class UserInfoVO {
      */
     private Date updateTime;
 
+    /**
+     * 逻辑删除
+     */
+    @TableLogic
+    private Boolean logicDelete;
 }

@@ -3,6 +3,7 @@ package com.jy.stock.pojo.dto.user;
 import lombok.Data;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * 用户信息
@@ -29,6 +30,11 @@ public class UserInfoDTO {
      * 盐值
      */
     private String salt;
+
+    /**
+     * 用户角色
+     */
+    private List<UserRoleDTO> userRoles;
 
     /**
      * 创建时间

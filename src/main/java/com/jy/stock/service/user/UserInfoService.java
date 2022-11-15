@@ -1,13 +1,17 @@
 package com.jy.stock.service.user;
 
-import java.util.List;
-import com.jy.stock.dao.entity.user.UserInfo;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.jy.stock.dao.entity.user.UserInfo;
+import com.jy.stock.pojo.dto.user.UserInfoDTO;
+import com.jy.stock.pojo.request.user.UserLoginReq;
+
+import javax.servlet.http.HttpSession;
+
 public interface UserInfoService extends IService<UserInfo>{
 
+    UserInfoDTO login(HttpSession session, UserLoginReq loginReq);
 
-    int updateBatchSelective(List<UserInfo> list);
+    UserInfoDTO getUserInfoById(Long userId);
 
-    int batchInsert(List<UserInfo> list);
-
+    UserInfoDTO getUserInfoByName(String userName);
 }

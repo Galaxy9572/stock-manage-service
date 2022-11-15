@@ -32,6 +32,33 @@ comment on column user_info.logic_delete is '逻辑删除';
 alter table user_info
     owner to stock_manage;
 
+create table user_role
+(
+    id                 bigint                not null
+        constraint user_role_pk
+            primary key,
+    user_id            bigint                not null,
+    role_code          varchar(256)          not null,
+    create_time        timestamp             not null,
+    update_time        timestamp             not null,
+    logic_delete       boolean default false not null
+);
+
+comment on column user_role.id is '主键';
+
+comment on column user_role.user_id is '用户ID';
+
+comment on column user_role.role_code is '角色编码';
+
+comment on column user_role.create_time is '创建时间';
+
+comment on column user_role.update_time is '更新时间';
+
+comment on column user_role.logic_delete is '逻辑删除';
+
+alter table user_role
+    owner to stock_manage;
+
 create table if not exists goods_type
 (
     id             bigint                  not null
