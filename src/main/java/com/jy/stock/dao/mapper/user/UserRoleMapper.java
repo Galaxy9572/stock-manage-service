@@ -11,5 +11,5 @@ public interface UserRoleMapper extends BaseMapper<UserRole> {
 
     int batchInsert(@Param("list") List<UserRole> list);
 
-    List<UserRoleDTO> selectByUserId(@Param("userId") Long userId);
+    List<UserRoleDTO> selectRoleCodesByUserId(@Param("userId") Long userId);
 }

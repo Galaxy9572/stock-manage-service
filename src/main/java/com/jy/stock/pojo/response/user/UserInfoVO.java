@@ -22,14 +22,14 @@ public class UserInfoVO {
     private String userName;
 
     /**
-     * 盐值
-     */
-    private String salt;
-
-    /**
      * 用户角色
      */
-    private List<UserRoleVO> userRoles;
+    private List<String> roles;
+
+    /**
+     * token
+     */
+    private String token;
 
     /**
      * 创建时间

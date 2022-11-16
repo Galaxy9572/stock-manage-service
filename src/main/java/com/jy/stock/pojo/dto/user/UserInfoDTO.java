@@ -34,7 +34,12 @@ public class UserInfoDTO {
     /**
      * 用户角色
      */
-    private List<UserRoleDTO> userRoles;
+    private List<String> roles;
+
+    /**
+     * token
+     */
+    private String token;
 
     /**
      * 创建时间

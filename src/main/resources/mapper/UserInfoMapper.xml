@@ -21,7 +21,7 @@
     <result column="create_time" property="createTime" />
     <result column="update_time" property="updateTime" />
     <result column="logic_delete" property="logicDelete" />
-    <collection column="id" property="userRoles" ofType="com.jy.stock.pojo.dto.user.UserRoleDTO" select="com.jy.stock.dao.mapper.user.UserRoleMapper.selectByUserId"/>
+    <collection column="id" property="roles" ofType="java.lang.String" select="com.jy.stock.dao.mapper.user.UserRoleMapper.selectRoleCodesByUserId"/>
   </resultMap>
 
   <sql id="Base_Column_List">

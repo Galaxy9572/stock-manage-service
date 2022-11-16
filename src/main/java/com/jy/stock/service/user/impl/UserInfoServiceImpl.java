@@ -25,7 +25,9 @@ public class UserInfoServiceImpl extends EnhancedServiceImpl<UserInfoMapper, Use
         AssertUtils.isNotNull(userInfo, "user.not.exist");
         String encryptedPassword = HashUtils.sha256(loginReq.getPassword() + userInfo.getSalt());
         AssertUtils.equal(encryptedPassword, userInfo.getEncryptedPassword(), "nick.or.password.wrong");
-        session.setAttribute("token", HashUtils.randomUuid());
+        String token = HashUtils.randomUuid();
+        session.setAttribute("token", token);
+        userInfo.setToken(token);
         return userInfo;
     }
 
