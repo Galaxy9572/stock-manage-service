@@ -1,3 +1,4 @@
+docker pull mongo:6.0.2
 docker run -d \
   --name mongodb \
   --restart always \
