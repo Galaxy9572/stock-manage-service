@@ -2,6 +2,7 @@ package com.jy.stock.service.user.impl;
 
 import com.jy.stock.common.enhance.EnhancedServiceImpl;
 import com.jy.stock.common.util.AssertUtils;
+import com.jy.stock.common.util.ContextHolder;
 import com.jy.stock.common.util.HashUtils;
 import com.jy.stock.dao.entity.user.UserInfo;
 import com.jy.stock.dao.mapper.user.UserInfoMapper;
@@ -33,12 +34,22 @@ public class UserInfoServiceImpl extends EnhancedServiceImpl<UserInfoMapper, Use
 
     @Override
     public UserInfoDTO getUserInfoById(Long userId){
-        return baseMapper.getUserInfoById(userId);
+        UserInfoDTO userInfo = baseMapper.getUserInfoById(userId);
+        AssertUtils.isNotNull(userInfo, "user.not.exist");
+        HttpSession session = ContextHolder.currentHttpRequest().getSession();
+        String token = (String) session.getAttribute("token");
+        userInfo.setToken(token);
+        return userInfo;
     }
 
     @Override
     public UserInfoDTO getUserInfoByName(String userName) {
-        return baseMapper.getUserInfoByName(userName);
+        UserInfoDTO userInfo = baseMapper.getUserInfoByName(userName);
+        AssertUtils.isNotNull(userInfo, "user.not.exist");
+        HttpSession session = ContextHolder.currentHttpRequest().getSession();
+        String token = (String) session.getAttribute("token");
+        userInfo.setToken(token);
+        return userInfo;
     }
 
     @Override
