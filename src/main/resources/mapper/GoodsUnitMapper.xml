@@ -35,7 +35,8 @@
       <if test="param.unitName != null and param.unitName != ''">
         unit_name like concat('%', #{param.unitName}, '%')
       </if>
+      and logic_delete = false
     </where>
-    order by create_time ${sort}
+    order by create_time desc
   </select>
 </mapper>

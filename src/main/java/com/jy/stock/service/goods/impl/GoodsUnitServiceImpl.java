@@ -30,6 +30,11 @@ public class GoodsUnitServiceImpl extends EnhancedServiceImpl<GoodsUnitMapper, G
             GoodsUnit goodsUnit = getOne(wrapper);
             AssertUtils.isNotNull(goodsUnit, "goods.unit.not.exists");
 
+            wrapper = new LambdaQueryWrapper<>();
+            wrapper.eq(GoodsUnit::getUnitName, req.getUnitName());
+            goodsUnit = getOne(wrapper);
+            AssertUtils.isTrue(goodsUnit != null && goodsUnit.getId().equals(req.getId()), "goods.unit.already.exists");
+
             LambdaUpdateWrapper<GoodsUnit> updateWrapper = new LambdaUpdateWrapper<>();
             updateWrapper.set(GoodsUnit::getUnitName, req.getUnitName()).eq(GoodsUnit::getId, req.getId());
             update(null, updateWrapper);

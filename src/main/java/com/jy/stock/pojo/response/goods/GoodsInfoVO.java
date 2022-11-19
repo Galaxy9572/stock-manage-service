@@ -1,5 +1,6 @@
 package com.jy.stock.pojo.response.goods;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import java.util.Date;
@@ -11,6 +12,7 @@ import java.util.Date;
 @Data
 public class GoodsInfoVO {
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING)
     private Long id;
 
     /**
@@ -21,11 +23,13 @@ public class GoodsInfoVO {
     /**
      * 商品类别ID
      */
+    @JsonFormat(shape = JsonFormat.Shape.STRING)
     private Long goodsTypeId;
 
     /**
      * 商品计量单位ID
      */
+    @JsonFormat(shape = JsonFormat.Shape.STRING)
     private Long goodsUnitId;
 
     /**

@@ -1,5 +1,6 @@
 package com.jy.stock.pojo.response.user;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import java.util.Date;
@@ -14,6 +15,7 @@ public class UserInfoVO {
     /**
      * 主键
      */
+    @JsonFormat(shape = JsonFormat.Shape.STRING)
     private Long id;
 
     /**

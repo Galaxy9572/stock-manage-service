@@ -1,5 +1,6 @@
 package com.jy.stock.pojo.response.goods;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -14,6 +15,7 @@ public class GoodsStockVO {
     /**
      * 商品库存ID
      */
+    @JsonFormat(shape = JsonFormat.Shape.STRING)
     private Long id;
 
     /**
