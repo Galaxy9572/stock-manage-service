@@ -1,17 +1,20 @@
-package com.jy.stock.pojo.dto.customer;
+package com.jy.stock.pojo.request.customer;
 
-import com.baomidou.mybatisplus.annotation.*;
+import com.jy.stock.common.validate.annotation.ValidateEmail;
+import com.jy.stock.common.validate.annotation.ValidateQQ;
 import lombok.Data;
 
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotBlank;
 import java.math.BigDecimal;
-import java.util.Date;
 
 /**
  * 客户信息
+ *
  * @author liaojunyao
  */
 @Data
-public class CustomerInfoDTO {
+public class AddModifyCustomerInfoReq {
     /**
      * 主键
      */
@@ -20,11 +23,13 @@ public class CustomerInfoDTO {
     /**
      * 客户名称
      */
+    @NotBlank(message = "customer.name.cannot.empty")
     private String customerName;
 
     /**
      * 联系人
      */
+    @NotBlank(message = "contact.person.cannot.empty")
     private String contactPerson;
 
     /**
@@ -35,6 +40,7 @@ public class CustomerInfoDTO {
     /**
      * 电子邮箱
      */
+    @ValidateEmail
     private String email;
 
     /**
@@ -45,6 +51,7 @@ public class CustomerInfoDTO {
     /**
      * QQ号
      */
+    @ValidateQQ
     private String qq;
 
     /**
@@ -55,21 +62,25 @@ public class CustomerInfoDTO {
     /**
      * 国家
      */
+    @NotBlank(message = "country.cannot.empty")
     private String country;
 
     /**
      * 州、省
      */
+    @NotBlank(message = "state.cannot.empty")
     private String state;
 
     /**
      * 市
      */
+    @NotBlank(message = "city.cannot.empty")
     private String city;
 
     /**
      * 地址
      */
+    @NotBlank(message = "address.cannot.empty")
     private String address;
 
     /**
@@ -80,41 +91,17 @@ public class CustomerInfoDTO {
     /**
      * 初始应收款
      */
+    @DecimalMin(value = "0.00", message = "init.accounts.receivable.invalid")
     private BigDecimal initAccountsReceivable;
 
     /**
      * 当前应收款
      */
+    @DecimalMin(value = "0.00", message = "current.accounts.receivable.invalid")
     private BigDecimal currentAccountsReceivable;
 
     /**
      * 备注
      */
     private String memo;
-
-    /**
-     * 创建时间
-     */
-    private Date createTime;
-
-    /**
-     * 更新时间
-     */
-    private Date updateTime;
-
-    /**
-     * 创建人ID
-     */
-    private Long createUserId;
-
-    /**
-     * 更新人ID
-     */
-    private Long updateUserId;
-
-    /**
-     * 逻辑删除
-     */
-    @TableLogic
-    private Boolean logicDelete;
 }

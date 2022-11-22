@@ -214,7 +214,8 @@ comment on column goods_unit.update_user_id is '更新人ID';
 alter table goods_unit
     owner to stock_manage;
 
-create table if not exists customer_info
+-- auto-generated definition
+create table customer_info
 (
     id                          bigint                  not null
         constraint customer_info_pk
@@ -226,7 +227,10 @@ create table if not exists customer_info
     fax                         varchar(256),
     qq                          varchar(256),
     wechat                      varchar(256),
-    address                     varchar(256),
+    country                     varchar(256)            not null,
+    state                       varchar(256)            not null,
+    city                        varchar(256)            not null,
+    address                     text                    not null,
     post_code                   varchar(256),
     init_accounts_receivable    numeric   default 0.0   not null,
     current_accounts_receivable numeric   default 0.0   not null,
@@ -256,6 +260,12 @@ comment on column customer_info.qq is 'QQ号';
 
 comment on column customer_info.wechat is '微信号';
 
+comment on column customer_info.country is '国家';
+
+comment on column customer_info.state is '州、省';
+
+comment on column customer_info.city is '市';
+
 comment on column customer_info.address is '地址';
 
 comment on column customer_info.post_code is '邮政编码';
@@ -278,4 +288,3 @@ comment on column customer_info.logic_delete is '逻辑删除';
 
 alter table customer_info
     owner to stock_manage;
-

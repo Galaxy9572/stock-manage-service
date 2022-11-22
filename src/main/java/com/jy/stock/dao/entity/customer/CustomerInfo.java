@@ -1,10 +1,10 @@
 package com.jy.stock.dao.entity.customer;
 
 import com.baomidou.mybatisplus.annotation.*;
+import lombok.Data;
 
 import java.math.BigDecimal;
 import java.util.Date;
-import lombok.Data;
 
 /**
  * 客户信息
@@ -53,6 +53,21 @@ public class CustomerInfo {
      * 微信号
      */
     private String wechat;
+
+    /**
+     * 国家
+     */
+    private String country;
+
+    /**
+     * 州、省
+     */
+    private String state;
+
+    /**
+     * 市
+     */
+    private String city;
 
     /**
      * 地址

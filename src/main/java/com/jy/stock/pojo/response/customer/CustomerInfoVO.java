@@ -1,5 +1,6 @@
 package com.jy.stock.pojo.response.customer;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -15,6 +16,7 @@ public class CustomerInfoVO {
     /**
      * 主键
      */
+    @JsonFormat(shape = JsonFormat.Shape.STRING)
     private Long id;
 
     /**
@@ -51,6 +53,21 @@ public class CustomerInfoVO {
      * 微信号
      */
     private String wechat;
+
+    /**
+     * 国家
+     */
+    private String country;
+
+    /**
+     * 州、省
+     */
+    private String state;
+
+    /**
+     * 市
+     */
+    private String city;
 
     /**
      * 地址
