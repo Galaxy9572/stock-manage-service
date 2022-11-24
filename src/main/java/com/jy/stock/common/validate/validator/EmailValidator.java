@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
  */
 public class EmailValidator implements ConstraintValidator<ValidateEmail, String> {
 
-    private static final Pattern PATTERN = Pattern.compile("\\w+@[a-zA-Z0-9_-]+(\\.[a-zA-Z0-9_-]+)");
+    private static final Pattern PATTERN = Pattern.compile("[\\w_\\-.]+@[a-zA-Z0-9_-]+(\\.[a-zA-Z0-9_-]+)");
 
     @Override
     public void initialize(ValidateEmail constraintAnnotation) {

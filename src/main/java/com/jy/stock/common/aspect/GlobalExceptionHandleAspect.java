@@ -29,8 +29,8 @@ public class GlobalExceptionHandleAspect {
     public ResponseVO<String> handleValidationException(MethodArgumentNotValidException e){
         StringBuilder builder = new StringBuilder();
         List<ObjectError> allErrors = e.getBindingResult().getAllErrors();
-        allErrors.forEach(error -> builder.append(error.getDefaultMessage()));
-        return ResponseVO.failed(builder.toString());
+        allErrors.forEach(error -> builder.append(error.getDefaultMessage()).append("\n"));
+        return ResponseVO.failed(HttpStatus.BAD_REQUEST, builder.toString());
     }
 
     /**

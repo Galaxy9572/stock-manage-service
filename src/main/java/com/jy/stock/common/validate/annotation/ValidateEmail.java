@@ -1,6 +1,6 @@
 package com.jy.stock.common.validate.annotation;
 
-import com.jy.stock.common.validate.validator.QQValidator;
+import com.jy.stock.common.validate.validator.EmailValidator;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
@@ -14,10 +14,10 @@ import java.lang.annotation.Target;
  */
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = QQValidator.class)
+@Constraint(validatedBy = EmailValidator.class)
 public @interface ValidateEmail {
 
-    String message() default "email.format.invalid";
+    String message() default "{email.format.invalid}";
 
     Class<?>[] groups() default {};
 

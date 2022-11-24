@@ -2,6 +2,7 @@ package com.jy.stock.pojo.request.customer;
 
 import com.jy.stock.common.validate.annotation.ValidateEmail;
 import com.jy.stock.common.validate.annotation.ValidateQQ;
+import com.jy.stock.common.validate.annotation.ValidateWechat;
 import lombok.Data;
 
 import javax.validation.constraints.DecimalMin;
@@ -23,13 +24,13 @@ public class AddModifyCustomerInfoReq {
     /**
      * 客户名称
      */
-    @NotBlank(message = "customer.name.cannot.empty")
+    @NotBlank(message = "{customer.name.cannot.empty}")
     private String customerName;
 
     /**
      * 联系人
      */
-    @NotBlank(message = "contact.person.cannot.empty")
+    @NotBlank(message = "{contact.person.cannot.empty}")
     private String contactPerson;
 
     /**
@@ -57,30 +58,31 @@ public class AddModifyCustomerInfoReq {
     /**
      * 微信号
      */
+    @ValidateWechat
     private String wechat;
 
     /**
      * 国家
      */
-    @NotBlank(message = "country.cannot.empty")
+    @NotBlank(message = "{country.cannot.empty}")
     private String country;
 
     /**
      * 州、省
      */
-    @NotBlank(message = "state.cannot.empty")
+    @NotBlank(message = "{state.cannot.empty}")
     private String state;
 
     /**
      * 市
      */
-    @NotBlank(message = "city.cannot.empty")
+    @NotBlank(message = "{city.cannot.empty}")
     private String city;
 
     /**
      * 地址
      */
-    @NotBlank(message = "address.cannot.empty")
+    @NotBlank(message = "{address.cannot.empty}")
     private String address;
 
     /**
@@ -91,13 +93,13 @@ public class AddModifyCustomerInfoReq {
     /**
      * 初始应收款
      */
-    @DecimalMin(value = "0.00", message = "init.accounts.receivable.invalid")
+    @DecimalMin(value = "0.00", message = "{init.accounts.receivable.invalid}")
     private BigDecimal initAccountsReceivable;
 
     /**
      * 当前应收款
      */
-    @DecimalMin(value = "0.00", message = "current.accounts.receivable.invalid")
+    @DecimalMin(value = "0.00", message = "{current.accounts.receivable.invalid}")
     private BigDecimal currentAccountsReceivable;
 
     /**

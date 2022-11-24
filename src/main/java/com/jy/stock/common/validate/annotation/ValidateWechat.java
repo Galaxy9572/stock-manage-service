@@ -1,6 +1,6 @@
 package com.jy.stock.common.validate.annotation;
 
-import com.jy.stock.common.validate.validator.QQValidator;
+import com.jy.stock.common.validate.validator.WechatValidator;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
@@ -14,10 +14,10 @@ import java.lang.annotation.Target;
  */
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = QQValidator.class)
-public @interface ValidateQQ {
+@Constraint(validatedBy = WechatValidator.class)
+public @interface ValidateWechat {
 
-    String message() default "{qq.format.invalid}";
+    String message() default "{wechat.format.invalid}";
 
     Class<?>[] groups() default {};
 
