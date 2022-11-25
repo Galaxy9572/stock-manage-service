@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * 商品类别
@@ -23,11 +24,6 @@ public class GoodsTypeVO {
     private String typeName;
 
     /**
-     * 父类别ID
-     */
-    private Long parentTypeId;
-
-    /**
      * 创建时间
      */
     private Date createTime;
@@ -36,7 +32,6 @@ public class GoodsTypeVO {
      * 更新时间
      */
     private Date updateTime;
-
 
     /**
      * 创建用户ID
@@ -47,4 +42,9 @@ public class GoodsTypeVO {
      * 更新用户ID
      */
     private Long updateUserId;
+
+    /**
+     * 孩子节点
+     */
+    private List<GoodsTypeVO> children;
 }

@@ -40,6 +40,10 @@ public class ResponseVO<T> {
         return ResponseVO.build(HttpStatus.OK.value(), HttpStatus.OK.getReasonPhrase(), data);
     }
 
+    public static <T> ResponseVO<T> success(){
+        return ResponseVO.build(HttpStatus.OK.value(), HttpStatus.OK.getReasonPhrase(), null);
+    }
+
     public static <T> ResponseVO<T> success(HttpStatus status, T data){
         return ResponseVO.build(status.value(), status.getReasonPhrase(), data);
     }

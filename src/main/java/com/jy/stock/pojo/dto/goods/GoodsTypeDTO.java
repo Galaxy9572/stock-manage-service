@@ -3,6 +3,7 @@ package com.jy.stock.pojo.dto.goods;
 import lombok.Data;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * 商品类别
@@ -19,11 +20,6 @@ public class GoodsTypeDTO {
      * 商品类别名称
      */
     private String typeName;
-
-    /**
-     * 父类别ID
-     */
-    private Long parentTypeId;
 
     /**
      * 创建时间
@@ -49,4 +45,9 @@ public class GoodsTypeDTO {
      * 更新用户ID
      */
     private Long updateUserId;
+
+    /**
+     * 孩子节点
+     */
+    private List<GoodsTypeDTO> children;
 }

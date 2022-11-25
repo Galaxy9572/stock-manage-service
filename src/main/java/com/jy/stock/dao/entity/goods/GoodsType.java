@@ -1,21 +1,23 @@
 package com.jy.stock.dao.entity.goods;
 
-import com.baomidou.mybatisplus.annotation.*;
 import lombok.Data;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * 商品类别
  * @author liaojunyao
  */
 @Data
-@TableName(value = "goods_type")
+@Document(collection = "goods_type")
 public class GoodsType {
     /**
      * 主键
      */
-    @TableId(type = IdType.ASSIGN_ID)
+    @Id
     private Long id;
 
     /**
@@ -24,37 +26,32 @@ public class GoodsType {
     private String typeName;
 
     /**
-     * 父类别ID
-     */
-    private Long parentTypeId;
-
-    /**
      * 创建时间
      */
-    @TableField(fill = FieldFill.INSERT)
     private Date createTime;
 
     /**
      * 更新时间
      */
-    @TableField(fill = FieldFill.INSERT_UPDATE)
     private Date updateTime;
 
     /**
      * 逻辑删除
      */
-    @TableLogic
     private Boolean logicDelete;
 
     /**
      * 创建用户ID
      */
-    @TableField(fill = FieldFill.INSERT)
     private Long createUserId;
 
     /**
      * 更新用户ID
      */
-    @TableField(fill = FieldFill.INSERT_UPDATE)
     private Long updateUserId;
+
+    /**
+     * 孩子节点
+     */
+    private List<GoodsType> children;
 }
