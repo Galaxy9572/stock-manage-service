@@ -66,6 +66,7 @@ create table if not exists goods_type
             primary key,
     type_name      varchar(256)            not null,
     parent_type_id bigint,
+    level          integer                 not null,
     create_time    timestamp default now() not null,
     update_time    timestamp default now() not null,
     logic_delete   boolean   default false not null,
@@ -80,6 +81,8 @@ comment on column goods_type.id is '主键';
 comment on column goods_type.type_name is '商品类别名称';
 
 comment on column goods_type.parent_type_id is '父类别ID';
+
+comment on column goods_type.level is '层级';
 
 comment on column goods_type.create_time is '创建时间';
 

@@ -39,10 +39,12 @@ public class CustomerInfoServiceImpl extends EnhancedServiceImpl<CustomerInfoMap
         } else {
             CustomerInfo customerInfo = getById(id);
             AssertUtils.isNotNull(customerInfo, "customer.not.exist");
-            CustomerInfo entity = new CustomerInfo();
-            BeanCopyUtils.copy(request, entity);
-            int updatedLines = baseMapper.updateById(entity);
-            AssertUtils.isTrue(updatedLines > 0, "operate.failed");
+            if (!request.getCustomerName().equals(customerInfo.getCustomerName())) {
+                CustomerInfo entity = new CustomerInfo();
+                BeanCopyUtils.copy(request, entity);
+                int updatedLines = baseMapper.updateById(entity);
+                AssertUtils.isTrue(updatedLines > 0, "operate.failed");
+            }
         }
 
         return getCustomerInfoByName(request.getCustomerName());

@@ -6,12 +6,10 @@ import com.jy.stock.pojo.dto.goods.GoodsTypeDTO;
 import com.jy.stock.pojo.request.goods.AddModifyGoodsTypeReq;
 import com.jy.stock.pojo.response.goods.GoodsTypeVO;
 import com.jy.stock.service.goods.GoodsTypeService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * 商品类型控制层
@@ -25,8 +23,20 @@ public class GoodsTypeController extends EnhancedController<GoodsTypeVO, GoodsTy
     private GoodsTypeService goodsTypeService;
 
     @PostMapping("")
-    public ResponseVO<Void> addModifyGoodsType(@RequestBody AddModifyGoodsTypeReq request) {
-        goodsTypeService.addModifyGoodsType(request);
+    public ResponseVO<Boolean> addModifyGoodsType(@RequestBody AddModifyGoodsTypeReq request) {
+        Boolean isSuccess = goodsTypeService.addModifyGoodsType(request);
+        return ResponseVO.success(isSuccess);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseVO<Boolean> deleteGoodsType(@PathVariable Long id) {
+        Boolean isSuccess = goodsTypeService.deleteGoodsType(id);
+        return ResponseVO.success(isSuccess);
+    }
+
+    @GetMapping("")
+    public ResponseVO<List<GoodsTypeVO>> listAllGoodsTypes(@RequestParam(required = false) Long parentTypeId) {
+        List<GoodsTypeDTO> goodsTypeDTOList = goodsTypeService.listAllGoodsTypes(parentTypeId);
         return ResponseVO.success();
     }
 

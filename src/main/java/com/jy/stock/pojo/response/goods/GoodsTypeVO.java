@@ -24,6 +24,16 @@ public class GoodsTypeVO {
     private String typeName;
 
     /**
+     * 父类别ID
+     */
+    private Long parentTypeId;
+
+    /**
+     * 层级
+     */
+    private Integer level;
+
+    /**
      * 创建时间
      */
     private Date createTime;
@@ -47,4 +57,5 @@ public class GoodsTypeVO {
      * 孩子节点
      */
     private List<GoodsTypeVO> children;
+
 }

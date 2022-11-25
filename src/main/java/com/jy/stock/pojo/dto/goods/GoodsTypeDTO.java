@@ -22,6 +22,16 @@ public class GoodsTypeDTO {
     private String typeName;
 
     /**
+     * 父类别ID
+     */
+    private Long parentTypeId;
+
+    /**
+     * 层级
+     */
+    private Integer level;
+
+    /**
      * 创建时间
      */
     private Date createTime;
@@ -50,4 +60,5 @@ public class GoodsTypeDTO {
      * 孩子节点
      */
     private List<GoodsTypeDTO> children;
+
 }

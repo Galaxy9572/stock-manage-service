@@ -16,7 +16,7 @@ public class AddModifyGoodsTypeReq {
     /**
      * 父节点ID
      */
-    private Long parentId;
+    private Long parentTypeId;
 
     /**
      * 商品类别名称
