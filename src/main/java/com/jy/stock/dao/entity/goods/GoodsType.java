@@ -15,7 +15,7 @@ public class GoodsType {
     /**
      * 主键
      */
-    @TableId(type = IdType.ASSIGN_ID)
+    @TableId(type = IdType.INPUT)
     private Long id;
 
     /**
@@ -32,6 +32,11 @@ public class GoodsType {
      * 层级
      */
     private Integer level;
+
+    /**
+     * 完整路径
+     */
+    private String path;
 
     /**
      * 创建时间

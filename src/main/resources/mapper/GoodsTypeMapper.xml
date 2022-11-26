@@ -8,6 +8,7 @@
         <result column="type_name" property="typeName"/>
         <result column="parent_type_id" property="parentTypeId"/>
         <result column="level" property="level"/>
+        <result column="path" property="path"/>
         <result column="create_time" property="createTime"/>
         <result column="update_time" property="updateTime"/>
         <result column="logic_delete" property="logicDelete"/>
@@ -21,6 +22,7 @@
         type_name,
         parent_type_id,
         level,
+        path,
         create_time,
         update_time,
         logic_delete,
@@ -48,6 +50,43 @@
         select
         <include refid="Base_Column_List"/>
         from re
-        order by type_name;
+        order by level, id;
     </select>
+
+    <select id="getParents" resultType="Long">
+        with RECURSIVE re as
+       (
+           select a.*
+           from goods_type a
+           where a.id = #{id}
+           and a.logic_delete = false
+           union
+           select b.*
+           from goods_type b
+           join re ON b.id = re.parent_type_id
+           and b.logic_delete = false
+       )
+        select re.id
+        from re
+        order by level;
+    </select>
+
+    <select id="getChildren" resultType="Long">
+        with RECURSIVE re as
+        (
+        select a.*
+        from goods_type a
+        where a.id = #{id}
+        and a.logic_delete = false
+        union
+        select b.*
+        from goods_type b
+        join re ON b.parent_type_id = re.id
+        and b.logic_delete = false
+        )
+        select re.id
+        from re
+        order by level;
+    </select>
+
 </mapper>

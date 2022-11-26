@@ -35,10 +35,20 @@ public class GoodsTypeController extends EnhancedController<GoodsTypeVO, GoodsTy
     }
 
     @GetMapping("")
-    public ResponseVO<List<GoodsTypeVO>> listAllGoodsTypes(@RequestParam(required = false) Long parentTypeId) {
+    public ResponseVO<List<GoodsTypeDTO>> listAllGoodsTypes(@RequestParam(required = false) Long parentTypeId) {
         List<GoodsTypeDTO> goodsTypeDTOList = goodsTypeService.listAllGoodsTypes(parentTypeId);
-        return ResponseVO.success();
+
+        return ResponseVO.success(goodsTypeDTOList);
     }
+
+//    private static List<GoodsTypeVO> recursivelyToVO(List<GoodsTypeDTO> goodsTypeDTOList) {
+//        if(CollectionUtils.isEmpty(goodsTypeDTOList)) {
+//            return new ArrayList<>();
+//        }
+//        for (GoodsTypeDTO goodsTypeDTO : goodsTypeDTOList) {
+//            while (goodsTypeDTO.getChildren())
+//        }
+//    }
 
     @Override
     public Class<GoodsTypeVO> getVoClass() {

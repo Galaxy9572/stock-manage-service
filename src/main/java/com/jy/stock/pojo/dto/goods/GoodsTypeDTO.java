@@ -32,6 +32,11 @@ public class GoodsTypeDTO {
     private Integer level;
 
     /**
+     * 完整路径
+     */
+    private String path;
+
+    /**
      * 创建时间
      */
     private Date createTime;

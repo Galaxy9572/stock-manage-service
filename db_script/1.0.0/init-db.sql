@@ -61,17 +61,18 @@ alter table user_role
 
 create table if not exists goods_type
 (
-    id             bigint                  not null
+    id             bigint                     not null
         constraint goods_type_pk
             primary key,
-    type_name      varchar(256)            not null,
+    type_name      varchar(256)               not null,
     parent_type_id bigint,
-    level          integer                 not null,
-    create_time    timestamp default now() not null,
-    update_time    timestamp default now() not null,
-    logic_delete   boolean   default false not null,
-    create_user_id bigint                  not null,
-    update_user_id bigint                  not null
+    level          integer                    not null,
+    path           text      default ''::text not null,
+    create_time    timestamp default now()    not null,
+    update_time    timestamp default now()    not null,
+    logic_delete   boolean   default false    not null,
+    create_user_id bigint                     not null,
+    update_user_id bigint                     not null
 );
 
 comment on table goods_type is '商品类别';
@@ -83,6 +84,8 @@ comment on column goods_type.type_name is '商品类别名称';
 comment on column goods_type.parent_type_id is '父类别ID';
 
 comment on column goods_type.level is '层级';
+
+comment on column goods_type.path is '完整路径';
 
 comment on column goods_type.create_time is '创建时间';
 

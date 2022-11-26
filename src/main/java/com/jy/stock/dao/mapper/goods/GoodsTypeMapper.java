@@ -12,4 +12,9 @@ import java.util.List;
 public interface GoodsTypeMapper extends BaseMapper<GoodsType> {
 
     List<GoodsType> listAllGoodsTypes(@Param("parentTypeId") Long parentTypeId);
+
+    List<Long> getParents(@Param("id") Long id);
+
+    List<Long> getChildren(@Param("id") Long id);
+
 }
