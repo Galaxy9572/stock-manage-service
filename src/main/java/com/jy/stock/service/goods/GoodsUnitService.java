@@ -18,4 +18,8 @@ public interface GoodsUnitService extends IService<GoodsUnit>{
     PageDTO<GoodsUnitDTO> listGoodsUnit(QueryGoodsUnitReq request);
 
     boolean deleteGoodsUnit(Long id);
+
+    GoodsUnitDTO checkExistenceByName(String unitName, boolean assertExists);
+
+    GoodsUnitDTO checkExistenceById(Long id, boolean assertExists);
 }

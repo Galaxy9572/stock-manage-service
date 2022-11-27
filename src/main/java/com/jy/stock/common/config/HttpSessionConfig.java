@@ -2,20 +2,21 @@ package com.jy.stock.common.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.session.data.mongo.JacksonMongoSessionConverter;
-import org.springframework.session.data.mongo.config.annotation.web.http.EnableMongoHttpSession;
+import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
+import org.springframework.data.redis.serializer.RedisSerializer;
+import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
 
 /**
  * Http Session 配置
  * @author liaojunyao
  */
 @Configuration
-@EnableMongoHttpSession(maxInactiveIntervalInSeconds = 3600)
+@EnableRedisHttpSession(maxInactiveIntervalInSeconds = 3600)
 public class HttpSessionConfig {
 
     @Bean
-    public JacksonMongoSessionConverter jacksonMongoSessionConverter() {
-        return new JacksonMongoSessionConverter();
+    public RedisSerializer<Object> springSessionDefaultRedisSerializer(){
+        return new GenericJackson2JsonRedisSerializer();
     }
 
 }

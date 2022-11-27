@@ -26,18 +26,13 @@ public class GoodsUnitServiceImpl extends EnhancedServiceImpl<GoodsUnitMapper, G
     public GoodsUnitDTO addModifyGoodsUnit(AddModifyGoodsUnitReq req){
         LambdaQueryWrapper<GoodsUnit> wrapper = new LambdaQueryWrapper<>();
         if(req.getId() != null){
-            wrapper.eq(GoodsUnit::getId, req.getId());
-            GoodsUnit goodsUnit = getOne(wrapper);
-            AssertUtils.isNotNull(goodsUnit, "goods.unit.not.exists");
-
-            wrapper = new LambdaQueryWrapper<>();
-            wrapper.eq(GoodsUnit::getUnitName, req.getUnitName());
-            goodsUnit = getOne(wrapper);
-            AssertUtils.isTrue(goodsUnit != null && goodsUnit.getId().equals(req.getId()), "goods.unit.already.exists");
-
-            LambdaUpdateWrapper<GoodsUnit> updateWrapper = new LambdaUpdateWrapper<>();
-            updateWrapper.set(GoodsUnit::getUnitName, req.getUnitName()).eq(GoodsUnit::getId, req.getId());
-            update(null, updateWrapper);
+            GoodsUnitDTO goodsUnit = checkExistenceById(req.getId(), true);
+            if (!goodsUnit.getUnitName().equals(req.getUnitName())) {
+                checkExistenceByName(req.getUnitName(), false);
+                LambdaUpdateWrapper<GoodsUnit> updateWrapper = new LambdaUpdateWrapper<>();
+                updateWrapper.set(GoodsUnit::getUnitName, req.getUnitName()).eq(GoodsUnit::getId, req.getId());
+                update(null, updateWrapper);
+            }
         }else{
             wrapper.eq(GoodsUnit::getUnitName, req.getUnitName());
             GoodsUnit goodsUnit = getOne(wrapper);
@@ -64,8 +59,32 @@ public class GoodsUnitServiceImpl extends EnhancedServiceImpl<GoodsUnitMapper, G
     @Override
     public boolean deleteGoodsUnit(Long id){
         GoodsUnit goodsUnit = getById(id);
-        AssertUtils.isNotNull(goodsUnit, "goods.unit.not.exists");
+        AssertUtils.isNotNull(goodsUnit, "goods.unit.not.exist");
         return removeById(id);
+    }
+
+    @Override
+    public GoodsUnitDTO checkExistenceByName(String unitName, boolean assertExists) {
+        LambdaQueryWrapper<GoodsUnit> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(GoodsUnit::getUnitName, unitName);
+        GoodsUnit goodsUnit = getOne(queryWrapper);
+        if (assertExists) {
+            AssertUtils.isNotNull(goodsUnit, "goods.unit.not.exist");
+        } else {
+            AssertUtils.isNull(goodsUnit, "goods.unit.already.exists");
+        }
+        return toDto(goodsUnit);
+    }
+
+    @Override
+    public GoodsUnitDTO checkExistenceById(Long id, boolean assertExists) {
+        GoodsUnit goodsUnit = getById(id);
+        if (assertExists) {
+            AssertUtils.isNotNull(goodsUnit, "goods.unit.not.exist");
+        } else {
+            AssertUtils.isNull(goodsUnit, "goods.unit.already.exists");
+        }
+        return toDto(goodsUnit);
     }
 
     @Override

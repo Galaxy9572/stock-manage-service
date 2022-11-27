@@ -9,7 +9,7 @@ import com.jy.stock.pojo.dto.goods.GoodsUnitDTO;
 import com.jy.stock.pojo.request.goods.AddModifyGoodsUnitReq;
 import com.jy.stock.pojo.request.goods.QueryGoodsUnitReq;
 import com.jy.stock.pojo.response.goods.GoodsUnitVO;
-import com.jy.stock.service.goods.GoodsFacadeService;
+import com.jy.stock.service.goods.GoodsUnitService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -24,11 +24,11 @@ import javax.validation.Valid;
 public class GoodsUnitController extends EnhancedController<GoodsUnitVO, GoodsUnitDTO> {
 
     @Resource
-    private GoodsFacadeService goodsFacadeService;
+    private GoodsUnitService GoodsUnitService;
 
     @PostMapping("")
-    public ResponseVO<GoodsUnitVO> addGoodsUnit(@RequestBody @Valid AddModifyGoodsUnitReq req){
-        GoodsUnitDTO goodsUnitDTO = goodsFacadeService.addModifyGoodsUnit(req);
+    public ResponseVO<GoodsUnitVO> addModifyGoodsUnit(@RequestBody @Valid AddModifyGoodsUnitReq req){
+        GoodsUnitDTO goodsUnitDTO = GoodsUnitService.addModifyGoodsUnit(req);
         GoodsUnitVO goodsUnitVO = new GoodsUnitVO();
         BeanCopyUtils.copy(goodsUnitDTO, goodsUnitVO);
         return ResponseVO.success(goodsUnitVO);
@@ -36,14 +36,14 @@ public class GoodsUnitController extends EnhancedController<GoodsUnitVO, GoodsUn
 
     @PostMapping("/list")
     public ResponseVO<PageVO<GoodsUnitVO>> listGoodsUnit(@RequestBody @Valid QueryGoodsUnitReq req){
-        PageDTO<GoodsUnitDTO> pageDTO = goodsFacadeService.listGoodsUnit(req);
+        PageDTO<GoodsUnitDTO> pageDTO = GoodsUnitService.listGoodsUnit(req);
         PageVO<GoodsUnitVO> pageVO = toPageVO(pageDTO);
         return ResponseVO.success(pageVO);
     }
 
     @DeleteMapping("/{id}")
     public ResponseVO<Boolean> deleteGoodsUnit(@PathVariable Long id){
-        boolean isSuccess = goodsFacadeService.deleteGoodsUnit(id);
+        boolean isSuccess = GoodsUnitService.deleteGoodsUnit(id);
         return ResponseVO.success(isSuccess);
     }
 

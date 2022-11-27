@@ -34,7 +34,7 @@ public class GoodsTypeController extends EnhancedController<GoodsTypeVO, GoodsTy
         return ResponseVO.success(isSuccess);
     }
 
-    @GetMapping("")
+    @GetMapping("/list")
     public ResponseVO<List<GoodsTypeDTO>> listAllGoodsTypes(@RequestParam(required = false) Long parentTypeId) {
         List<GoodsTypeDTO> goodsTypeDTOList = goodsTypeService.listAllGoodsTypes(parentTypeId);
 

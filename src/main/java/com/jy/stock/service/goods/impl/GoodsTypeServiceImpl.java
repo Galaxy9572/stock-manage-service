@@ -34,10 +34,7 @@ public class GoodsTypeServiceImpl extends EnhancedServiceImpl<GoodsTypeMapper, G
         boolean isSuccess;
         if (request.getId() == null) {
             // 新增
-            LambdaQueryWrapper<GoodsType> queryWrapper = new LambdaQueryWrapper<>();
-            queryWrapper.eq(GoodsType::getTypeName, request.getTypeName());
-            long count = count(queryWrapper);
-            AssertUtils.isTrue(count == 0, "goods.type.already.exists");
+            checkExistenceByName(request.getTypeName(), false);
 
             if (request.getParentTypeId() == null) {
                 // 新增大类
@@ -50,19 +47,18 @@ public class GoodsTypeServiceImpl extends EnhancedServiceImpl<GoodsTypeMapper, G
                 isSuccess = save(goodsType);
             } else {
                 // 新增子类
-                GoodsType parentType = getById(request.getParentTypeId());
-                AssertUtils.isNotNull(parentType, "goods.type.already.exists");
+                GoodsTypeDTO parentType = checkExistenceById(request.getParentTypeId(), true);
                 GoodsType goodsType = new GoodsType();
                 BeanCopyUtils.copy(request, goodsType);
                 long id = IdWorker.getId(goodsType);
+                goodsType.setId(id);
                 goodsType.setLevel(parentType.getLevel() + 1);
                 goodsType.setPath(getPath(request.getParentTypeId()) + "!" + id);
                 isSuccess = save(goodsType);
             }
         } else {
             // 修改
-            GoodsType goodsType = getById(request.getId());
-            AssertUtils.isNotNull(goodsType, "goods.type.not.exist");
+            GoodsTypeDTO goodsType = checkExistenceById(request.getId(), true);
             if (goodsType.getTypeName().equals(request.getTypeName())) {
                 return true;
             }
@@ -110,6 +106,30 @@ public class GoodsTypeServiceImpl extends EnhancedServiceImpl<GoodsTypeMapper, G
     public String getPath(Long id) {
         List<Long> ids = baseMapper.getParents(id);
         return StringUtils.join(ids, "!");
+    }
+
+    @Override
+    public GoodsTypeDTO checkExistenceByName(String typeName, boolean assertExists) {
+        LambdaQueryWrapper<GoodsType> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(GoodsType::getTypeName, typeName);
+        GoodsType goodsType = getOne(queryWrapper);
+        if (assertExists) {
+            AssertUtils.isNotNull(goodsType, "goods.type.not.exist");
+        } else {
+            AssertUtils.isNull(goodsType, "goods.type.already.exists");
+        }
+        return toDto(goodsType);
+    }
+
+    @Override
+    public GoodsTypeDTO checkExistenceById(Long id, boolean assertExists) {
+        GoodsType goodsType = getById(id);
+        if (assertExists) {
+            AssertUtils.isNotNull(goodsType, "goods.type.not.exist");
+        } else {
+            AssertUtils.isNull(goodsType, "goods.type.already.exists");
+        }
+        return toDto(goodsType);
     }
 
     @Override

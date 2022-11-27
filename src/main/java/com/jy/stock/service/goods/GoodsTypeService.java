@@ -15,4 +15,8 @@ public interface GoodsTypeService extends IService<GoodsType>{
     List<GoodsTypeDTO> listAllGoodsTypes(Long parentTypeId);
 
     Boolean deleteGoodsType(Long id);
+
+    GoodsTypeDTO checkExistenceByName(String typeName, boolean assertExists);
+
+    GoodsTypeDTO checkExistenceById(Long id, boolean assertExists);
 }
