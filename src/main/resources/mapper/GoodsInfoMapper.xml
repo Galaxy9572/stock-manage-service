@@ -23,4 +23,20 @@
     create_time, update_time, logic_delete
   </sql>
 
+  <select id="listGoodsInfo" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/>
+    from goods_info
+    <where>
+      <if test="param.goodsName != null and param.goodsName != ''">
+        goods_name like concat('%', #{param.goodsName}, '%')
+      </if>
+      <if test="param.goodsTypeId != null">
+        and goods_type_id = #{param.goodsTypeId}
+      </if>
+      <if test="param.goodsUnitId != null">
+        and goods_unit_id = #{param.goodsUnitId}
+      </if>
+      and logic_delete = false
+    </where>
+  </select>
 </mapper>

@@ -4,9 +4,11 @@ import com.jy.stock.common.enhance.EnhancedController;
 import com.jy.stock.common.response.PageVO;
 import com.jy.stock.common.response.ResponseVO;
 import com.jy.stock.common.util.bean.BeanCopyUtils;
+import com.jy.stock.pojo.converter.goods.GoodsConverter;
 import com.jy.stock.pojo.dto.PageDTO;
 import com.jy.stock.pojo.dto.goods.GoodsInfoDTO;
 import com.jy.stock.pojo.request.goods.AddModifyGoodsInfoReq;
+import com.jy.stock.pojo.request.goods.QueryGoodsInfoReq;
 import com.jy.stock.pojo.response.goods.GoodsInfoVO;
 import com.jy.stock.service.goods.GoodsInfoService;
 import org.springframework.web.bind.annotation.*;
@@ -44,6 +46,18 @@ public class GoodsInfoController extends EnhancedController<GoodsInfoVO, GoodsIn
     public ResponseVO<Boolean> deleteGoodsInfo(@PathVariable Long id){
         boolean isSuccess = goodsInfoService.deleteGoodsInfo(id);
         return ResponseVO.success(isSuccess);
+    }
+
+    @GetMapping("/{id}/detail")
+    public ResponseVO<GoodsInfoVO> getGoodsInfoDetail(@PathVariable Long id){
+        GoodsInfoDTO goodsInfoDTO = goodsInfoService.getGoodsInfoDetail(id);
+        GoodsInfoVO goodsInfoVO = toVo(goodsInfoDTO);
+        return ResponseVO.success(goodsInfoVO);
+    }
+
+    @Override
+    protected GoodsInfoVO toVo(GoodsInfoDTO goodsInfoDTO) {
+        return GoodsConverter.dtoToVo(goodsInfoDTO);
     }
 
     @Override

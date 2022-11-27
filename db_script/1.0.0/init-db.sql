@@ -220,8 +220,7 @@ comment on column goods_unit.update_user_id is '更新人ID';
 alter table goods_unit
     owner to stock_manage;
 
--- auto-generated definition
-create table customer_info
+create table if not exists customer_info
 (
     id                          bigint                  not null
         constraint customer_info_pk

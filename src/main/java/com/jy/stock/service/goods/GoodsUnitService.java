@@ -22,4 +22,6 @@ public interface GoodsUnitService extends IService<GoodsUnit>{
     GoodsUnitDTO checkExistenceByName(String unitName, boolean assertExists);
 
     GoodsUnitDTO checkExistenceById(Long id, boolean assertExists);
+
+    GoodsUnitDTO getGoodsUnitById(Long id);
 }

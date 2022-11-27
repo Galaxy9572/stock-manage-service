@@ -73,7 +73,7 @@ public class GoodsUnitServiceImpl extends EnhancedServiceImpl<GoodsUnitMapper, G
         } else {
             AssertUtils.isNull(goodsUnit, "goods.unit.already.exists");
         }
-        return toDto(goodsUnit);
+        return goodsUnit != null ? toDto(goodsUnit) : null;
     }
 
     @Override
@@ -84,7 +84,17 @@ public class GoodsUnitServiceImpl extends EnhancedServiceImpl<GoodsUnitMapper, G
         } else {
             AssertUtils.isNull(goodsUnit, "goods.unit.already.exists");
         }
-        return toDto(goodsUnit);
+        return goodsUnit != null ? toDto(goodsUnit) : null;
+    }
+
+    @Override
+    public GoodsUnitDTO getGoodsUnitById(Long id) {
+        GoodsUnit goodsUnit = getById(id);
+        if (goodsUnit == null) {
+            return null;
+        } else {
+            return toDto(goodsUnit);
+        }
     }
 
     @Override

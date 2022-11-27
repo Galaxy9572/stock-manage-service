@@ -21,16 +21,14 @@ public class GoodsInfoVO {
     private String goodsName;
 
     /**
-     * 商品类别ID
+     * 商品类别
      */
-    @JsonFormat(shape = JsonFormat.Shape.STRING)
-    private Long goodsTypeId;
+    private GoodsTypeVO goodsType;
 
     /**
-     * 商品计量单位ID
+     * 商品计量单位
      */
-    @JsonFormat(shape = JsonFormat.Shape.STRING)
-    private Long goodsUnitId;
+    private GoodsUnitVO goodsUnit;
 
     /**
      * 备注

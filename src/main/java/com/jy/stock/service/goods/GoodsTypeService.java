@@ -19,4 +19,6 @@ public interface GoodsTypeService extends IService<GoodsType>{
     GoodsTypeDTO checkExistenceByName(String typeName, boolean assertExists);
 
     GoodsTypeDTO checkExistenceById(Long id, boolean assertExists);
+
+    GoodsTypeDTO getGoodsTypeById(Long id);
 }
