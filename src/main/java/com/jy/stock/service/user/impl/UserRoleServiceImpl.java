@@ -47,24 +47,28 @@ public class UserRoleServiceImpl extends EnhancedServiceImpl<UserRoleMapper, Use
                     role.setRoleCode(e);
                     return role;
                 });
-                int insertLines = batchInsert(newRoles);
-                AssertUtils.isTrue(insertLines > 0, "operate.failed");
+                boolean isSuccess = saveBatch(newRoles);
+                AssertUtils.isTrue(isSuccess, "operate.failed");
             }
             // 删除的角色
             List<String> deletedRoleCodes = new ArrayList<>(dbRoleCodes);
             deletedRoleCodes.retainAll(roles);
-            LambdaQueryWrapper<UserRole> wrapper = new LambdaQueryWrapper<>();
-            wrapper.eq(UserRole::getUserId, userId).in(UserRole::getRoleCode, deletedRoleCodes);
-            boolean isSuccess = remove(wrapper);
-            AssertUtils.isTrue(isSuccess, "operate.failed");
+            if(!CollectionUtils.isEmpty(deletedRoleCodes)){
+                LambdaUpdateWrapper<UserRole> wrapper = new LambdaUpdateWrapper<>();
+                wrapper.eq(UserRole::getUserId, userId).in(UserRole::getRoleCode, deletedRoleCodes);
+                boolean isSuccess = remove(wrapper);
+                AssertUtils.isTrue(isSuccess, "operate.failed");
+            }
         }
         dbRoles = list(queryWrapper);
         return StreamUtils.mapCollect(dbRoles, this::toDto);
     }
 
     @Override
-    public int batchInsert(List<UserRole> list) {
-        return baseMapper.batchInsert(list);
+    public boolean deleteUserRolesByUserId(Long userId){
+        LambdaQueryWrapper<UserRole> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(UserRole::getUserId, userId);
+        return remove(wrapper);
     }
 
     @Override

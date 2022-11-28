@@ -28,17 +28,6 @@
     id, user_id, role_code, create_time, update_time, logic_delete
   </sql>
 
-  <insert id="batchInsert" parameterType="map">
-    <!--@mbg.generated-->
-    insert into user_role
-    (id, user_id, role_code, create_time, update_time, logic_delete)
-    values
-    <foreach collection="list" item="item" separator=",">
-      (#{item.id}, #{item.userId}, #{item.roleCode}, #{item.createTime}, #{item.updateTime}, 
-        #{item.logicDelete})
-    </foreach>
-  </insert>
-
   <select id="selectRoleCodesByUserId" resultType="String">
     select role_code
     from user_role

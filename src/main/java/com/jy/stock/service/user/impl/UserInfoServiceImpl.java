@@ -19,6 +19,7 @@ import com.jy.stock.pojo.request.user.QueryUserInfoReq;
 import com.jy.stock.pojo.request.user.UserLoginReq;
 import com.jy.stock.service.user.UserInfoService;
 import com.jy.stock.service.user.UserRoleService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -56,9 +57,13 @@ public class UserInfoServiceImpl extends EnhancedServiceImpl<UserInfoMapper, Use
         long count = count(queryWrapper);
         AssertUtils.isTrue(count == 0, "user.already.registered");
 
+        String salt = HashUtils.randomSalt();
+        String encryptedPassword = HashUtils.sha256(request.getPassword() + salt);
         UserInfo userInfo = new UserInfo();
         BeanCopyUtils.copy(request, userInfo);
         userInfo.setId(null);
+        userInfo.setSalt(salt);
+        userInfo.setEncryptedPassword(encryptedPassword);
         boolean isSuccess = save(userInfo);
         userRoleService.addModifyUserRoles(userInfo.getId(), request.getRoles());
         if (isSuccess) {
@@ -78,6 +83,12 @@ public class UserInfoServiceImpl extends EnhancedServiceImpl<UserInfoMapper, Use
 
         UserInfo userInfo = new UserInfo();
         BeanCopyUtils.copy(request, userInfo);
+        if(StringUtils.isNotEmpty(request.getPassword())){
+            String salt = HashUtils.randomSalt();
+            String encryptedPassword = HashUtils.sha256(request.getPassword() + salt);
+            userInfo.setSalt(salt);
+            userInfo.setEncryptedPassword(encryptedPassword);
+        }
         boolean isSuccess = updateById(userInfo);
         userRoleService.addModifyUserRoles(request.getId(), request.getRoles());
         if (isSuccess) {
@@ -85,6 +96,18 @@ public class UserInfoServiceImpl extends EnhancedServiceImpl<UserInfoMapper, Use
         } else {
             throw BusinessException.of("operate.failed");
         }
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public boolean deleteUser(Long id) {
+        LambdaQueryWrapper<UserInfo> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(UserInfo::getId, id);
+        long count = count(queryWrapper);
+        AssertUtils.isTrue(count > 0, "user.not.exist");
+        boolean isUserDeleted = removeById(id);
+        boolean isRoleDeleted = userRoleService.deleteUserRolesByUserId(id);
+        return isUserDeleted && isRoleDeleted;
     }
 
     @Override

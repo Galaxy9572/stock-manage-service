@@ -28,7 +28,7 @@ public class UserRoleValidator implements ConstraintValidator<ValidateUserRole, 
         if(CollectionUtils.isEmpty(roles)){
             return true;
         }
-        return StreamUtils.findFirst(roles, roleSet::contains) == null;
+        return StreamUtils.allMatch(roles, roleSet::contains);
     }
 
 }

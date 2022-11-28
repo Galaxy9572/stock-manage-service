@@ -30,6 +30,11 @@ public class StreamUtils {
                 .stream().filter(predicate).findFirst().orElse(null);
     }
 
+    public static <IN> boolean allMatch(List<IN> list, Predicate<? super IN> predicate) {
+        return Optional.ofNullable(list).orElse(new ArrayList<>())
+                .stream().allMatch(predicate);
+    }
+
     public static <IN> List<IN> filterCollect(List<IN> list, Predicate<? super IN> predicate) {
         return Optional.ofNullable(list).orElse(new ArrayList<>())
                 .stream().filter(predicate).collect(Collectors.toList());

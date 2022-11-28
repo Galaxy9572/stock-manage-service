@@ -18,6 +18,8 @@ public interface UserInfoService extends IService<UserInfo>{
 
     UserInfoDTO updateUser(AddModifyUserInfoReq request);
 
+    boolean deleteUser(Long id);
+
     PageDTO<UserInfoDTO> listUserInfo(QueryUserInfoReq request);
 
     UserInfoDTO getUserInfoById(Long userId);

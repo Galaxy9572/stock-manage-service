@@ -10,6 +10,6 @@ public interface UserRoleService extends IService<UserRole>{
 
     List<UserRoleDTO> addModifyUserRoles(Long userId, List<String> roles);
 
-    int batchInsert(List<UserRole> list);
+    boolean deleteUserRolesByUserId(Long userId);
 
 }

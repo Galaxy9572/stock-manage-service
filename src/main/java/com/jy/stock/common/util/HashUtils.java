@@ -9,6 +9,7 @@ import java.util.UUID;
 
 /**
  * 哈希工具类
+ *
  * @author JY
  */
 @Slf4j
@@ -16,6 +17,7 @@ public class HashUtils {
 
     /**
      * 利用java原生的类实现SHA256加密
+     *
      * @param str 参数拼接的字符串
      * @return sha256哈希
      */
@@ -34,14 +36,20 @@ public class HashUtils {
 
     /**
      * 随机生成UUID
+     *
      * @return UUID
      */
-    public static String randomUuid(){
+    public static String randomUuid() {
         return UUID.randomUUID().toString().replaceAll("-", "");
+    }
+
+    public static String randomSalt() {
+        return String.valueOf((int) (Math.random() * 9 + 1) * 100000);
     }
 
     /**
      * 将byte转为16进制
+     *
      * @param bytes byte数组
      * @return 16进制字符串
      */
