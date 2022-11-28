@@ -24,6 +24,16 @@ public class UserInfo {
     private String userName;
 
     /**
+     * 头像地址
+     */
+    private String avatarUrl;
+
+    /**
+     * 备注
+     */
+    private String memo;
+
+    /**
      * 密码
      */
     private String encryptedPassword;

@@ -6,6 +6,8 @@
     <!--@Table user_info-->
     <id column="id" property="id" />
     <result column="user_name" property="userName" />
+    <result column="avatar_url" property="avatarUrl" />
+    <result column="memo" property="memo" />
     <result column="encrypted_password" property="encryptedPassword" />
     <result column="salt" property="salt" />
     <result column="create_time" property="createTime" />
@@ -16,6 +18,8 @@
   <resultMap id="WithRoleResultMap" type="com.jy.stock.pojo.dto.user.UserInfoDTO">
     <id column="id" property="id" />
     <result column="user_name" property="userName" />
+    <result column="avatar_url" property="avatarUrl" />
+    <result column="memo" property="memo" />
     <result column="encrypted_password" property="encryptedPassword" />
     <result column="salt" property="salt" />
     <result column="create_time" property="createTime" />
@@ -26,72 +30,12 @@
 
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    id, user_name, encrypted_password, salt, create_time, update_time, logic_delete
+    id, user_name, avatar_url, memo, encrypted_password, salt, create_time, update_time, logic_delete
   </sql>
 
-  <update id="updateBatchSelective" parameterType="java.util.List">
-    <!--@mbg.generated-->
-    update user_info
-    <trim prefix="set" suffixOverrides=",">
-      <trim prefix="user_name = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          <if test="item.userName != null">
-            when id = #{item.id} then #{item.userName}
-          </if>
-        </foreach>
-      </trim>
-      <trim prefix="encrypted_password = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          <if test="item.encryptedPassword != null">
-            when id = #{item.id} then #{item.encryptedPassword}
-          </if>
-        </foreach>
-      </trim>
-      <trim prefix="salt = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          <if test="item.salt != null">
-            when id = #{item.id} then #{item.salt}
-          </if>
-        </foreach>
-      </trim>
-      <trim prefix="create_time = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          <if test="item.createTime != null">
-            when id = #{item.id} then #{item.createTime}
-          </if>
-        </foreach>
-      </trim>
-      <trim prefix="update_time = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          <if test="item.updateTime != null">
-            when id = #{item.id} then #{item.updateTime}
-          </if>
-        </foreach>
-      </trim>
-      <trim prefix="logic_delete = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          <if test="item.logicDelete != null">
-            when id = #{item.id} then #{item.logicDelete}
-          </if>
-        </foreach>
-      </trim>
-    </trim>
-    where id in
-    <foreach close=")" collection="list" item="item" open="(" separator=", ">
-      #{item.id}
-    </foreach>
-  </update>
-
-  <insert id="batchInsert" parameterType="map">
-    <!--@mbg.generated-->
-    insert into user_info
-    (id, user_name, encrypted_password, salt, create_time, update_time, logic_delete)
-    values
-    <foreach collection="list" item="item" separator=",">
-      (#{item.id}, #{item.userName}, #{item.encryptedPassword}, #{item.salt}, #{item.createTime}, 
-        #{item.updateTime}, #{item.logicDelete})
-    </foreach>
-  </insert>
+  <sql id="Join_Column_List">
+    ui.id, ui.user_name, ui.avatar_url, ui.memo, ui.encrypted_password, ui.salt, ui.create_time, ui.update_time, ui.logic_delete
+  </sql>
 
   <select id="getUserInfoById" resultMap="WithRoleResultMap">
     select <include refid="Base_Column_List"/>
@@ -106,4 +50,23 @@
     where user_name = #{userName}
     and logic_delete = false
   </select>
+
+  <select id="listUserInfo" resultMap="WithRoleResultMap">
+    select <include refid="Join_Column_List"/>
+    from user_info ui
+    left join user_role ur on ui.id = ur.user_id and ui.logic_delete = false and ur.logic_delete = false
+    <where>
+      <if test="param.userName != null and param.userName != ''">
+        ui.user_name like concat('%', #{param2.userName}, '%')
+      </if>
+      <if test="param.roles != null and param.roles.size() > 0">
+        and ur.role_code in
+        <foreach collection="param.roles" open="(" close=")" separator="," item="r">
+          #{r}
+        </foreach>
+      </if>
+    </where>
+    order by create_time desc
+  </select>
+
 </mapper>

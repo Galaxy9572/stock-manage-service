@@ -1,6 +1,7 @@
 package com.jy.stock.common.util;
 
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.jy.stock.common.response.PageVO;
 import com.jy.stock.pojo.dto.PageDTO;
@@ -28,6 +29,16 @@ public class PageUtils {
         vo.setTotal(page.getTotal());
         vo.setList(page.getList());
         return vo;
+    }
+
+    public static <T> PageDTO<T> toPageDTO(IPage<T> page){
+        PageDTO<T> dto = new PageDTO<>();
+        dto.setPageNo((int) page.getCurrent());
+        dto.setPageSize((int) page.getSize());
+        dto.setPages((int) page.getPages());
+        dto.setTotal(page.getTotal());
+        dto.setList(page.getRecords());
+        return dto;
     }
 
 }

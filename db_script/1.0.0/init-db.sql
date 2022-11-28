@@ -8,6 +8,8 @@ create table if not exists user_info
         constraint user_info_pk
             primary key,
     user_name          varchar(256)          not null,
+    avatar_url         text,
+    memo               text,
     encrypted_password varchar(256)          not null,
     salt               varchar(6)            not null,
     create_time        timestamp             not null,
@@ -18,6 +20,10 @@ create table if not exists user_info
 comment on column user_info.id is '主键';
 
 comment on column user_info.user_name is '用户名';
+
+comment on column user_info.avatar_url is '头像地址';
+
+comment on column user_info.memo is '备注';
 
 comment on column user_info.encrypted_password is '密码';
 
