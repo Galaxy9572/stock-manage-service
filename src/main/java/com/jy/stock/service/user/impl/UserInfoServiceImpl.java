@@ -77,7 +77,7 @@ public class UserInfoServiceImpl extends EnhancedServiceImpl<UserInfoMapper, Use
     @Transactional(rollbackFor = Exception.class)
     public UserInfoDTO updateUser(AddModifyUserInfoReq request) {
         LambdaQueryWrapper<UserInfo> queryWrapper = new LambdaQueryWrapper<>();
-        queryWrapper.eq(UserInfo::getUserName, request.getId());
+        queryWrapper.eq(UserInfo::getId, request.getId());
         long count = count(queryWrapper);
         AssertUtils.isTrue(count > 0, "user.not.exist");
 
