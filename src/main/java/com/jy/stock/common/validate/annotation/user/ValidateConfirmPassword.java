@@ -1,6 +1,6 @@
-package com.jy.stock.common.validate.annotation;
+package com.jy.stock.common.validate.annotation.user;
 
-import com.jy.stock.common.validate.validator.ConfirmPasswordValidator;
+import com.jy.stock.common.validate.validator.user.ConfirmPasswordValidator;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;

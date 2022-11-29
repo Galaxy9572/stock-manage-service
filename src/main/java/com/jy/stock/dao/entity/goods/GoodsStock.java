@@ -3,7 +3,6 @@ package com.jy.stock.dao.entity.goods;
 import com.baomidou.mybatisplus.annotation.*;
 import lombok.Data;
 
-import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -23,21 +22,6 @@ public class GoodsStock {
      * 商品ID
      */
     private Long goodsId;
-
-    /**
-     * 进货价
-     */
-    private BigDecimal purchasePrice;
-
-    /**
-     * 零售价
-     */
-    private BigDecimal retailPrice;
-
-    /**
-     * 批发价
-     */
-    private BigDecimal wholesalePrice;
 
     /**
      * 初始库存数量

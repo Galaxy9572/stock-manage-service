@@ -22,21 +22,6 @@ public class GoodsStockDTO {
     private Long goodsId;
 
     /**
-     * 进货价
-     */
-    private BigDecimal purchasePrice;
-
-    /**
-     * 零售价
-     */
-    private BigDecimal retailPrice;
-
-    /**
-     * 批发价
-     */
-    private BigDecimal wholesalePrice;
-
-    /**
      * 初始库存数量
      */
     private Long initStockNum;

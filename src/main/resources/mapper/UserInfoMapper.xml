@@ -65,6 +65,7 @@
           #{r}
         </foreach>
       </if>
+      and ui.logic_delete = false
     </where>
     group by ui.id, ui.create_time
     order by ui.create_time desc

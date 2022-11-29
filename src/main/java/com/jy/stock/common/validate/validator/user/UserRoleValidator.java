@@ -1,8 +1,8 @@
-package com.jy.stock.common.validate.validator;
+package com.jy.stock.common.validate.validator.user;
 
 import com.jy.stock.common.enums.UserRoleEnum;
 import com.jy.stock.common.util.StreamUtils;
-import com.jy.stock.common.validate.annotation.ValidateUserRole;
+import com.jy.stock.common.validate.annotation.user.ValidateUserRole;
 import com.jy.stock.pojo.response.user.UserRoleEnumVO;
 import org.springframework.util.CollectionUtils;
 

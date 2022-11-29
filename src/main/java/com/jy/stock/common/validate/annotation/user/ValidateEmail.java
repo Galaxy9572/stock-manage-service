@@ -1,6 +1,6 @@
-package com.jy.stock.common.validate.annotation;
+package com.jy.stock.common.validate.annotation.user;
 
-import com.jy.stock.common.validate.validator.WechatValidator;
+import com.jy.stock.common.validate.validator.user.EmailValidator;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
@@ -14,10 +14,10 @@ import java.lang.annotation.Target;
  */
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = WechatValidator.class)
-public @interface ValidateWechat {
+@Constraint(validatedBy = EmailValidator.class)
+public @interface ValidateEmail {
 
-    String message() default "{wechat.format.invalid}";
+    String message() default "{email.format.invalid}";
 
     Class<?>[] groups() default {};
 

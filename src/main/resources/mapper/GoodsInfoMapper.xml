@@ -9,6 +9,9 @@
     <result column="goods_name" property="goodsName" />
     <result column="goods_type_id" property="goodsTypeId" />
     <result column="goods_unit_id" property="goodsUnitId" />
+    <result column="purchase_price" property="purchasePrice" />
+    <result column="retail_price" property="retailPrice" />
+    <result column="wholesale_price" property="wholesalePrice" />
     <result column="memo" property="memo" />
     <result column="create_user_id" property="createUserId" />
     <result column="update_user_id" property="updateUserId" />
@@ -19,7 +22,7 @@
 
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    id, goods_name, goods_type_id, goods_unit_id, memo, create_user_id, update_user_id, 
+    id, goods_name, goods_type_id, goods_unit_id, purchase_price, retail_price, wholesale_price, memo, create_user_id, update_user_id,
     create_time, update_time, logic_delete
   </sql>
 

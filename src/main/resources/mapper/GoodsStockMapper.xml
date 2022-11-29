@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jy.stock.dao.mapper.goods.GoodsStockMapper">
+
   <resultMap id="BaseResultMap" type="com.jy.stock.dao.entity.goods.GoodsStock">
     <!--@mbg.generated-->
     <!--@Table goods_stock-->
     <id column="id" property="id" />
     <result column="goods_id" property="goodsId" />
-    <result column="purchase_price" property="purchasePrice" />
-    <result column="retail_price" property="retailPrice" />
-    <result column="wholesale_price" property="wholesalePrice" />
     <result column="init_stock_num" property="initStockNum" />
     <result column="min_stock_num" property="minStockNum" />
     <result column="max_stock_num" property="maxStockNum" />
@@ -19,125 +17,12 @@
     <result column="update_time" property="updateTime" />
     <result column="logic_delete" property="logicDelete" />
   </resultMap>
+
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    id, goods_id, purchase_price, retail_price, wholesale_price, init_stock_num, min_stock_num, 
+    id, goods_id, init_stock_num, min_stock_num,
     max_stock_num, current_stock_num, create_user_id, update_user_id, create_time, update_time, 
     logic_delete
   </sql>
-  <update id="updateBatchSelective" parameterType="java.util.List">
-    <!--@mbg.generated-->
-    update goods_stock
-    <trim prefix="set" suffixOverrides=",">
-      <trim prefix="goods_id = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          <if test="item.goodsId != null">
-            when id = #{item.id} then #{item.goodsId}
-          </if>
-        </foreach>
-      </trim>
-      <trim prefix="purchase_price = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          <if test="item.purchasePrice != null">
-            when id = #{item.id} then #{item.purchasePrice}
-          </if>
-        </foreach>
-      </trim>
-      <trim prefix="retail_price = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          <if test="item.retailPrice != null">
-            when id = #{item.id} then #{item.retailPrice}
-          </if>
-        </foreach>
-      </trim>
-      <trim prefix="wholesale_price = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          <if test="item.wholesalePrice != null">
-            when id = #{item.id} then #{item.wholesalePrice}
-          </if>
-        </foreach>
-      </trim>
-      <trim prefix="init_stock_num = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          <if test="item.initStockNum != null">
-            when id = #{item.id} then #{item.initStockNum}
-          </if>
-        </foreach>
-      </trim>
-      <trim prefix="min_stock_num = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          <if test="item.minStockNum != null">
-            when id = #{item.id} then #{item.minStockNum}
-          </if>
-        </foreach>
-      </trim>
-      <trim prefix="max_stock_num = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          <if test="item.maxStockNum != null">
-            when id = #{item.id} then #{item.maxStockNum}
-          </if>
-        </foreach>
-      </trim>
-      <trim prefix="current_stock_num = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          <if test="item.currentStockNum != null">
-            when id = #{item.id} then #{item.currentStockNum}
-          </if>
-        </foreach>
-      </trim>
-      <trim prefix="create_user_id = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          <if test="item.createUserId != null">
-            when id = #{item.id} then #{item.createUserId}
-          </if>
-        </foreach>
-      </trim>
-      <trim prefix="update_user_id = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          <if test="item.updateUserId != null">
-            when id = #{item.id} then #{item.updateUserId}
-          </if>
-        </foreach>
-      </trim>
-      <trim prefix="create_time = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          <if test="item.createTime != null">
-            when id = #{item.id} then #{item.createTime}
-          </if>
-        </foreach>
-      </trim>
-      <trim prefix="update_time = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          <if test="item.updateTime != null">
-            when id = #{item.id} then #{item.updateTime}
-          </if>
-        </foreach>
-      </trim>
-      <trim prefix="logic_delete = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          <if test="item.logicDelete != null">
-            when id = #{item.id} then #{item.logicDelete}
-          </if>
-        </foreach>
-      </trim>
-    </trim>
-    where id in
-    <foreach close=")" collection="list" item="item" open="(" separator=", ">
-      #{item.id}
-    </foreach>
-  </update>
-  <insert id="batchInsert" parameterType="map">
-    <!--@mbg.generated-->
-    insert into goods_stock
-    (id, goods_id, purchase_price, retail_price, wholesale_price, init_stock_num, min_stock_num, 
-      max_stock_num, current_stock_num, create_user_id, update_user_id, create_time, 
-      update_time, logic_delete)
-    values
-    <foreach collection="list" item="item" separator=",">
-      (#{item.id}, #{item.goodsId}, #{item.purchasePrice}, #{item.retailPrice}, #{item.wholesalePrice}, 
-        #{item.initStockNum}, #{item.minStockNum}, #{item.maxStockNum}, #{item.currentStockNum}, 
-        #{item.createUserId}, #{item.updateUserId}, #{item.createTime}, #{item.updateTime}, 
-        #{item.logicDelete})
-    </foreach>
-  </insert>
+
 </mapper>

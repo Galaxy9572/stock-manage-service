@@ -1,8 +1,8 @@
 package com.jy.stock.pojo.request.customer;
 
-import com.jy.stock.common.validate.annotation.ValidateEmail;
-import com.jy.stock.common.validate.annotation.ValidateQQ;
-import com.jy.stock.common.validate.annotation.ValidateWechat;
+import com.jy.stock.common.validate.annotation.user.ValidateEmail;
+import com.jy.stock.common.validate.annotation.user.ValidateQQ;
+import com.jy.stock.common.validate.annotation.user.ValidateWechat;
 import lombok.Data;
 
 import javax.validation.constraints.DecimalMin;

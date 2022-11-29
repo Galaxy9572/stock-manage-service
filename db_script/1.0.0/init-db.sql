@@ -112,6 +112,9 @@ create table if not exists goods_info
     goods_name     varchar(256)            not null,
     goods_type_id  bigint                  not null,
     goods_unit_id  bigint                  not null,
+    purchase_price  numeric                 not null,
+    retail_price    numeric                 not null,
+    wholesale_price numeric,
     memo           text,
     create_user_id bigint                  not null,
     update_user_id bigint                  not null,
@@ -127,6 +130,12 @@ comment on column goods_info.goods_name is '品名';
 comment on column goods_info.goods_type_id is '商品类别ID';
 
 comment on column goods_info.goods_unit_id is '商品计量单位ID';
+
+comment on column goods_info.purchase_price is '进货价';
+
+comment on column goods_info.retail_price is '零售价';
+
+comment on column goods_info.wholesale_price is '批发价';
 
 comment on column goods_info.memo is '备注';
 
@@ -149,9 +158,6 @@ create table if not exists goods_stock
         constraint goods_stock_pk
             primary key,
     goods_id          bigint                  not null,
-    purchase_price    numeric                 not null,
-    retail_price      numeric                 not null,
-    wholesale_price   numeric,
     init_stock_num    bigint    default 0     not null,
     min_stock_num     bigint    default 0     not null,
     max_stock_num     bigint    default 0     not null,
@@ -168,12 +174,6 @@ comment on table goods_stock is '商品库存';
 comment on column goods_stock.id is '商品库存ID';
 
 comment on column goods_stock.goods_id is '商品ID';
-
-comment on column goods_stock.purchase_price is '进货价';
-
-comment on column goods_stock.retail_price is '零售价';
-
-comment on column goods_stock.wholesale_price is '批发价';
 
 comment on column goods_stock.init_stock_num is '初始库存数量';
 

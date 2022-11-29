@@ -15,16 +15,6 @@ import java.util.List;
  */
 @Service
 public class GoodsStockServiceImpl extends EnhancedServiceImpl<GoodsStockMapper, GoodsStock, GoodsStockDTO> implements GoodsStockService{
-
-    @Override
-    public int updateBatchSelective(List<GoodsStock> list) {
-        return baseMapper.updateBatchSelective(list);
-    }
-    @Override
-    public int batchInsert(List<GoodsStock> list) {
-        return baseMapper.batchInsert(list);
-    }
-
     @Override
     public Class<GoodsStockDTO> getDtoClass() {
         return GoodsStockDTO.class;

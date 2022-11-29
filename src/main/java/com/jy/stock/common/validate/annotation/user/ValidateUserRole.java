@@ -1,6 +1,6 @@
-package com.jy.stock.common.validate.annotation;
+package com.jy.stock.common.validate.annotation.user;
 
-import com.jy.stock.common.validate.validator.EmailValidator;
+import com.jy.stock.common.validate.validator.user.UserRoleValidator;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
@@ -14,10 +14,10 @@ import java.lang.annotation.Target;
  */
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = EmailValidator.class)
-public @interface ValidateEmail {
+@Constraint(validatedBy = UserRoleValidator.class)
+public @interface ValidateUserRole {
 
-    String message() default "{email.format.invalid}";
+    String message() default "{roles.invalid}";
 
     Class<?>[] groups() default {};
 

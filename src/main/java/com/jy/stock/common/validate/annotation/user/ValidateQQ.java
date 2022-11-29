@@ -1,6 +1,6 @@
-package com.jy.stock.common.validate.annotation;
+package com.jy.stock.common.validate.annotation.user;
 
-import com.jy.stock.common.validate.validator.QQValidator;
+import com.jy.stock.common.validate.validator.user.QQValidator;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;

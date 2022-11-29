@@ -2,6 +2,7 @@ package com.jy.stock.pojo.dto.goods;
 
 import lombok.Data;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -27,6 +28,21 @@ public class GoodsInfoDTO {
      * 商品计量单位
      */
     private GoodsUnitDTO goodsUnit;
+
+    /**
+     * 进货价
+     */
+    private BigDecimal purchasePrice;
+
+    /**
+     * 零售价
+     */
+    private BigDecimal retailPrice;
+
+    /**
+     * 批发价
+     */
+    private BigDecimal wholesalePrice;
 
     /**
      * 备注

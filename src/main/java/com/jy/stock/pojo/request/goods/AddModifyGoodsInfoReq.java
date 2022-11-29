@@ -1,10 +1,10 @@
 package com.jy.stock.pojo.request.goods;
 
+import com.jy.stock.common.validate.annotation.goods.ValidateWholesalePrice;
 import lombok.Data;
 
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.*;
+import java.math.BigDecimal;
 
 /**
  * @author liaojunyao
@@ -33,6 +33,26 @@ public class AddModifyGoodsInfoReq {
     @NotNull(message = "{goods.unit.id.can.not.null}")
     @Min(value = 1, message = "{goods.unit.id.invalid}")
     private Long goodsUnitId;
+
+    /**
+     * 进货价
+     */
+    @NotNull(message = "{goods.purchase.price.can.not.null}")
+    @DecimalMin(value = "0.00", message = "{goods.price.must.greater.than.zero}")
+    private BigDecimal purchasePrice;
+
+    /**
+     * 零售价
+     */
+    @NotNull(message = "{goods.retail.price.can.not.null}")
+    @DecimalMin(value = "0.00", message = "{goods.price.must.greater.than.zero}")
+    private BigDecimal retailPrice;
+
+    /**
+     * 批发价
+     */
+    @ValidateWholesalePrice
+    private BigDecimal wholesalePrice;
 
     /**
      * 备注

@@ -1,6 +1,6 @@
-package com.jy.stock.common.validate.annotation;
+package com.jy.stock.common.validate.annotation.user;
 
-import com.jy.stock.common.validate.validator.UserRoleValidator;
+import com.jy.stock.common.validate.validator.user.WechatValidator;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
@@ -14,10 +14,10 @@ import java.lang.annotation.Target;
  */
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = UserRoleValidator.class)
-public @interface ValidateUserRole {
+@Constraint(validatedBy = WechatValidator.class)
+public @interface ValidateWechat {
 
-    String message() default "{roles.invalid}";
+    String message() default "{wechat.format.invalid}";
 
     Class<?>[] groups() default {};
 

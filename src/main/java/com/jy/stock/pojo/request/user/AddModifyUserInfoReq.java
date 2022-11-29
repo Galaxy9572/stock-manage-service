@@ -1,7 +1,7 @@
 package com.jy.stock.pojo.request.user;
 
-import com.jy.stock.common.validate.annotation.ValidateConfirmPassword;
-import com.jy.stock.common.validate.annotation.ValidateUserRole;
+import com.jy.stock.common.validate.annotation.user.ValidateConfirmPassword;
+import com.jy.stock.common.validate.annotation.user.ValidateUserRole;
 import com.jy.stock.common.validate.group.InsertAction;
 import com.jy.stock.common.validate.group.UpdateAction;
 import lombok.Data;

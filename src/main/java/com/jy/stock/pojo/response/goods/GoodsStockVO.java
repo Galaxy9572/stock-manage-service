@@ -3,7 +3,6 @@ package com.jy.stock.pojo.response.goods;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
-import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -22,21 +21,6 @@ public class GoodsStockVO {
      * 商品ID
      */
     private Long goodsId;
-
-    /**
-     * 进货价
-     */
-    private BigDecimal purchasePrice;
-
-    /**
-     * 零售价
-     */
-    private BigDecimal retailPrice;
-
-    /**
-     * 批发价
-     */
-    private BigDecimal wholesalePrice;
 
     /**
      * 初始库存数量

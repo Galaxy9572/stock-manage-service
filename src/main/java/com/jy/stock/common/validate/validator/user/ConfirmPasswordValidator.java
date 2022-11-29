@@ -1,6 +1,6 @@
-package com.jy.stock.common.validate.validator;
+package com.jy.stock.common.validate.validator.user;
 
-import com.jy.stock.common.validate.annotation.ValidateConfirmPassword;
+import com.jy.stock.common.validate.annotation.user.ValidateConfirmPassword;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.lang3.StringUtils;
 
