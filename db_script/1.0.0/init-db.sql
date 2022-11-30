@@ -200,6 +200,7 @@ create table if not exists goods_unit
 (
     id             bigint                  not null,
     unit_name      varchar(256)            not null,
+    allow_decimal  boolean   default false not null,
     create_time    timestamp default now() not null,
     update_time    timestamp default now() not null,
     logic_delete   boolean   default false not null,
@@ -212,6 +213,8 @@ comment on table goods_unit is '商品计量单位';
 comment on column goods_unit.id is '主键';
 
 comment on column goods_unit.unit_name is '计量单位';
+
+comment on column goods_unit.allow_decimal is '是否允许小数';
 
 comment on column goods_unit.create_time is '创建时间';
 
@@ -299,3 +302,72 @@ comment on column customer_info.logic_delete is '逻辑删除';
 
 alter table customer_info
     owner to stock_manage;
+
+create table if not exists supplier_info
+(
+    id                          bigint                  not null
+        constraint supplier_info_pk
+            primary key,
+    supplier_name               varchar(256)            not null,
+    contact_person              varchar(256)            not null,
+    phone                       varchar(256),
+    email                       text,
+    fax                         varchar(256),
+    qq                          varchar(256),
+    wechat                      varchar(256),
+    country                     varchar(256)            not null,
+    state                       varchar(256)            not null,
+    city                        varchar(256)            not null,
+    address                     text                    not null,
+    post_code                   varchar(256),
+    memo                        text,
+    create_time                 timestamp default now() not null,
+    update_time                 timestamp default now() not null,
+    create_user_id              bigint                  not null,
+    update_user_id              bigint                  not null,
+    logic_delete                boolean   default false not null
+);
+
+comment on table supplier_info is '供应商信息';
+
+comment on column supplier_info.id is '主键';
+
+comment on column supplier_info.supplier_name is '供应商名称';
+
+comment on column supplier_info.contact_person is '联系人';
+
+comment on column supplier_info.phone is '联系电话';
+
+comment on column supplier_info.email is '电子邮箱';
+
+comment on column supplier_info.fax is '传真';
+
+comment on column supplier_info.qq is 'QQ号';
+
+comment on column supplier_info.wechat is '微信号';
+
+comment on column supplier_info.country is '国家';
+
+comment on column supplier_info.state is '州、省';
+
+comment on column supplier_info.city is '市';
+
+comment on column supplier_info.address is '地址';
+
+comment on column supplier_info.post_code is '邮政编码';
+
+comment on column supplier_info.memo is '备注';
+
+comment on column supplier_info.create_time is '创建时间';
+
+comment on column supplier_info.update_time is '更新时间';
+
+comment on column supplier_info.create_user_id is '创建人ID';
+
+comment on column supplier_info.update_user_id is '更新人ID';
+
+comment on column supplier_info.logic_delete is '逻辑删除';
+
+alter table supplier_info
+    owner to stock_manage;
+

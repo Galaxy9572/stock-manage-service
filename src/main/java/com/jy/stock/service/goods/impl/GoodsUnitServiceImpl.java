@@ -13,6 +13,7 @@ import com.jy.stock.pojo.dto.goods.GoodsUnitDTO;
 import com.jy.stock.pojo.request.goods.AddModifyGoodsUnitReq;
 import com.jy.stock.pojo.request.goods.QueryGoodsUnitReq;
 import com.jy.stock.service.goods.GoodsUnitService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 /**
@@ -26,11 +27,21 @@ public class GoodsUnitServiceImpl extends EnhancedServiceImpl<GoodsUnitMapper, G
     public GoodsUnitDTO addModifyGoodsUnit(AddModifyGoodsUnitReq req){
         LambdaQueryWrapper<GoodsUnit> wrapper = new LambdaQueryWrapper<>();
         if(req.getId() != null){
-            GoodsUnitDTO goodsUnit = checkExistenceById(req.getId(), true);
-            if (!goodsUnit.getUnitName().equals(req.getUnitName())) {
-                checkExistenceByName(req.getUnitName(), false);
+            GoodsUnitDTO goodsUnitDTO = checkExistenceById(req.getId(), true);
+            // 值有变化才修改
+            if(!(StringUtils.equals(req.getUnitName(), goodsUnitDTO.getUnitName())
+                    && goodsUnitDTO.getAllowDecimal().equals(req.getAllowDecimal()))){
                 LambdaUpdateWrapper<GoodsUnit> updateWrapper = new LambdaUpdateWrapper<>();
-                updateWrapper.set(GoodsUnit::getUnitName, req.getUnitName()).eq(GoodsUnit::getId, req.getId());
+                updateWrapper.eq(GoodsUnit::getId, req.getId());
+                if (!goodsUnitDTO.getUnitName().equals(req.getUnitName())) {
+                    wrapper.eq(GoodsUnit::getUnitName, req.getUnitName());
+                    GoodsUnit goodsUnit = getOne(wrapper);
+                    AssertUtils.isTrue(!goodsUnit.getId().equals(req.getId()), "goods.unit.already.exists");
+                    updateWrapper.set(GoodsUnit::getUnitName, req.getUnitName());
+                }
+                if (!goodsUnitDTO.getAllowDecimal().equals(req.getAllowDecimal())) {
+                    updateWrapper.set(GoodsUnit::getAllowDecimal, req.getAllowDecimal());
+                }
                 update(null, updateWrapper);
             }
         }else{
@@ -39,6 +50,7 @@ public class GoodsUnitServiceImpl extends EnhancedServiceImpl<GoodsUnitMapper, G
             AssertUtils.isNull(goodsUnit, "goods.unit.already.exists");
             GoodsUnit newUnit = new GoodsUnit();
             newUnit.setUnitName(req.getUnitName());
+            newUnit.setAllowDecimal(req.getAllowDecimal());
             save(newUnit);
         }
         wrapper = new LambdaQueryWrapper<>();

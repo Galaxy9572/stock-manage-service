@@ -21,6 +21,11 @@ public class GoodsUnitDTO {
     private String unitName;
 
     /**
+     * 是否允许小数
+     */
+    private Boolean allowDecimal;
+
+    /**
      * 创建时间
      */
     private Date createTime;

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jy.stock.dao.mapper.supplier.SupplierInfoMapper">
+  <resultMap id="BaseResultMap" type="com.jy.stock.dao.entity.supplier.SupplierInfo">
+    <!--@mbg.generated-->
+    <!--@Table supplier_info-->
+    <id column="id" property="id" />
+    <result column="supplier_name" property="supplierName" />
+    <result column="contact_person" property="contactPerson" />
+    <result column="phone" property="phone" />
+    <result column="email" property="email" />
+    <result column="fax" property="fax" />
+    <result column="qq" property="qq" />
+    <result column="wechat" property="wechat" />
+    <result column="country" property="country" />
+    <result column="state" property="state" />
+    <result column="city" property="city" />
+    <result column="address" property="address" />
+    <result column="post_code" property="postCode" />
+    <result column="memo" property="memo" />
+    <result column="create_time" property="createTime" />
+    <result column="update_time" property="updateTime" />
+    <result column="create_user_id" property="createUserId" />
+    <result column="update_user_id" property="updateUserId" />
+    <result column="logic_delete" property="logicDelete" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, supplier_name, contact_person, phone, email, fax, qq, wechat, country, "state", 
+    city, address, post_code, memo, create_time, update_time, create_user_id, update_user_id, 
+    logic_delete
+  </sql>
+</mapper>

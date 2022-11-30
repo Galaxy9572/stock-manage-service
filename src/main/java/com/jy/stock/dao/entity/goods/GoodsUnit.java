@@ -24,6 +24,11 @@ public class GoodsUnit {
     private String unitName;
 
     /**
+     * 是否允许小数
+     */
+    private Boolean allowDecimal;
+
+    /**
      * 创建时间
      */
     @TableField(fill = FieldFill.INSERT)
