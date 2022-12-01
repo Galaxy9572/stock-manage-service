@@ -9,6 +9,8 @@ import com.jy.stock.pojo.request.user.QueryUserInfoReq;
 import com.jy.stock.pojo.request.user.UserLoginReq;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
+import java.util.Map;
 
 public interface UserInfoService extends IService<UserInfo>{
 
@@ -20,7 +22,9 @@ public interface UserInfoService extends IService<UserInfo>{
 
     boolean deleteUser(Long id);
 
-    PageDTO<UserInfoDTO> listUserInfo(QueryUserInfoReq request);
+    PageDTO<UserInfoDTO> listUserInfoByPage(QueryUserInfoReq request);
+
+    Map<Long, UserInfoDTO> batchListUserInfo(List<Long> userIdList);
 
     UserInfoDTO getUserInfoById(Long userId);
 

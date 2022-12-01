@@ -1,7 +1,8 @@
-package com.jy.stock.pojo.supplier;
+package com.jy.stock.pojo.response.supplier;
 
 import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.jy.stock.pojo.response.user.UserInfoVO;
 import lombok.Data;
 
 import java.util.Date;
@@ -69,6 +70,11 @@ public class SupplierInfoVO {
     private String city;
 
     /**
+     * 区
+     */
+    private String district;
+
+    /**
      * 地址
      */
     private String address;
@@ -94,14 +100,14 @@ public class SupplierInfoVO {
     private Date updateTime;
 
     /**
-     * 创建人ID
+     * 创建人
      */
-    private Long createUserId;
+    private UserInfoVO createUser;
 
     /**
-     * 更新人ID
+     * 更新人
      */
-    private Long updateUserId;
+    private UserInfoVO updateUser;
 
     /**
      * 逻辑删除

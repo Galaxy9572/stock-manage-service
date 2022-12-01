@@ -6,7 +6,6 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.jy.stock.common.enhance.EnhancedServiceImpl;
 import com.jy.stock.common.exception.BusinessException;
 import com.jy.stock.common.util.AssertUtils;
-import com.jy.stock.common.util.ContextHolder;
 import com.jy.stock.common.util.HashUtils;
 import com.jy.stock.common.util.PageUtils;
 import com.jy.stock.common.util.bean.BeanCopyUtils;
@@ -19,12 +18,16 @@ import com.jy.stock.pojo.request.user.QueryUserInfoReq;
 import com.jy.stock.pojo.request.user.UserLoginReq;
 import com.jy.stock.service.user.UserInfoService;
 import com.jy.stock.service.user.UserRoleService;
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 用户信息服务
@@ -111,22 +114,27 @@ public class UserInfoServiceImpl extends EnhancedServiceImpl<UserInfoMapper, Use
     }
 
     @Override
-    public PageDTO<UserInfoDTO> listUserInfo(QueryUserInfoReq request) {
+    public PageDTO<UserInfoDTO> listUserInfoByPage(QueryUserInfoReq request) {
         Page<UserInfo> page = new Page<>(request.getPageNo(), request.getPageSize());
         UserInfoDTO param = new UserInfoDTO();
         param.setUserName(request.getUserName());
         param.setRoles(request.getRoles());
-        IPage<UserInfoDTO> dtoPage = baseMapper.listUserInfo(page, param);
+        IPage<UserInfoDTO> dtoPage = baseMapper.listUserInfoByPage(page, param);
         return PageUtils.toPageDTO(dtoPage);
+    }
+
+    @Override
+    public Map<Long, UserInfoDTO> batchListUserInfo(List<Long> userIdList) {
+        if(CollectionUtils.isEmpty(userIdList)) {
+            return new HashMap<>(16);
+        }
+        return baseMapper.batchListUserInfoByUserIdList(userIdList);
     }
 
     @Override
     public UserInfoDTO getUserInfoById(Long userId) {
         UserInfoDTO userInfo = baseMapper.getUserInfoById(userId);
         AssertUtils.isNotNull(userInfo, "user.not.exist");
-        HttpSession session = ContextHolder.currentHttpRequest().getSession();
-        String token = (String) session.getAttribute("token");
-        userInfo.setToken(token);
         return userInfo;
     }
 
@@ -134,9 +142,6 @@ public class UserInfoServiceImpl extends EnhancedServiceImpl<UserInfoMapper, Use
     public UserInfoDTO getUserInfoByName(String userName) {
         UserInfoDTO userInfo = baseMapper.getUserInfoByName(userName);
         AssertUtils.isNotNull(userInfo, "user.not.exist");
-        HttpSession session = ContextHolder.currentHttpRequest().getSession();
-        String token = (String) session.getAttribute("token");
-        userInfo.setToken(token);
         return userInfo;
     }
 

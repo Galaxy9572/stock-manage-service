@@ -45,7 +45,7 @@ public class UserInfoController extends EnhancedController<UserInfoVO, UserInfoD
 
     @PostMapping("/list")
     public ResponseVO<PageVO<UserInfoVO>> listUserInfo(@RequestBody QueryUserInfoReq request){
-        PageDTO<UserInfoDTO> pageDTO = userInfoService.listUserInfo(request);
+        PageDTO<UserInfoDTO> pageDTO = userInfoService.listUserInfoByPage(request);
         PageVO<UserInfoVO> pageVO = toPageVO(pageDTO);
         return ResponseVO.success(pageVO);
     }

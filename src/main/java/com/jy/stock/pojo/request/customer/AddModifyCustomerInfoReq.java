@@ -80,6 +80,12 @@ public class AddModifyCustomerInfoReq {
     private String city;
 
     /**
+     * 区
+     */
+    @NotBlank(message = "district.cannot.empty")
+    private String district;
+
+    /**
      * 地址
      */
     @NotBlank(message = "{address.cannot.empty}")

@@ -9,7 +9,7 @@ import com.jy.stock.pojo.response.goods.GoodsTypeVO;
 import com.jy.stock.pojo.response.goods.GoodsUnitVO;
 
 /**
- * @author Administrator
+ * @author liaojunyao
  */
 public class GoodsConverter {
 

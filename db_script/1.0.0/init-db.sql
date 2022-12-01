@@ -244,6 +244,7 @@ create table if not exists customer_info
     country                     varchar(256)            not null,
     state                       varchar(256)            not null,
     city                        varchar(256)            not null,
+    district                    varchar(256)            not null,
     address                     text                    not null,
     post_code                   varchar(256),
     init_accounts_receivable    numeric   default 0.0   not null,
@@ -279,6 +280,8 @@ comment on column customer_info.country is '国家';
 comment on column customer_info.state is '州、省';
 
 comment on column customer_info.city is '市';
+
+comment on column customer_info.district is '区';
 
 comment on column customer_info.address is '地址';
 
@@ -318,6 +321,7 @@ create table if not exists supplier_info
     country                     varchar(256)            not null,
     state                       varchar(256)            not null,
     city                        varchar(256)            not null,
+    district                    varchar(256)            not null,
     address                     text                    not null,
     post_code                   varchar(256),
     memo                        text,
@@ -351,6 +355,8 @@ comment on column supplier_info.country is '国家';
 comment on column supplier_info.state is '州、省';
 
 comment on column supplier_info.city is '市';
+
+comment on column supplier_info.district is '区';
 
 comment on column supplier_info.address is '地址';
 

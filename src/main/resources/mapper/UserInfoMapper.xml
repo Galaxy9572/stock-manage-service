@@ -51,7 +51,7 @@
     and logic_delete = false
   </select>
 
-  <select id="listUserInfo" resultMap="WithRoleResultMap">
+  <select id="listUserInfoByPage" resultMap="WithRoleResultMap">
     select <include refid="Join_Column_List"/>
     from user_info ui
     left join user_role ur on ui.id = ur.user_id and ui.logic_delete = false and ur.logic_delete = false
@@ -71,4 +71,18 @@
     order by ui.create_time desc
   </select>
 
+  <select id="batchListUserInfoByUserIdList" resultMap="WithRoleResultMap">
+    select <include refid="Join_Column_List"/>
+    from user_info ui
+    left join user_role ur on ui.id = ur.user_id and ui.logic_delete = false and ur.logic_delete = false
+    <where>
+      ui.id in
+      <foreach collection="userIdList" open="(" close=")" item="userId" separator=",">
+        #{userId}
+      </foreach>
+      and ui.logic_delete = false
+    </where>
+    group by ui.id, ui.create_time
+    order by ui.create_time desc
+  </select>
 </mapper>

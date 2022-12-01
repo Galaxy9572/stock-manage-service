@@ -70,6 +70,11 @@ public class CustomerInfoVO {
     private String city;
 
     /**
+     * 区
+     */
+    private String district;
+
+    /**
      * 地址
      */
     private String address;
