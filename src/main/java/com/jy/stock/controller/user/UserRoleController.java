@@ -13,6 +13,7 @@ import java.util.List;
 
 /**
  * 用户角色控制层
+ *
  * @author liaojunyao
  */
 @RestController
@@ -24,10 +25,11 @@ public class UserRoleController {
 
     /**
      * 获取所有角色类型
+     *
      * @return List<UserRoleEnumVO>
      */
     @GetMapping("/all")
-    public ResponseVO<List<UserRoleEnumVO>> listAllRoles(){
+    public ResponseVO<List<UserRoleEnumVO>> listAllRoles() {
         return ResponseVO.success(UserRoleEnum.listAllRoles());
     }
 

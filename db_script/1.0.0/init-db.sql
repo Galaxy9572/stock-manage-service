@@ -377,3 +377,28 @@ comment on column supplier_info.logic_delete is '逻辑删除';
 alter table supplier_info
     owner to stock_manage;
 
+create table if not exists region_info
+(
+    id            bigint       not null
+        constraint region_info_pk
+            primary key,
+    country_code  varchar(10)  not null,
+    state_code    varchar(10)  not null,
+    city_code     varchar(256) not null,
+    district_code varchar(10)  not null
+);
+
+comment on table region_info is '区域信息';
+
+comment on column region_info.id is '主键';
+
+comment on column region_info.country_code is '国家编码';
+
+comment on column region_info.state_code is '省/自治区/州编码';
+
+comment on column region_info.city_code is '城市编码';
+
+comment on column region_info.district_code is '区县编码';
+
+alter table region_info
+    owner to stock_manage;

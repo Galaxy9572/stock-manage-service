@@ -1,6 +1,7 @@
 package com.jy.stock.pojo.response.customer;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.jy.stock.pojo.response.user.UserInfoVO;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -110,12 +111,12 @@ public class CustomerInfoVO {
     private Date updateTime;
 
     /**
-     * 创建人ID
+     * 创建人
      */
-    private Long createUserId;
+    private UserInfoVO createUser;
 
     /**
-     * 更新人ID
+     * 更新人
      */
-    private Long updateUserId;
+    private UserInfoVO updateUser;
 }

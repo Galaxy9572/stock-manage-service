@@ -3,6 +3,7 @@ package com.jy.stock.controller.customer;
 import com.jy.stock.common.enhance.EnhancedController;
 import com.jy.stock.common.response.PageVO;
 import com.jy.stock.common.response.ResponseVO;
+import com.jy.stock.pojo.converter.customer.CustomerConverter;
 import com.jy.stock.pojo.dto.PageDTO;
 import com.jy.stock.pojo.dto.customer.CustomerInfoDTO;
 import com.jy.stock.pojo.request.customer.AddModifyCustomerInfoReq;
@@ -54,6 +55,10 @@ public class CustomerInfoController extends EnhancedController<CustomerInfoVO, C
         return ResponseVO.success(customerInfoPage);
     }
 
+    @Override
+    protected CustomerInfoVO toVo(CustomerInfoDTO customerInfoDTO) {
+        return CustomerConverter.dtoToVo(customerInfoDTO);
+    }
 
     @Override
     public Class<CustomerInfoVO> getVoClass() {

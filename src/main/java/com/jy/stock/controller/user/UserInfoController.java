@@ -20,6 +20,7 @@ import javax.servlet.http.HttpSession;
 
 /**
  * 用户信息控制层
+ *
  * @author liaojunyao
  */
 @RestController
@@ -30,41 +31,41 @@ public class UserInfoController extends EnhancedController<UserInfoVO, UserInfoD
     private UserInfoService userInfoService;
 
     @PutMapping("")
-    public ResponseVO<UserInfoVO> addUserInfo(@RequestBody @Validated({InsertAction.class}) AddModifyUserInfoReq request){
+    public ResponseVO<UserInfoVO> addUserInfo(@RequestBody @Validated({InsertAction.class}) AddModifyUserInfoReq request) {
         UserInfoDTO userInfoDTO = userInfoService.addUser(request);
         UserInfoVO userInfoVO = toVo(userInfoDTO);
         return ResponseVO.success(userInfoVO);
     }
 
     @PostMapping("")
-    public ResponseVO<UserInfoVO> updateUserInfo(@RequestBody @Validated({UpdateAction.class}) AddModifyUserInfoReq request){
+    public ResponseVO<UserInfoVO> updateUserInfo(@RequestBody @Validated({UpdateAction.class}) AddModifyUserInfoReq request) {
         UserInfoDTO userInfoDTO = userInfoService.updateUser(request);
         UserInfoVO userInfoVO = toVo(userInfoDTO);
         return ResponseVO.success(userInfoVO);
     }
 
     @PostMapping("/list")
-    public ResponseVO<PageVO<UserInfoVO>> listUserInfo(@RequestBody QueryUserInfoReq request){
+    public ResponseVO<PageVO<UserInfoVO>> listUserInfo(@RequestBody QueryUserInfoReq request) {
         PageDTO<UserInfoDTO> pageDTO = userInfoService.listUserInfoByPage(request);
         PageVO<UserInfoVO> pageVO = toPageVO(pageDTO);
         return ResponseVO.success(pageVO);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseVO<Boolean> deleteUserInfo(@PathVariable Long id){
+    public ResponseVO<Boolean> deleteUserInfo(@PathVariable Long id) {
         boolean isSuccess = userInfoService.deleteUser(id);
         return ResponseVO.success(isSuccess);
     }
 
     @PostMapping("/login")
-    public ResponseVO<UserInfoVO> login(HttpSession session, @RequestBody UserLoginReq loginReq){
+    public ResponseVO<UserInfoVO> login(HttpSession session, @RequestBody UserLoginReq loginReq) {
         UserInfoDTO userInfo = userInfoService.login(session, loginReq);
         UserInfoVO userInfoVO = toVo(userInfo);
         return ResponseVO.success(userInfoVO);
     }
 
     @GetMapping("{userId}")
-    public ResponseVO<UserInfoVO> getUserInfo(@PathVariable Long userId){
+    public ResponseVO<UserInfoVO> getUserInfo(@PathVariable Long userId) {
         UserInfoDTO userInfo = userInfoService.getUserInfoById(userId);
         UserInfoVO userInfoVO = toVo(userInfo);
         return ResponseVO.success(userInfoVO);

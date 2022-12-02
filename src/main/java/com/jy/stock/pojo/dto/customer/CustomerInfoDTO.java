@@ -1,6 +1,7 @@
 package com.jy.stock.pojo.dto.customer;
 
 import com.baomidou.mybatisplus.annotation.*;
+import com.jy.stock.pojo.dto.user.UserInfoDTO;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -108,14 +109,14 @@ public class CustomerInfoDTO {
     private Date updateTime;
 
     /**
-     * 创建人ID
+     * 创建人
      */
-    private Long createUserId;
+    private UserInfoDTO createUser;
 
     /**
-     * 更新人ID
+     * 更新人
      */
-    private Long updateUserId;
+    private UserInfoDTO updateUser;
 
     /**
      * 逻辑删除

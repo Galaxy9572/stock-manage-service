@@ -9,10 +9,17 @@ import com.jy.stock.dao.entity.customer.CustomerInfo;
 import com.jy.stock.dao.mapper.customer.CustomerInfoMapper;
 import com.jy.stock.pojo.dto.PageDTO;
 import com.jy.stock.pojo.dto.customer.CustomerInfoDTO;
+import com.jy.stock.pojo.dto.user.UserInfoDTO;
 import com.jy.stock.pojo.request.customer.AddModifyCustomerInfoReq;
 import com.jy.stock.pojo.request.customer.QueryCustomerInfoReq;
 import com.jy.stock.service.customer.CustomerInfoService;
+import com.jy.stock.service.user.UserInfoService;
 import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 客户信息service
@@ -21,6 +28,9 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class CustomerInfoServiceImpl extends EnhancedServiceImpl<CustomerInfoMapper, CustomerInfo, CustomerInfoDTO> implements CustomerInfoService {
+
+    @Resource
+    private UserInfoService userInfoService;
 
     @Override
     public CustomerInfoDTO addModifyCustomerInfo(AddModifyCustomerInfoReq request) {
@@ -81,6 +91,19 @@ public class CustomerInfoServiceImpl extends EnhancedServiceImpl<CustomerInfoMap
         CustomerInfo customerInfo = getOne(queryWrapper);
         AssertUtils.isNotNull(customerInfo, "customer.not.exist");
         return toDto(customerInfo);
+    }
+
+    @Override
+    protected CustomerInfoDTO toDto(CustomerInfo customerInfo) {
+        if (customerInfo == null) {
+            return null;
+        }
+        CustomerInfoDTO dto = super.toDto(customerInfo);
+        List<Long> userIdList = Arrays.asList(customerInfo.getCreateUserId(), customerInfo.getUpdateUserId());
+        Map<Long, UserInfoDTO> userMap = userInfoService.batchListUserInfo(userIdList);
+        dto.setCreateUser(userMap.get(customerInfo.getCreateUserId()));
+        dto.setUpdateUser(userMap.get(customerInfo.getUpdateUserId()));
+        return dto;
     }
 
     @Override
