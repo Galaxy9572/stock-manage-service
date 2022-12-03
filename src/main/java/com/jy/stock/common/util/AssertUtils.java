@@ -38,6 +38,18 @@ public class AssertUtils {
     }
 
     /**
+     * 断言字符串不为空，否则抛出业务异常
+     *
+     * @param str   字符串
+     * @param i18nCode 错误信息编码
+     */
+    public static void isNotBlank(String str, String i18nCode) {
+        if (StringUtils.isBlank(str)) {
+            throw BusinessException.of(i18nCode);
+        }
+    }
+
+    /**
      * 断言两个字符串相等，否则抛出业务异常
      *
      * @param s1 字符串1

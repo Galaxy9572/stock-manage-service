@@ -1,17 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jy.stock.dao.mapper.region.RegionInfoMapper">
+
   <resultMap id="BaseResultMap" type="com.jy.stock.dao.entity.region.RegionInfo">
     <!--@mbg.generated-->
     <!--@Table region_info-->
     <id column="id" property="id" />
     <result column="country_code" property="countryCode" />
+    <result column="country_desc" property="countryDesc" />
     <result column="state_code" property="stateCode" />
+    <result column="state_desc" property="stateDesc" />
     <result column="city_code" property="cityCode" />
+    <result column="city_desc" property="cityDesc" />
     <result column="district_code" property="districtCode" />
+    <result column="district_desc" property="districtDesc" />
+    <result column="level" property="level" />
   </resultMap>
+
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    id, country_code, state_code, city_code, district_code
+    id, country_code, country_desc, state_code, state_desc, city_code, city_desc, district_code, district_desc, level
   </sql>
+
+  <select id="listRegions" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/>
+    from region_info
+    <where>
+      <if test="countryCode != null and countryCode != ''">
+        country_code = #{countryCode}
+      </if>
+      <if test="stateCode != null and stateCode != ''">
+        and state_code = #{stateCode}
+      </if>
+      <if test="cityCode != null and cityCode != ''">
+        and city_code = #{cityCode}
+      </if>
+      <if test="districtCode != null and districtCode != ''">
+        and district_code = #{districtCode}
+      </if>
+      <if test="level != null and level != ''">
+        and level = #{level}
+      </if>
+    </where>
+  </select>
 </mapper>
