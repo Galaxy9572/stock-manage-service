@@ -1,5 +1,6 @@
 package com.jy.stock.pojo.response.region;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 /**
@@ -11,6 +12,7 @@ public class RegionInfoVO {
     /**
      * 主键
      */
+    @JsonFormat(shape = JsonFormat.Shape.STRING)
     private Long id;
 
     /**

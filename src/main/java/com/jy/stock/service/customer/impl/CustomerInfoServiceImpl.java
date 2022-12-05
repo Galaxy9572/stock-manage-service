@@ -49,12 +49,14 @@ public class CustomerInfoServiceImpl extends EnhancedServiceImpl<CustomerInfoMap
         } else {
             CustomerInfo customerInfo = getById(id);
             AssertUtils.isNotNull(customerInfo, "customer.not.exist");
-            if (!request.getCustomerName().equals(customerInfo.getCustomerName())) {
-                CustomerInfo entity = new CustomerInfo();
-                BeanCopyUtils.copy(request, entity);
-                int updatedLines = baseMapper.updateById(entity);
-                AssertUtils.isTrue(updatedLines > 0, "operate.failed");
-            }
+            LambdaQueryWrapper<CustomerInfo> queryWrapper = new LambdaQueryWrapper<>();
+            queryWrapper.eq(CustomerInfo::getCustomerName, customerInfo.getCustomerName());
+            customerInfo = getOne(queryWrapper);
+            AssertUtils.isTrue(customerInfo == null || customerInfo.getId().equals(request.getId()), "customer.already.exists");
+            CustomerInfo entity = new CustomerInfo();
+            BeanCopyUtils.copy(request, entity);
+            int updatedLines = baseMapper.updateById(entity);
+            AssertUtils.isTrue(updatedLines > 0, "operate.failed");
         }
 
         return getCustomerInfoByName(request.getCustomerName());
@@ -86,8 +88,7 @@ public class CustomerInfoServiceImpl extends EnhancedServiceImpl<CustomerInfoMap
     @Override
     public CustomerInfoDTO getCustomerInfoByName(String customerName) {
         LambdaQueryWrapper<CustomerInfo> queryWrapper = new LambdaQueryWrapper<>();
-        queryWrapper.eq(CustomerInfo::getCustomerName, customerName)
-                .eq(CustomerInfo::getLogicDelete, false);
+        queryWrapper.eq(CustomerInfo::getCustomerName, customerName);
         CustomerInfo customerInfo = getOne(queryWrapper);
         AssertUtils.isNotNull(customerInfo, "customer.not.exist");
         return toDto(customerInfo);
