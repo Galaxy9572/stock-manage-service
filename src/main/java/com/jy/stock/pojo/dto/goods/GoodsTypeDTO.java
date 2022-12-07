@@ -1,6 +1,7 @@
 package com.jy.stock.pojo.dto.goods;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.jy.stock.pojo.dto.user.UserInfoDTO;
 import lombok.Data;
 
 import java.util.Date;
@@ -54,14 +55,14 @@ public class GoodsTypeDTO {
     private Boolean logicDelete;
 
     /**
-     * 创建用户ID
+     * 创建用户
      */
-    private Long createUserId;
+    private UserInfoDTO createUser;
 
     /**
-     * 更新用户ID
+     * 更新用户
      */
-    private Long updateUserId;
+    private UserInfoDTO updateUser;
 
     /**
      * 孩子节点

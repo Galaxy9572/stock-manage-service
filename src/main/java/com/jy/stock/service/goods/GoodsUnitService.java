@@ -7,6 +7,9 @@ import com.jy.stock.pojo.dto.goods.GoodsUnitDTO;
 import com.jy.stock.pojo.request.goods.AddModifyGoodsUnitReq;
 import com.jy.stock.pojo.request.goods.QueryGoodsUnitReq;
 
+import java.util.Collection;
+import java.util.Map;
+
 /**
  * @author liaojunyao
  */
@@ -24,4 +27,6 @@ public interface GoodsUnitService extends IService<GoodsUnit>{
     GoodsUnitDTO checkExistenceById(Long id, boolean assertExists);
 
     GoodsUnitDTO getGoodsUnitById(Long id);
+
+    Map<Long, GoodsUnitDTO> batchListGoodsUnit(Collection<Long> ids);
 }

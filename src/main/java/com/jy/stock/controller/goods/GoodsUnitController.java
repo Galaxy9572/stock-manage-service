@@ -4,6 +4,7 @@ import com.jy.stock.common.enhance.EnhancedController;
 import com.jy.stock.common.response.PageVO;
 import com.jy.stock.common.response.ResponseVO;
 import com.jy.stock.common.util.bean.BeanCopyUtils;
+import com.jy.stock.pojo.converter.user.UserConverter;
 import com.jy.stock.pojo.dto.PageDTO;
 import com.jy.stock.pojo.dto.goods.GoodsUnitDTO;
 import com.jy.stock.pojo.request.goods.AddModifyGoodsUnitReq;
@@ -45,6 +46,14 @@ public class GoodsUnitController extends EnhancedController<GoodsUnitVO, GoodsUn
     public ResponseVO<Boolean> deleteGoodsUnit(@PathVariable Long id){
         boolean isSuccess = GoodsUnitService.deleteGoodsUnit(id);
         return ResponseVO.success(isSuccess);
+    }
+
+    @Override
+    protected GoodsUnitVO toVo(GoodsUnitDTO goodsUnitDTO) {
+        GoodsUnitVO goodsUnitVO = super.toVo(goodsUnitDTO);
+        goodsUnitVO.setCreateUser(UserConverter.dtoToVo(goodsUnitDTO.getCreateUser()));
+        goodsUnitVO.setUpdateUser(UserConverter.dtoToVo(goodsUnitDTO.getUpdateUser()));
+        return goodsUnitVO;
     }
 
     @Override

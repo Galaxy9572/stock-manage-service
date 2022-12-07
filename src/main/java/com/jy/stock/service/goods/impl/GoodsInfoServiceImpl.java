@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.jy.stock.common.enhance.EnhancedServiceImpl;
 import com.jy.stock.common.util.AssertUtils;
+import com.jy.stock.common.util.StreamUtils;
 import com.jy.stock.common.util.bean.BeanCopyUtils;
 import com.jy.stock.dao.entity.goods.GoodsInfo;
 import com.jy.stock.dao.mapper.goods.GoodsInfoMapper;
@@ -12,14 +13,18 @@ import com.jy.stock.pojo.dto.PageDTO;
 import com.jy.stock.pojo.dto.goods.GoodsInfoDTO;
 import com.jy.stock.pojo.dto.goods.GoodsTypeDTO;
 import com.jy.stock.pojo.dto.goods.GoodsUnitDTO;
+import com.jy.stock.pojo.dto.user.UserInfoDTO;
 import com.jy.stock.pojo.request.goods.AddModifyGoodsInfoReq;
 import com.jy.stock.pojo.request.goods.QueryGoodsInfoReq;
 import com.jy.stock.service.goods.GoodsInfoService;
 import com.jy.stock.service.goods.GoodsTypeService;
 import com.jy.stock.service.goods.GoodsUnitService;
+import com.jy.stock.service.user.UserInfoService;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
+import java.util.*;
 
 /**
  * 商品信息服务
@@ -34,6 +39,9 @@ public class GoodsInfoServiceImpl extends EnhancedServiceImpl<GoodsInfoMapper, G
 
     @Resource
     private GoodsUnitService goodsUnitService;
+
+    @Resource
+    private UserInfoService userInfoService;
 
     @Override
     public GoodsInfoDTO addModifyGoodsInfo(AddModifyGoodsInfoReq request) {
@@ -118,5 +126,30 @@ public class GoodsInfoServiceImpl extends EnhancedServiceImpl<GoodsInfoMapper, G
         goodsInfoDTO.setGoodsType(goodsTypeDTO);
         goodsInfoDTO.setGoodsUnit(goodsUnitDTO);
         return goodsInfoDTO;
+    }
+
+    @Override
+    protected List<GoodsInfoDTO> toDtoList(List<GoodsInfo> list) {
+        if (CollectionUtils.isEmpty(list)) {
+            return new ArrayList<>();
+        }
+        List<Long> goodsTypeIdList = StreamUtils.mapCollect(list, GoodsInfo::getGoodsTypeId);
+        List<Long> goodsUnitIdList = StreamUtils.mapCollect(list, GoodsInfo::getGoodsUnitId);
+        Map<Long, GoodsTypeDTO> goodsTypeMap = goodsTypeService.batchListGoodsType(goodsTypeIdList);
+        Map<Long, GoodsUnitDTO> goodsUnitMap = goodsUnitService.batchListGoodsUnit(goodsUnitIdList);
+        Set<Long> userIdSet = new HashSet<>();
+        list.forEach(u -> {
+            userIdSet.add(u.getCreateUserId());
+            userIdSet.add(u.getUpdateUserId());
+        });
+        Map<Long, UserInfoDTO> userInfoMap = userInfoService.batchListUserInfo(userIdSet);
+        return StreamUtils.mapCollect(list, e -> {
+            GoodsInfoDTO goodsInfoDTO = super.toDto(e);
+            goodsInfoDTO.setGoodsType(goodsTypeMap.get(e.getGoodsTypeId()));
+            goodsInfoDTO.setGoodsUnit(goodsUnitMap.get(e.getGoodsUnitId()));
+            goodsInfoDTO.setCreateUser(userInfoMap.get(e.getCreateUserId()));
+            goodsInfoDTO.setUpdateUser(userInfoMap.get(e.getUpdateUserId()));
+            return goodsInfoDTO;
+        });
     }
 }

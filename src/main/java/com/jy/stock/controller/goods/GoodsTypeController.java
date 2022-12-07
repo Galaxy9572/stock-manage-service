@@ -2,6 +2,7 @@ package com.jy.stock.controller.goods;
 
 import com.jy.stock.common.enhance.EnhancedController;
 import com.jy.stock.common.response.ResponseVO;
+import com.jy.stock.pojo.converter.goods.GoodsConverter;
 import com.jy.stock.pojo.dto.goods.GoodsTypeDTO;
 import com.jy.stock.pojo.request.goods.AddModifyGoodsTypeReq;
 import com.jy.stock.pojo.response.goods.GoodsTypeVO;
@@ -35,20 +36,11 @@ public class GoodsTypeController extends EnhancedController<GoodsTypeVO, GoodsTy
     }
 
     @GetMapping("/list")
-    public ResponseVO<List<GoodsTypeDTO>> listAllGoodsTypes(@RequestParam(required = false) Long parentTypeId) {
-        List<GoodsTypeDTO> goodsTypeDTOList = goodsTypeService.listAllGoodsTypes(parentTypeId);
-
-        return ResponseVO.success(goodsTypeDTOList);
+    public ResponseVO<List<GoodsTypeVO>> listAllGoodsTypes(@RequestParam(required = false) Long parentTypeId) {
+        List<GoodsTypeDTO> dtoList = goodsTypeService.listAllGoodsTypes(parentTypeId);
+        List<GoodsTypeVO> voList = GoodsConverter.dtoListToVoList(dtoList);
+        return ResponseVO.success(voList);
     }
-
-//    private static List<GoodsTypeVO> recursivelyToVO(List<GoodsTypeDTO> goodsTypeDTOList) {
-//        if(CollectionUtils.isEmpty(goodsTypeDTOList)) {
-//            return new ArrayList<>();
-//        }
-//        for (GoodsTypeDTO goodsTypeDTO : goodsTypeDTOList) {
-//            while (goodsTypeDTO.getChildren())
-//        }
-//    }
 
     @Override
     public Class<GoodsTypeVO> getVoClass() {

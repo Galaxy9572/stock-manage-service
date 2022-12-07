@@ -10,15 +10,17 @@ import com.jy.stock.common.util.bean.BeanCopyUtils;
 import com.jy.stock.dao.entity.goods.GoodsType;
 import com.jy.stock.dao.mapper.goods.GoodsTypeMapper;
 import com.jy.stock.pojo.dto.goods.GoodsTypeDTO;
+import com.jy.stock.pojo.dto.user.UserInfoDTO;
 import com.jy.stock.pojo.request.goods.AddModifyGoodsTypeReq;
 import com.jy.stock.service.goods.GoodsTypeService;
+import com.jy.stock.service.user.UserInfoService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
-import java.util.ArrayList;
-import java.util.List;
+import javax.annotation.Resource;
+import java.util.*;
 
 /**
  * 商品类别服务
@@ -27,6 +29,9 @@ import java.util.List;
  */
 @Service
 public class GoodsTypeServiceImpl extends EnhancedServiceImpl<GoodsTypeMapper, GoodsType, GoodsTypeDTO> implements GoodsTypeService {
+
+    @Resource
+    private UserInfoService userInfoService;
 
     @Override
     @Transactional(rollbackFor = Exception.class)
@@ -75,24 +80,19 @@ public class GoodsTypeServiceImpl extends EnhancedServiceImpl<GoodsTypeMapper, G
         if (CollectionUtils.isEmpty(goodsTypes)) {
             return new ArrayList<>();
         }
-        List<GoodsTypeDTO> resultList = new ArrayList<>();
-        for (GoodsType goodsType : goodsTypes) {
-            String[] idPathArray = goodsType.getPath().split("!");
-            List<GoodsTypeDTO> currentList = resultList;
-            for (String currentIdStr : idPathArray) {
-                GoodsTypeDTO node = StreamUtils.findFirst(currentList, e -> e.getId().toString().equals(currentIdStr));
-                if (node == null) {
-                    GoodsTypeDTO dto = new GoodsTypeDTO();
-                    BeanCopyUtils.copy(goodsType, dto);
-                    dto.setChildren(new ArrayList<>());
-                    currentList.add(dto);
-                    currentList = dto.getChildren();
-                } else {
-                    currentList = node.getChildren();
-                }
-            }
-        }
-        return resultList;
+        Set<Long> userIdSet = new HashSet<>();
+        goodsTypes.forEach(u -> {
+            userIdSet.add(u.getCreateUserId());
+            userIdSet.add(u.getUpdateUserId());
+        });
+        Map<Long, UserInfoDTO> userInfoMap = userInfoService.batchListUserInfo(userIdSet);
+        return StreamUtils.mapCollect(goodsTypes, e -> {
+            GoodsTypeDTO dto = new GoodsTypeDTO();
+            BeanCopyUtils.copy(e, dto);
+            dto.setCreateUser(userInfoMap.get(e.getCreateUserId()));
+            dto.setUpdateUser(userInfoMap.get(e.getUpdateUserId()));
+            return dto;
+        });
     }
 
     @Override
@@ -140,6 +140,16 @@ public class GoodsTypeServiceImpl extends EnhancedServiceImpl<GoodsTypeMapper, G
         } else {
             return toDto(goodsType);
         }
+    }
+
+    @Override
+    public Map<Long, GoodsTypeDTO> batchListGoodsType(Collection<Long> ids) {
+        if (CollectionUtils.isEmpty(ids)) {
+            return new HashMap<>(0);
+        }
+        List<GoodsType> goodsTypes = listByIds(ids);
+        List<GoodsTypeDTO> dtoList = StreamUtils.mapCollect(goodsTypes, this::toDto);
+        return StreamUtils.toMap(dtoList, GoodsTypeDTO::getId, e -> e);
     }
 
     @Override

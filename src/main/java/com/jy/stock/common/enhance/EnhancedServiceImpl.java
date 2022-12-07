@@ -9,6 +9,7 @@ import com.jy.stock.pojo.dto.PageDTO;
 import org.springframework.util.ReflectionUtils;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.List;
 
 /**
  * @author liaojunyao
@@ -28,13 +29,18 @@ public abstract class EnhancedServiceImpl<M extends BaseMapper<T>, T, DTO> exten
         }
     }
 
+    protected List<DTO> toDtoList(List<T> list) {
+        return StreamUtils.mapCollect(list, this::toDto);
+    }
+
     protected PageDTO<DTO> toPageDTO(IPage<T> page){
         PageDTO<DTO> dto = new PageDTO<>();
         dto.setPageNo((int) page.getCurrent());
         dto.setPageSize((int) page.getSize());
         dto.setPages((int) page.getPages());
         dto.setTotal(page.getTotal());
-        dto.setList(StreamUtils.mapCollect(page.getRecords(), this::toDto));
+        List<DTO> dtoList = toDtoList(page.getRecords());
+        dto.setList(dtoList);
         return dto;
     }
 

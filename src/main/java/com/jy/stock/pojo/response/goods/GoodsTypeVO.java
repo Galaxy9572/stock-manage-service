@@ -1,6 +1,7 @@
 package com.jy.stock.pojo.response.goods;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.jy.stock.pojo.response.user.UserInfoVO;
 import lombok.Data;
 
 import java.util.Date;
@@ -49,14 +50,14 @@ public class GoodsTypeVO {
     private Date updateTime;
 
     /**
-     * 创建用户ID
+     * 创建用户
      */
-    private Long createUserId;
+    private UserInfoVO createUser;
 
     /**
-     * 更新用户ID
+     * 更新用户
      */
-    private Long updateUserId;
+    private UserInfoVO updateUser;
 
     /**
      * 孩子节点

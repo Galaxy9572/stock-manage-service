@@ -25,8 +25,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
+import java.util.Collection;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -124,11 +124,11 @@ public class UserInfoServiceImpl extends EnhancedServiceImpl<UserInfoMapper, Use
     }
 
     @Override
-    public Map<Long, UserInfoDTO> batchListUserInfo(List<Long> userIdList) {
-        if(CollectionUtils.isEmpty(userIdList)) {
-            return new HashMap<>(16);
+    public Map<Long, UserInfoDTO> batchListUserInfo(Collection<Long> userIds) {
+        if(CollectionUtils.isEmpty(userIds)) {
+            return new HashMap<>(0);
         }
-        return baseMapper.batchListUserInfoByUserIdList(userIdList);
+        return baseMapper.batchListUserInfoByUserIds(userIds);
     }
 
     @Override

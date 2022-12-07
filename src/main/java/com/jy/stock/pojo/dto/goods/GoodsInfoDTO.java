@@ -1,5 +1,6 @@
 package com.jy.stock.pojo.dto.goods;
 
+import com.jy.stock.pojo.dto.user.UserInfoDTO;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -50,14 +51,14 @@ public class GoodsInfoDTO {
     private String memo;
 
     /**
-     * 创建人ID
+     * 创建人
      */
-    private Long createUserId;
+    private UserInfoDTO createUser;
 
     /**
-     * 更新用户ID
+     * 更新用户
      */
-    private Long updateUserId;
+    private UserInfoDTO updateUser;
 
     /**
      * 创建时间

@@ -9,7 +9,7 @@ import com.jy.stock.pojo.request.user.QueryUserInfoReq;
 import com.jy.stock.pojo.request.user.UserLoginReq;
 
 import javax.servlet.http.HttpSession;
-import java.util.List;
+import java.util.Collection;
 import java.util.Map;
 
 public interface UserInfoService extends IService<UserInfo>{
@@ -24,7 +24,7 @@ public interface UserInfoService extends IService<UserInfo>{
 
     PageDTO<UserInfoDTO> listUserInfoByPage(QueryUserInfoReq request);
 
-    Map<Long, UserInfoDTO> batchListUserInfo(List<Long> userIdList);
+    Map<Long, UserInfoDTO> batchListUserInfo(Collection<Long> userIds);
 
     UserInfoDTO getUserInfoById(Long userId);
 

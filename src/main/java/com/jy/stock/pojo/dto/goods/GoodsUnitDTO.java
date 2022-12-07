@@ -1,5 +1,6 @@
 package com.jy.stock.pojo.dto.goods;
 
+import com.jy.stock.pojo.dto.user.UserInfoDTO;
 import lombok.Data;
 
 import java.util.Date;
@@ -41,12 +42,12 @@ public class GoodsUnitDTO {
     private Boolean logicDelete;
 
     /**
-     * 创建人ID
+     * 创建人
      */
-    private Long createUserId;
+    private UserInfoDTO createUser;
 
     /**
-     * 更新人ID
+     * 更新人
      */
-    private Long updateUserId;
+    private UserInfoDTO updateUser;
 }

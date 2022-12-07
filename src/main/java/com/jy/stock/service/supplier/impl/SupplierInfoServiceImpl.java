@@ -47,12 +47,14 @@ public class SupplierInfoServiceImpl extends EnhancedServiceImpl<SupplierInfoMap
         } else {
             SupplierInfo supplierInfo = getById(id);
             AssertUtils.isNotNull(supplierInfo, "supplier.not.exist");
-            if (!request.getSupplierName().equals(supplierInfo.getSupplierName())) {
-                SupplierInfo entity = new SupplierInfo();
-                BeanCopyUtils.copy(request, entity);
-                int updatedLines = baseMapper.updateById(entity);
-                AssertUtils.isTrue(updatedLines > 0, "operate.failed");
-            }
+            LambdaQueryWrapper<SupplierInfo> queryWrapper = new LambdaQueryWrapper<>();
+            queryWrapper.eq(SupplierInfo::getSupplierName, supplierInfo.getSupplierName());
+            supplierInfo = getOne(queryWrapper);
+            AssertUtils.isTrue(supplierInfo == null || supplierInfo.getId().equals(request.getId()), "supplier.already.exists");
+            SupplierInfo entity = new SupplierInfo();
+            BeanCopyUtils.copy(request, entity);
+            int updatedLines = baseMapper.updateById(entity);
+            AssertUtils.isTrue(updatedLines > 0, "operate.failed");
         }
 
         return getSupplierInfoByName(request.getSupplierName());

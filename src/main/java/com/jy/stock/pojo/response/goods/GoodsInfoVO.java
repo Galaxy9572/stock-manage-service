@@ -1,6 +1,7 @@
 package com.jy.stock.pojo.response.goods;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.jy.stock.pojo.response.user.UserInfoVO;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -52,14 +53,14 @@ public class GoodsInfoVO {
     private String memo;
 
     /**
-     * 创建人ID
+     * 创建人
      */
-    private Long createUserId;
+    private UserInfoVO createUser;
 
     /**
-     * 更新用户ID
+     * 更新用户
      */
-    private Long updateUserId;
+    private UserInfoVO updateUser;
 
     /**
      * 创建时间

@@ -5,7 +5,9 @@ import com.jy.stock.dao.entity.goods.GoodsType;
 import com.jy.stock.pojo.dto.goods.GoodsTypeDTO;
 import com.jy.stock.pojo.request.goods.AddModifyGoodsTypeReq;
 
+import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 public interface GoodsTypeService extends IService<GoodsType>{
 
@@ -21,4 +23,6 @@ public interface GoodsTypeService extends IService<GoodsType>{
     GoodsTypeDTO checkExistenceById(Long id, boolean assertExists);
 
     GoodsTypeDTO getGoodsTypeById(Long id);
+
+    Map<Long, GoodsTypeDTO> batchListGoodsType(Collection<Long> ids);
 }

@@ -8,7 +8,7 @@ import com.jy.stock.pojo.dto.user.UserInfoDTO;
 import org.apache.ibatis.annotations.MapKey;
 import org.apache.ibatis.annotations.Param;
 
-import java.util.List;
+import java.util.Collection;
 import java.util.Map;
 
 /**
@@ -23,6 +23,6 @@ public interface UserInfoMapper extends BaseMapper<UserInfo> {
     IPage<UserInfoDTO> listUserInfoByPage(@Param("page") Page<UserInfo> page, @Param("param") UserInfoDTO param);
 
     @MapKey("id")
-    Map<Long, UserInfoDTO> batchListUserInfoByUserIdList(@Param("userIdList") List<Long> userIdList);
+    Map<Long, UserInfoDTO> batchListUserInfoByUserIds(@Param("userIds") Collection<Long> userIds);
 
 }

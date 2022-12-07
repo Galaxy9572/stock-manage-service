@@ -6,15 +6,22 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.jy.stock.common.enhance.EnhancedServiceImpl;
 import com.jy.stock.common.util.AssertUtils;
+import com.jy.stock.common.util.StreamUtils;
 import com.jy.stock.dao.entity.goods.GoodsUnit;
 import com.jy.stock.dao.mapper.goods.GoodsUnitMapper;
 import com.jy.stock.pojo.dto.PageDTO;
 import com.jy.stock.pojo.dto.goods.GoodsUnitDTO;
+import com.jy.stock.pojo.dto.user.UserInfoDTO;
 import com.jy.stock.pojo.request.goods.AddModifyGoodsUnitReq;
 import com.jy.stock.pojo.request.goods.QueryGoodsUnitReq;
 import com.jy.stock.service.goods.GoodsUnitService;
+import com.jy.stock.service.user.UserInfoService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
+
+import javax.annotation.Resource;
+import java.util.*;
 
 /**
  * 商品计量单位管理
@@ -22,6 +29,9 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class GoodsUnitServiceImpl extends EnhancedServiceImpl<GoodsUnitMapper, GoodsUnit, GoodsUnitDTO> implements GoodsUnitService{
+
+    @Resource
+    private UserInfoService userInfoService;
 
     @Override
     public GoodsUnitDTO addModifyGoodsUnit(AddModifyGoodsUnitReq req){
@@ -107,6 +117,35 @@ public class GoodsUnitServiceImpl extends EnhancedServiceImpl<GoodsUnitMapper, G
         } else {
             return toDto(goodsUnit);
         }
+    }
+
+    @Override
+    public Map<Long, GoodsUnitDTO> batchListGoodsUnit(Collection<Long> ids) {
+        if (CollectionUtils.isEmpty(ids)) {
+            return new HashMap<>(0);
+        }
+        List<GoodsUnit> goodsUnits = listByIds(ids);
+        List<GoodsUnitDTO> dtoList = StreamUtils.mapCollect(goodsUnits, this::toDto);
+        return StreamUtils.toMap(dtoList, GoodsUnitDTO::getId, e -> e);
+    }
+
+    @Override
+    protected List<GoodsUnitDTO> toDtoList(List<GoodsUnit> list) {
+        if (CollectionUtils.isEmpty(list)) {
+            return new ArrayList<>();
+        }
+        Set<Long> userIdSet = new HashSet<>();
+        list.forEach(u -> {
+            userIdSet.add(u.getCreateUserId());
+            userIdSet.add(u.getUpdateUserId());
+        });
+        Map<Long, UserInfoDTO> userInfoMap = userInfoService.batchListUserInfo(userIdSet);
+        return StreamUtils.mapCollect(list, e -> {
+            GoodsUnitDTO dto = super.toDto(e);
+            dto.setCreateUser(userInfoMap.get(e.getCreateUserId()));
+            dto.setUpdateUser(userInfoMap.get(e.getUpdateUserId()));
+            return dto;
+        });
     }
 
     @Override
