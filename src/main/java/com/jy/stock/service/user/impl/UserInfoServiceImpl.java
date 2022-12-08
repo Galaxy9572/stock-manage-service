@@ -9,6 +9,7 @@ import com.jy.stock.common.util.AssertUtils;
 import com.jy.stock.common.util.HashUtils;
 import com.jy.stock.common.util.PageUtils;
 import com.jy.stock.common.util.bean.BeanCopyUtils;
+import com.jy.stock.constants.user.UserConstants;
 import com.jy.stock.dao.entity.user.UserInfo;
 import com.jy.stock.dao.mapper.user.UserInfoMapper;
 import com.jy.stock.pojo.dto.PageDTO;
@@ -47,7 +48,8 @@ public class UserInfoServiceImpl extends EnhancedServiceImpl<UserInfoMapper, Use
         String encryptedPassword = HashUtils.sha256(loginReq.getPassword() + userInfo.getSalt());
         AssertUtils.equal(encryptedPassword, userInfo.getEncryptedPassword(), "nick.or.password.wrong");
         String token = HashUtils.randomUuid();
-        session.setAttribute("token", token);
+        session.setAttribute(UserConstants.TOKEN, token);
+        session.setAttribute(UserConstants.USER_ID, userInfo.getId());
         userInfo.setToken(token);
         return userInfo;
     }

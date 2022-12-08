@@ -1,7 +1,6 @@
 package com.jy.stock.service.goods.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.core.toolkit.IdWorker;
 import com.jy.stock.common.enhance.EnhancedServiceImpl;
 import com.jy.stock.common.util.AssertUtils;
@@ -67,9 +66,10 @@ public class GoodsTypeServiceImpl extends EnhancedServiceImpl<GoodsTypeMapper, G
             if (goodsType.getTypeName().equals(request.getTypeName())) {
                 return true;
             }
-            LambdaUpdateWrapper<GoodsType> updateWrapper = new LambdaUpdateWrapper<>();
-            updateWrapper.set(GoodsType::getTypeName, request.getTypeName()).eq(GoodsType::getId, request.getId());
-            isSuccess = update(updateWrapper);
+            GoodsType updateEntity = new GoodsType();
+            updateEntity.setId(request.getId());
+            updateEntity.setTypeName(request.getTypeName());
+            isSuccess = updateById(updateEntity);
         }
         return isSuccess;
     }

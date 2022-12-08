@@ -1,5 +1,6 @@
 package com.jy.stock.common.util;
 
+import com.jy.stock.constants.user.UserConstants;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -26,6 +27,14 @@ public class ContextHolder {
             return null;
         }
         return requestAttributes.getRequest();
+    }
+
+    public static Long currentUserId() {
+        ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+        AssertUtils.isNotNull(requestAttributes, "get.login.info.failed");
+        HttpServletRequest request = requestAttributes.getRequest();
+        Object userIdObj = request.getSession().getAttribute(UserConstants.USER_ID);
+        return Long.parseLong(userIdObj.toString());
     }
 
 }

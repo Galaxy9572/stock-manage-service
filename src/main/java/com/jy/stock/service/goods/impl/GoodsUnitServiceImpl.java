@@ -1,7 +1,6 @@
 package com.jy.stock.service.goods.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.jy.stock.common.enhance.EnhancedServiceImpl;
@@ -41,18 +40,18 @@ public class GoodsUnitServiceImpl extends EnhancedServiceImpl<GoodsUnitMapper, G
             // 值有变化才修改
             if(!(StringUtils.equals(req.getUnitName(), goodsUnitDTO.getUnitName())
                     && goodsUnitDTO.getAllowDecimal().equals(req.getAllowDecimal()))){
-                LambdaUpdateWrapper<GoodsUnit> updateWrapper = new LambdaUpdateWrapper<>();
-                updateWrapper.eq(GoodsUnit::getId, req.getId());
+                GoodsUnit updateEntity = new GoodsUnit();
+                updateEntity.setId(req.getId());
                 if (!goodsUnitDTO.getUnitName().equals(req.getUnitName())) {
                     wrapper.eq(GoodsUnit::getUnitName, req.getUnitName());
                     GoodsUnit goodsUnit = getOne(wrapper);
-                    AssertUtils.isTrue(!goodsUnit.getId().equals(req.getId()), "goods.unit.already.exists");
-                    updateWrapper.set(GoodsUnit::getUnitName, req.getUnitName());
+                    AssertUtils.isTrue(goodsUnit == null || goodsUnit.getId().equals(req.getId()), "goods.unit.already.exists");
+                    updateEntity.setUnitName(req.getUnitName());
                 }
                 if (!goodsUnitDTO.getAllowDecimal().equals(req.getAllowDecimal())) {
-                    updateWrapper.set(GoodsUnit::getAllowDecimal, req.getAllowDecimal());
+                    updateEntity.setAllowDecimal(req.getAllowDecimal());
                 }
-                update(null, updateWrapper);
+                updateById(updateEntity);
             }
         }else{
             wrapper.eq(GoodsUnit::getUnitName, req.getUnitName());

@@ -154,19 +154,20 @@ alter table goods_info
 
 create table if not exists goods_stock
 (
-    id                bigint                  not null
+    id                  bigint                  not null
         constraint goods_stock_pk
             primary key,
-    goods_id          bigint                  not null,
-    init_stock_num    bigint    default 0     not null,
-    min_stock_num     bigint    default 0     not null,
-    max_stock_num     bigint    default 0     not null,
-    current_stock_num bigint    default 0     not null,
-    create_user_id    bigint                  not null,
-    update_user_id    bigint                  not null,
-    create_time       timestamp default now() not null,
-    update_time       timestamp default now() not null,
-    logic_delete      boolean   default false not null
+    goods_id            bigint                  not null,
+    init_stock_num      bigint    default 0     not null,
+    min_stock_num       bigint    default 0     not null,
+    max_stock_num       bigint    default 0     not null,
+    current_stock_num   bigint    default 0     not null,
+    allow_stock_warning boolean   default true  not null,
+    create_user_id      bigint                  not null,
+    update_user_id      bigint                  not null,
+    create_time         timestamp default now() not null,
+    update_time         timestamp default now() not null,
+    logic_delete        boolean   default false not null
 );
 
 comment on table goods_stock is '商品库存';
@@ -182,6 +183,8 @@ comment on column goods_stock.min_stock_num is '最低库存数量';
 comment on column goods_stock.max_stock_num is '最高库存数量';
 
 comment on column goods_stock.current_stock_num is '当前库存数量';
+
+comment on column goods_stock.allow_stock_warning is '是否允许库存告警';
 
 comment on column goods_stock.create_user_id is '创建用户ID';
 
