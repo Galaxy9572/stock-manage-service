@@ -1,13 +1,16 @@
 package com.jy.stock.service.goods.impl;
 
 import com.jy.stock.common.enhance.EnhancedServiceImpl;
+import com.jy.stock.common.util.AssertUtils;
 import com.jy.stock.dao.entity.goods.GoodsStock;
 import com.jy.stock.dao.mapper.goods.GoodsStockMapper;
 import com.jy.stock.pojo.dto.goods.GoodsStockDTO;
+import com.jy.stock.pojo.request.goods.ModifyGoodsStockWarningReq;
+import com.jy.stock.service.goods.GoodsInfoService;
 import com.jy.stock.service.goods.GoodsStockService;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import javax.annotation.Resource;
 
 /**
  * 商品库存服务
@@ -15,6 +18,26 @@ import java.util.List;
  */
 @Service
 public class GoodsStockServiceImpl extends EnhancedServiceImpl<GoodsStockMapper, GoodsStock, GoodsStockDTO> implements GoodsStockService{
+
+    @Resource
+    private GoodsInfoService goodsInfoService;
+
+    @Override
+    public GoodsStockDTO modifyGoodsStockWarning(ModifyGoodsStockWarningReq request) {
+        GoodsStockDTO goodsStockDTO = checkExistenceById(request.getId(), true);
+    }
+
+    @Override
+    public GoodsStockDTO checkExistenceById(Long id, boolean assertExists) {
+        GoodsStock goodsStock = getById(id);
+        if (assertExists) {
+            AssertUtils.isNotNull(goodsStock, "goods.stock.not.exist");
+        } else {
+            AssertUtils.isNull(goodsStock, "goods.stock.already.exists");
+        }
+        return goodsStock != null ? toDto(goodsStock) : null;
+    }
+
     @Override
     public Class<GoodsStockDTO> getDtoClass() {
         return GoodsStockDTO.class;

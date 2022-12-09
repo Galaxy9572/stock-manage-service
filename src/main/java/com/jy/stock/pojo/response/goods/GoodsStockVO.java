@@ -1,6 +1,7 @@
 package com.jy.stock.pojo.response.goods;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.jy.stock.pojo.response.user.UserInfoVO;
 import lombok.Data;
 
 import java.util.Date;
@@ -38,19 +39,24 @@ public class GoodsStockVO {
     private Long maxStockNum;
 
     /**
+     * 是否允许库存告警
+     */
+    private Boolean allowStockWarning;
+
+    /**
      * 当前库存数量
      */
     private Long currentStockNum;
 
     /**
-     * 创建用户ID
+     * 创建用户
      */
-    private Long createUserId;
+    private UserInfoVO createUser;
 
     /**
-     * 更新用户ID
+     * 更新用户
      */
-    private Long updateUserId;
+    private UserInfoVO updateUser;
 
     /**
      * 创建时间

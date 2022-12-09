@@ -11,6 +11,7 @@
     <result column="min_stock_num" property="minStockNum" />
     <result column="max_stock_num" property="maxStockNum" />
     <result column="current_stock_num" property="currentStockNum" />
+    <result column="allow_stock_warning" property="allowStockWarning" />
     <result column="create_user_id" property="createUserId" />
     <result column="update_user_id" property="updateUserId" />
     <result column="create_time" property="createTime" />
@@ -20,9 +21,8 @@
 
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    id, goods_id, init_stock_num, min_stock_num,
-    max_stock_num, current_stock_num, create_user_id, update_user_id, create_time, update_time, 
-    logic_delete
+    id, goods_id, init_stock_num, min_stock_num, max_stock_num, current_stock_num, allow_stock_warning,
+    create_user_id, update_user_id, create_time, update_time, logic_delete
   </sql>
 
 </mapper>

@@ -44,6 +44,11 @@ public class GoodsStock {
     private Long currentStockNum;
 
     /**
+     * 是否允许库存告警
+     */
+    private Boolean allowStockWarning;
+
+    /**
      * 创建用户ID
      */
     @TableField(fill = FieldFill.INSERT)

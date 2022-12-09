@@ -1,8 +1,8 @@
 package com.jy.stock.pojo.dto.goods;
 
+import com.jy.stock.pojo.dto.user.UserInfoDTO;
 import lombok.Data;
 
-import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -42,14 +42,19 @@ public class GoodsStockDTO {
     private Long currentStockNum;
 
     /**
-     * 创建用户ID
+     * 是否允许库存告警
      */
-    private Long createUserId;
+    private Boolean allowStockWarning;
 
     /**
-     * 更新用户ID
+     * 创建用户
      */
-    private Long updateUserId;
+    private UserInfoDTO createUser;
+
+    /**
+     * 更新用户
+     */
+    private UserInfoDTO updateUser;
 
     /**
      * 创建时间
