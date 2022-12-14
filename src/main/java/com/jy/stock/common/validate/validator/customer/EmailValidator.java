@@ -1,6 +1,6 @@
-package com.jy.stock.common.validate.validator.user;
+package com.jy.stock.common.validate.validator.customer;
 
-import com.jy.stock.common.validate.annotation.user.ValidateEmail;
+import com.jy.stock.common.validate.annotation.customer.ValidateEmail;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.validation.ConstraintValidator;

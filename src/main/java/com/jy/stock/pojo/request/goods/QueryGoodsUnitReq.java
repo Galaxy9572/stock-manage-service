@@ -1,6 +1,6 @@
 package com.jy.stock.pojo.request.goods;
 
-import com.jy.stock.common.enums.SortOrderEnum;
+import com.jy.stock.enums.common.SortOrderEnum;
 import com.jy.stock.pojo.request.PageRequest;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

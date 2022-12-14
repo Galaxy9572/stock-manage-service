@@ -43,5 +43,6 @@ public class UserRole {
      * 逻辑删除
      */
     @TableLogic
+    @TableField(fill = FieldFill.INSERT)
     private Boolean logicDelete;
 }

@@ -1,4 +1,4 @@
-package com.jy.stock.common.enums;
+package com.jy.stock.enums.user;
 
 import com.jy.stock.pojo.response.user.UserRoleEnumVO;
 import lombok.AllArgsConstructor;
@@ -25,6 +25,10 @@ public enum UserRoleEnum {
     private final String code;
 
     private final String desc;
+
+    public static UserRoleEnum getByCode(String code) {
+        return Arrays.stream(UserRoleEnum.values()).filter(e -> e.getCode().equals(code)).findFirst().orElse(null);
+    }
 
     public static List<UserRoleEnumVO> listAllRoles(){
         return Arrays.stream(UserRoleEnum.values()).map(e -> new UserRoleEnumVO(e.getCode(), e.getDesc())).collect(Collectors.toList());

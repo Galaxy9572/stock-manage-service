@@ -1,4 +1,4 @@
-package com.jy.stock.common.enums;
+package com.jy.stock.enums.region;
 
 import java.util.Arrays;
 

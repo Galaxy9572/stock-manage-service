@@ -101,6 +101,21 @@ public class CustomerInfoVO {
     private String memo;
 
     /**
+     * 开户行
+     */
+    private String bankName;
+
+    /**
+     * 银行卡号
+     */
+    private String bankCardId;
+
+    /**
+     * 纳税人识别号
+     */
+    private String taxpayerId;
+
+    /**
      * 创建时间
      */
     private Date createTime;

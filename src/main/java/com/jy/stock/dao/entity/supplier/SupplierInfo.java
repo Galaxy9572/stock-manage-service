@@ -116,5 +116,6 @@ public class SupplierInfo {
      * 逻辑删除
      */
     @TableLogic
+    @TableField(fill = FieldFill.INSERT)
     private Boolean logicDelete;
 }

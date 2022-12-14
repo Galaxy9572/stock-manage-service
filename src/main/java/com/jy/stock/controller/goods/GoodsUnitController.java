@@ -1,9 +1,11 @@
 package com.jy.stock.controller.goods;
 
+import com.jy.stock.common.aspect.annotation.AuthCheck;
 import com.jy.stock.common.enhance.EnhancedController;
 import com.jy.stock.common.response.PageVO;
 import com.jy.stock.common.response.ResponseVO;
 import com.jy.stock.common.util.bean.BeanCopyUtils;
+import com.jy.stock.enums.user.UserRoleEnum;
 import com.jy.stock.pojo.converter.user.UserConverter;
 import com.jy.stock.pojo.dto.PageDTO;
 import com.jy.stock.pojo.dto.goods.GoodsUnitDTO;
@@ -25,11 +27,12 @@ import javax.validation.Valid;
 public class GoodsUnitController extends EnhancedController<GoodsUnitVO, GoodsUnitDTO> {
 
     @Resource
-    private GoodsUnitService GoodsUnitService;
+    private GoodsUnitService goodsUnitService;
 
+    @AuthCheck(roles = UserRoleEnum.ADMIN)
     @PostMapping("")
     public ResponseVO<GoodsUnitVO> addModifyGoodsUnit(@RequestBody @Valid AddModifyGoodsUnitReq req){
-        GoodsUnitDTO goodsUnitDTO = GoodsUnitService.addModifyGoodsUnit(req);
+        GoodsUnitDTO goodsUnitDTO = goodsUnitService.addModifyGoodsUnit(req);
         GoodsUnitVO goodsUnitVO = new GoodsUnitVO();
         BeanCopyUtils.copy(goodsUnitDTO, goodsUnitVO);
         return ResponseVO.success(goodsUnitVO);
@@ -37,14 +40,14 @@ public class GoodsUnitController extends EnhancedController<GoodsUnitVO, GoodsUn
 
     @PostMapping("/list")
     public ResponseVO<PageVO<GoodsUnitVO>> listGoodsUnit(@RequestBody @Valid QueryGoodsUnitReq req){
-        PageDTO<GoodsUnitDTO> pageDTO = GoodsUnitService.listGoodsUnit(req);
+        PageDTO<GoodsUnitDTO> pageDTO = goodsUnitService.listGoodsUnit(req);
         PageVO<GoodsUnitVO> pageVO = toPageVO(pageDTO);
         return ResponseVO.success(pageVO);
     }
 
     @DeleteMapping("/{id}")
     public ResponseVO<Boolean> deleteGoodsUnit(@PathVariable Long id){
-        boolean isSuccess = GoodsUnitService.deleteGoodsUnit(id);
+        boolean isSuccess = goodsUnitService.deleteGoodsUnit(id);
         return ResponseVO.success(isSuccess);
     }
 

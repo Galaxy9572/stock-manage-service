@@ -72,6 +72,14 @@ public class UserRoleServiceImpl extends EnhancedServiceImpl<UserRoleMapper, Use
     }
 
     @Override
+    public List<UserRoleDTO> listByUserId(Long userId) {
+        LambdaQueryWrapper<UserRole> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(UserRole::getUserId, userId);
+        List<UserRole> list = list(wrapper);
+        return StreamUtils.mapCollect(list, this::toDto);
+    }
+
+    @Override
     public Class<UserRoleDTO> getDtoClass() {
         return UserRoleDTO.class;
     }

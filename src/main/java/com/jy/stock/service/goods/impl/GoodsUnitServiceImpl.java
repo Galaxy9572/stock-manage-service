@@ -17,6 +17,7 @@ import com.jy.stock.service.goods.GoodsUnitService;
 import com.jy.stock.service.user.UserInfoService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
@@ -33,6 +34,7 @@ public class GoodsUnitServiceImpl extends EnhancedServiceImpl<GoodsUnitMapper, G
     private UserInfoService userInfoService;
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public GoodsUnitDTO addModifyGoodsUnit(AddModifyGoodsUnitReq req){
         LambdaQueryWrapper<GoodsUnit> wrapper = new LambdaQueryWrapper<>();
         if(req.getId() != null){

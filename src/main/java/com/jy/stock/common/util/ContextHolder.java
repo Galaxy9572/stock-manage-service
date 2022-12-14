@@ -34,7 +34,7 @@ public class ContextHolder {
         AssertUtils.isNotNull(requestAttributes, "get.login.info.failed");
         HttpServletRequest request = requestAttributes.getRequest();
         Object userIdObj = request.getSession().getAttribute(UserConstants.USER_ID);
-        return Long.parseLong(userIdObj.toString());
+        return userIdObj == null ? null : Long.parseLong(userIdObj.toString());
     }
 
 }

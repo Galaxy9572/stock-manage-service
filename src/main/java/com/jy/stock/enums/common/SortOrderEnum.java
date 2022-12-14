@@ -1,4 +1,4 @@
-package com.jy.stock.common.enums;
+package com.jy.stock.enums.common;
 
 /**
  * @author liaojunyao

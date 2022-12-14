@@ -14,7 +14,7 @@ create table if not exists user_info
     salt               varchar(6)            not null,
     create_time        timestamp             not null,
     update_time        timestamp             not null,
-    logic_delete       boolean default false not null
+    logic_delete       bool    default false not null
 );
 
 comment on column user_info.id is '主键';
@@ -47,7 +47,7 @@ create table user_role
     role_code          varchar(256)          not null,
     create_time        timestamp             not null,
     update_time        timestamp             not null,
-    logic_delete       boolean default false not null
+    logic_delete       bool    default false not null
 );
 
 comment on column user_role.id is '主键';
@@ -76,7 +76,7 @@ create table if not exists goods_type
     path           text      default ''::text not null,
     create_time    timestamp default now()    not null,
     update_time    timestamp default now()    not null,
-    logic_delete   boolean   default false    not null,
+    logic_delete   bool      default false    not null,
     create_user_id bigint                     not null,
     update_user_id bigint                     not null
 );
@@ -120,7 +120,7 @@ create table if not exists goods_info
     update_user_id bigint                  not null,
     create_time    timestamp default now() not null,
     update_time    timestamp default now() not null,
-    logic_delete   boolean   default false not null
+    logic_delete   bool      default false not null
 );
 
 comment on table goods_info is '商品';
@@ -167,7 +167,7 @@ create table if not exists goods_stock
     update_user_id      bigint                  not null,
     create_time         timestamp default now() not null,
     update_time         timestamp default now() not null,
-    logic_delete        boolean   default false not null
+    logic_delete        bool      default false not null
 );
 
 comment on table goods_stock is '商品库存';
@@ -206,7 +206,7 @@ create table if not exists goods_unit
     allow_decimal  boolean   default false not null,
     create_time    timestamp default now() not null,
     update_time    timestamp default now() not null,
-    logic_delete   boolean   default false not null,
+    logic_delete   bool      default false not null,
     create_user_id bigint                  not null,
     update_user_id bigint                  not null
 );
@@ -253,6 +253,9 @@ create table if not exists customer_info
     init_accounts_receivable    numeric   default 0.0   not null,
     current_accounts_receivable numeric   default 0.0   not null,
     memo                        text,
+    bank_name                   varchar(256),
+    bank_card_id                varchar(256),
+    taxpayer_id                 varchar(256),
     create_time                 timestamp default now() not null,
     update_time                 timestamp default now() not null,
     create_user_id              bigint                  not null,
@@ -296,6 +299,12 @@ comment on column customer_info.current_accounts_receivable is '当前应收款'
 
 comment on column customer_info.memo is '备注';
 
+comment on column customer_info.bank_name is '开户行';
+
+comment on column customer_info.bank_card_id is '银行卡号';
+
+comment on column customer_info.taxpayer_id is '纳税人识别号';
+
 comment on column customer_info.create_time is '创建时间';
 
 comment on column customer_info.update_time is '更新时间';
@@ -332,7 +341,7 @@ create table if not exists supplier_info
     update_time                 timestamp default now() not null,
     create_user_id              bigint                  not null,
     update_user_id              bigint                  not null,
-    logic_delete                boolean   default false not null
+    logic_delete                bool      default false not null
 );
 
 comment on table supplier_info is '供应商信息';
@@ -420,3 +429,99 @@ comment on column region_info.level is '区域等级';
 
 alter table region_info
     owner to stock_manage;
+
+create table if not exists public.order_record
+(
+    id              bigint primary key,
+    order_id        varchar(256) not null,
+    order_type      varchar(256) not null,
+    total_price     numeric not null,
+    payment_method  varchar(256) not null,
+    memo            text,
+    supplier_id     bigint,
+    customer_id     bigint,
+    create_user_id  bigint not null,
+    update_user_id  bigint not null,
+    create_time     timestamp not null default now(),
+    update_time     timestamp not null default now(),
+    logic_delete    bool default false
+);
+
+alter table public.order_record
+    owner to stock_manage;
+
+comment on column order_record.id is '主键';
+
+comment on column order_record.order_id is '订单号';
+
+comment on column order_record.order_type is '订单类型';
+
+comment on column order_record.total_price is '订单总价';
+
+comment on column order_record.payment_method is '支付方式';
+
+comment on column order_record.supplier_id is '供应商ID';
+
+comment on column order_record.customer_id is '客户ID';
+
+comment on column order_record.memo is '备注';
+
+comment on column order_record.create_user_id is '创建人ID';
+
+comment on column order_record.update_user_id is '更新人ID';
+
+comment on column order_record.create_time is '创建时间';
+
+comment on column order_record.update_time is '更新时间';
+
+comment on column order_record.logic_delete is '逻辑删除';
+
+
+create table if not exists public.order_record_detail
+(
+    id              bigint primary key,
+    order_id        varchar(256) not null,
+    goods_id        bigint not null,
+    unit_price      numeric not null,
+    discount        numeric not null default 1.00,
+    amount          numeric not null,
+    total_price     numeric not null,
+    supplier_id     bigint,
+    customer_id     bigint,
+    create_user_id  bigint not null,
+    update_user_id  bigint not null,
+    create_time     timestamp not null default now(),
+    update_time     timestamp not null default now(),
+    logic_delete    bool default false
+);
+
+alter table public.order_record_detail
+    owner to stock_manage;
+
+comment on column order_record_detail.id is '主键';
+
+comment on column order_record_detail.order_id is '订单号';
+
+comment on column order_record_detail.goods_id is '商品ID';
+
+comment on column order_record_detail.unit_price is '单价';
+
+comment on column order_record_detail.discount is '折扣';
+
+comment on column order_record_detail.amount is '商品数量';
+
+comment on column order_record_detail.total_price is '订单总价';
+
+comment on column order_record_detail.supplier_id is '供应商ID';
+
+comment on column order_record_detail.customer_id is '客户ID';
+
+comment on column order_record_detail.create_user_id is '创建人ID';
+
+comment on column order_record_detail.update_user_id is '更新人ID';
+
+comment on column order_record_detail.create_time is '创建时间';
+
+comment on column order_record_detail.update_time is '更新时间';
+
+comment on column order_record_detail.logic_delete is '逻辑删除';

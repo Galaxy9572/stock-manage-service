@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jy.stock.dao.mapper.order.OrderRecordMapper">
+  <resultMap id="BaseResultMap" type="com.jy.stock.dao.entity.order.OrderRecord">
+    <!--@mbg.generated-->
+    <!--@Table order_record-->
+    <id column="id" property="id" />
+    <result column="order_id" property="orderId" />
+    <result column="order_type" property="orderType" />
+    <result column="total_price" property="totalPrice" />
+    <result column="payment_method" property="paymentMethod" />
+    <result column="memo" property="memo" />
+    <result column="supplier_id" property="supplierId" />
+    <result column="customer_id" property="customerId" />
+    <result column="create_user_id" property="createUserId" />
+    <result column="update_user_id" property="updateUserId" />
+    <result column="create_time" property="createTime" />
+    <result column="update_time" property="updateTime" />
+    <result column="logic_delete" property="logicDelete" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, order_id, order_type, total_price, payment_method, memo, supplier_id, customer_id, 
+    create_user_id, update_user_id, create_time, update_time, logic_delete
+  </sql>
+  <update id="updateBatchSelective" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update order_record
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="order_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.orderId != null">
+            when id = #{item.id} then #{item.orderId}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="order_type = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.orderType != null">
+            when id = #{item.id} then #{item.orderType}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="total_price = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.totalPrice != null">
+            when id = #{item.id} then #{item.totalPrice}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="payment_method = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.paymentMethod != null">
+            when id = #{item.id} then #{item.paymentMethod}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="memo = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.memo != null">
+            when id = #{item.id} then #{item.memo}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="supplier_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.supplierId != null">
+            when id = #{item.id} then #{item.supplierId}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="customer_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.customerId != null">
+            when id = #{item.id} then #{item.customerId}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="create_user_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.createUserId != null">
+            when id = #{item.id} then #{item.createUserId}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="update_user_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.updateUserId != null">
+            when id = #{item.id} then #{item.updateUserId}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="create_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.createTime != null">
+            when id = #{item.id} then #{item.createTime}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="update_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.updateTime != null">
+            when id = #{item.id} then #{item.updateTime}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="logic_delete = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.logicDelete != null">
+            when id = #{item.id} then #{item.logicDelete}
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id}
+    </foreach>
+  </update>
+  <insert id="batchInsert" parameterType="map">
+    <!--@mbg.generated-->
+    insert into order_record
+    (id, order_id, order_type, total_price, payment_method, memo, supplier_id, customer_id, 
+      create_user_id, update_user_id, create_time, update_time, logic_delete)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.id}, #{item.orderId}, #{item.orderType}, #{item.totalPrice}, #{item.paymentMethod}, 
+        #{item.memo}, #{item.supplierId}, #{item.customerId}, #{item.createUserId}, #{item.updateUserId}, 
+        #{item.createTime}, #{item.updateTime}, #{item.logicDelete})
+    </foreach>
+  </insert>
+</mapper>

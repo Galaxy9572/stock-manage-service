@@ -1,8 +1,8 @@
 package com.jy.stock.pojo.request.supplier;
 
-import com.jy.stock.common.validate.annotation.user.ValidateEmail;
-import com.jy.stock.common.validate.annotation.user.ValidateQQ;
-import com.jy.stock.common.validate.annotation.user.ValidateWechat;
+import com.jy.stock.common.validate.annotation.customer.ValidateEmail;
+import com.jy.stock.common.validate.annotation.customer.ValidateQQ;
+import com.jy.stock.common.validate.annotation.customer.ValidateWechat;
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;

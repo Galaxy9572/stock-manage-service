@@ -1,6 +1,6 @@
 package com.jy.stock.controller.user;
 
-import com.jy.stock.common.enums.UserRoleEnum;
+import com.jy.stock.enums.user.UserRoleEnum;
 import com.jy.stock.common.response.ResponseVO;
 import com.jy.stock.pojo.response.user.UserRoleEnumVO;
 import com.jy.stock.service.user.UserRoleService;

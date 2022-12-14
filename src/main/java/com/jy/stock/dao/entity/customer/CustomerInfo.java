@@ -100,6 +100,21 @@ public class CustomerInfo {
     private String memo;
 
     /**
+     * 开户行
+     */
+    private String bankName;
+
+    /**
+     * 银行卡号
+     */
+    private String bankCardId;
+
+    /**
+     * 纳税人识别号
+     */
+    private String taxpayerId;
+
+    /**
      * 创建时间
      */
     @TableField(fill = FieldFill.INSERT)
@@ -127,5 +142,6 @@ public class CustomerInfo {
      * 逻辑删除
      */
     @TableLogic
+    @TableField(fill = FieldFill.INSERT)
     private Boolean logicDelete;
 }

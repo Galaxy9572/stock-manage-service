@@ -1,9 +1,11 @@
 package com.jy.stock.controller.goods;
 
+import com.jy.stock.common.aspect.annotation.AuthCheck;
 import com.jy.stock.common.enhance.EnhancedController;
 import com.jy.stock.common.response.PageVO;
 import com.jy.stock.common.response.ResponseVO;
 import com.jy.stock.common.util.bean.BeanCopyUtils;
+import com.jy.stock.enums.user.UserRoleEnum;
 import com.jy.stock.pojo.converter.goods.GoodsConverter;
 import com.jy.stock.pojo.dto.PageDTO;
 import com.jy.stock.pojo.dto.goods.GoodsInfoDTO;
@@ -27,6 +29,7 @@ public class GoodsInfoController extends EnhancedController<GoodsInfoVO, GoodsIn
     @Resource
     private GoodsInfoService goodsInfoService;
 
+    @AuthCheck(roles = UserRoleEnum.ADMIN)
     @PostMapping("")
     public ResponseVO<GoodsInfoVO> addModifyGoodsInfo(@RequestBody @Valid AddModifyGoodsInfoReq req){
         GoodsInfoDTO goodsInfoDTO = goodsInfoService.addModifyGoodsInfo(req);

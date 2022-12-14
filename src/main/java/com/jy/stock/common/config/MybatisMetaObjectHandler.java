@@ -23,6 +23,7 @@ public class MybatisMetaObjectHandler implements MetaObjectHandler {
         this.strictInsertFill(metaObject, "updateTime", Date.class, new Date());
         this.strictInsertFill(metaObject, "createUserId", Long.class, userId);
         this.strictInsertFill(metaObject, "updateUserId", Long.class, userId);
+        this.strictInsertFill(metaObject, "logicDelete", Boolean.class, false);
     }
 
     @Override

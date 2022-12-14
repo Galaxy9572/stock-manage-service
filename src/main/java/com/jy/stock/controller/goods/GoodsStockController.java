@@ -7,7 +7,7 @@ import com.jy.stock.pojo.dto.goods.GoodsStockDTO;
 import com.jy.stock.pojo.request.goods.ModifyGoodsStockWarningReq;
 import com.jy.stock.pojo.response.goods.GoodsStockVO;
 import com.jy.stock.service.goods.GoodsStockService;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,7 +26,7 @@ public class GoodsStockController extends EnhancedController<GoodsStockVO, Goods
     @Resource
     private GoodsStockService goodsInfoService;
 
-    @PostMapping("")
+    @PutMapping("/warning")
     public ResponseVO<GoodsStockVO> modifyGoodsStockWarning(@RequestBody @Valid ModifyGoodsStockWarningReq req){
         GoodsStockDTO goodsInfoDTO = goodsInfoService.modifyGoodsStockWarning(req);
         GoodsStockVO goodsInfoVO = new GoodsStockVO();

@@ -1,7 +1,7 @@
 package com.jy.stock.service.region.impl;
 
 import com.jy.stock.common.enhance.EnhancedServiceImpl;
-import com.jy.stock.common.enums.RegionLevelEnum;
+import com.jy.stock.enums.region.RegionLevelEnum;
 import com.jy.stock.common.exception.BusinessException;
 import com.jy.stock.common.util.AssertUtils;
 import com.jy.stock.common.util.StreamUtils;

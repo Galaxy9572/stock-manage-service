@@ -67,7 +67,7 @@
       </if>
       and ui.logic_delete = false
     </where>
-    group by ui.id, ui.create_time
+    group by <include refid="Join_Column_List"/>
     order by ui.create_time desc
   </select>
 
@@ -82,7 +82,7 @@
       </foreach>
       and ui.logic_delete = false
     </where>
-    group by ui.id, ui.create_time
+    group by <include refid="Join_Column_List"/>
     order by ui.create_time desc
   </select>
 </mapper>

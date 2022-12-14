@@ -1,6 +1,6 @@
-package com.jy.stock.common.validate.validator.user;
+package com.jy.stock.common.validate.validator.customer;
 
-import com.jy.stock.common.validate.annotation.user.ValidateWechat;
+import com.jy.stock.common.validate.annotation.customer.ValidateWechat;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.validation.ConstraintValidator;

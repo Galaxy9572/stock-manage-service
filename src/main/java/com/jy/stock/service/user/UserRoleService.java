@@ -12,4 +12,5 @@ public interface UserRoleService extends IService<UserRole>{
 
     boolean deleteUserRolesByUserId(Long userId);
 
+    List<UserRoleDTO> listByUserId(Long userId);
 }

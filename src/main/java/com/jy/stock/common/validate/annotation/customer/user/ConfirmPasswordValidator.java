@@ -1,4 +1,4 @@
-package com.jy.stock.common.validate.validator.user;
+package com.jy.stock.common.validate.annotation.customer.user;
 
 import com.jy.stock.common.validate.annotation.user.ValidateConfirmPassword;
 import org.apache.commons.beanutils.BeanUtils;

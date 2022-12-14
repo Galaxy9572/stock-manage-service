@@ -25,6 +25,15 @@ public class GoodsStockServiceImpl extends EnhancedServiceImpl<GoodsStockMapper,
     @Override
     public GoodsStockDTO modifyGoodsStockWarning(ModifyGoodsStockWarningReq request) {
         GoodsStockDTO goodsStockDTO = checkExistenceById(request.getId(), true);
+        goodsInfoService.checkExistenceById(goodsStockDTO.getGoodsId(), true);
+        GoodsStock updateEntity = new GoodsStock();
+        updateEntity.setId(request.getId());
+        updateEntity.setAllowStockWarning(request.getAllowStockWarning());
+        updateEntity.setMinStockNum(request.getMinStockNum());
+        updateEntity.setMaxStockNum(request.getMaxStockNum());
+        boolean isSuccess = updateById(updateEntity);
+        AssertUtils.isTrue(isSuccess, "operate.failed");
+        return toDto(getById(request.getId()));
     }
 
     @Override

@@ -1,8 +1,9 @@
 package com.jy.stock.pojo.request.customer;
 
-import com.jy.stock.common.validate.annotation.user.ValidateEmail;
-import com.jy.stock.common.validate.annotation.user.ValidateQQ;
-import com.jy.stock.common.validate.annotation.user.ValidateWechat;
+import com.jy.stock.common.validate.annotation.customer.ValidateBankInfo;
+import com.jy.stock.common.validate.annotation.customer.ValidateEmail;
+import com.jy.stock.common.validate.annotation.customer.ValidateQQ;
+import com.jy.stock.common.validate.annotation.customer.ValidateWechat;
 import lombok.Data;
 
 import javax.validation.constraints.DecimalMin;
@@ -15,6 +16,7 @@ import java.math.BigDecimal;
  * @author liaojunyao
  */
 @Data
+@ValidateBankInfo
 public class AddModifyCustomerInfoReq {
     /**
      * 主键
@@ -82,7 +84,7 @@ public class AddModifyCustomerInfoReq {
     /**
      * 区
      */
-    @NotBlank(message = "district.cannot.empty")
+    @NotBlank(message = "{district.cannot.empty}")
     private String district;
 
     /**
@@ -112,4 +114,19 @@ public class AddModifyCustomerInfoReq {
      * 备注
      */
     private String memo;
+
+    /**
+     * 开户行
+     */
+    private String bankName;
+
+    /**
+     * 银行卡号
+     */
+    private String bankCardId;
+
+    /**
+     * 纳税人识别号
+     */
+    private String taxpayerId;
 }
