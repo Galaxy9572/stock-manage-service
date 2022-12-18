@@ -9,10 +9,10 @@ import com.jy.stock.common.util.bean.BeanCopyUtils;
 import com.jy.stock.dao.entity.goods.GoodsType;
 import com.jy.stock.dao.mapper.goods.GoodsTypeMapper;
 import com.jy.stock.pojo.dto.goods.GoodsTypeDTO;
-import com.jy.stock.pojo.dto.user.UserInfoDTO;
+import com.jy.stock.pojo.dto.system.user.UserInfoDTO;
 import com.jy.stock.pojo.request.goods.AddModifyGoodsTypeReq;
 import com.jy.stock.service.goods.GoodsTypeService;
-import com.jy.stock.service.user.UserInfoService;
+import com.jy.stock.service.system.user.UserInfoService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -34,44 +34,44 @@ public class GoodsTypeServiceImpl extends EnhancedServiceImpl<GoodsTypeMapper, G
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public Boolean addModifyGoodsType(AddModifyGoodsTypeReq request) {
+    public GoodsTypeDTO addModifyGoodsType(AddModifyGoodsTypeReq request) {
         boolean isSuccess;
+        GoodsTypeDTO result;
         if (request.getId() == null) {
             // 新增
             checkExistenceByName(request.getTypeName(), false);
-
+            GoodsType goodsType = new GoodsType();
+            long id = IdWorker.getId(goodsType);
             if (request.getParentTypeId() == null) {
                 // 新增大类
-                GoodsType goodsType = new GoodsType();
                 BeanCopyUtils.copy(request, goodsType);
-                long id = IdWorker.getId(goodsType);
                 goodsType.setId(id);
                 goodsType.setLevel(1);
                 goodsType.setPath(id + "");
-                isSuccess = save(goodsType);
             } else {
                 // 新增子类
                 GoodsTypeDTO parentType = checkExistenceById(request.getParentTypeId(), true);
-                GoodsType goodsType = new GoodsType();
                 BeanCopyUtils.copy(request, goodsType);
-                long id = IdWorker.getId(goodsType);
                 goodsType.setId(id);
                 goodsType.setLevel(parentType.getLevel() + 1);
                 goodsType.setPath(getPath(request.getParentTypeId()) + "!" + id);
-                isSuccess = save(goodsType);
             }
+            isSuccess = save(goodsType);
+            AssertUtils.isTrue(isSuccess, "operate.failed");
+            return getGoodsTypeById(id);
         } else {
             // 修改
             GoodsTypeDTO goodsType = checkExistenceById(request.getId(), true);
             if (goodsType.getTypeName().equals(request.getTypeName())) {
-                return true;
+                return goodsType;
             }
             GoodsType updateEntity = new GoodsType();
             updateEntity.setId(request.getId());
             updateEntity.setTypeName(request.getTypeName());
             isSuccess = updateById(updateEntity);
+            AssertUtils.isTrue(isSuccess, "operate.failed");
+            return getGoodsTypeById(request.getId());
         }
-        return isSuccess;
     }
 
     @Override

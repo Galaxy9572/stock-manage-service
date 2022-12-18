@@ -1,12 +1,11 @@
 package com.jy.stock.enums.order;
 
-import com.jy.stock.pojo.response.order.OrderTypeVO;
+import com.jy.stock.common.response.EnumCodeDescVO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * @author liaojunyao
@@ -38,7 +37,7 @@ public enum OrderTypeEnum {
         return Arrays.stream(OrderTypeEnum.values()).filter(e -> e.getCode().equals(code)).findFirst().orElse(null);
     }
 
-    public static List<OrderTypeVO> listAll(){
-        return Arrays.stream(OrderTypeEnum.values()).map(e -> new OrderTypeVO(e.getCode(), e.getDesc())).collect(Collectors.toList());
+    public static List<EnumCodeDescVO> listAll(){
+        return Arrays.stream(OrderTypeEnum.values()).map(e -> new EnumCodeDescVO(e.getCode(), e.getDesc())).toList();
     }
 }

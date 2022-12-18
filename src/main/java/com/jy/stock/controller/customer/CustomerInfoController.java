@@ -1,8 +1,14 @@
 package com.jy.stock.controller.customer;
 
+import com.jy.stock.common.aspect.annotation.AuthCheck;
+import com.jy.stock.common.aspect.annotation.OperationLog;
 import com.jy.stock.common.enhance.EnhancedController;
 import com.jy.stock.common.response.PageVO;
 import com.jy.stock.common.response.ResponseVO;
+import com.jy.stock.enums.system.operation.ModuleEnum;
+import com.jy.stock.enums.system.operation.OperationTypeEnum;
+import com.jy.stock.enums.system.operation.SubModuleEnum;
+import com.jy.stock.enums.system.user.UserRoleEnum;
 import com.jy.stock.pojo.converter.customer.CustomerConverter;
 import com.jy.stock.pojo.dto.PageDTO;
 import com.jy.stock.pojo.dto.customer.CustomerInfoDTO;
@@ -28,6 +34,8 @@ public class CustomerInfoController extends EnhancedController<CustomerInfoVO, C
     @Resource
     private CustomerInfoService customerInfoService;
 
+    @AuthCheck(roles = UserRoleEnum.ADMIN)
+    @OperationLog(module = ModuleEnum.CUSTOMER, subModule = SubModuleEnum.CUSTOMER, operationType = OperationTypeEnum.ADD_MODIFY)
     @PostMapping("")
     public ResponseVO<CustomerInfoVO> addModifyCustomerInfo(@RequestBody @Valid AddModifyCustomerInfoReq request){
         CustomerInfoDTO customerInfo = customerInfoService.addModifyCustomerInfo(request);
@@ -42,6 +50,8 @@ public class CustomerInfoController extends EnhancedController<CustomerInfoVO, C
         return ResponseVO.success(customerInfoVO);
     }
 
+    @AuthCheck(roles = UserRoleEnum.ADMIN)
+    @OperationLog(module = ModuleEnum.CUSTOMER, subModule = SubModuleEnum.CUSTOMER, operationType = OperationTypeEnum.DELETE)
     @DeleteMapping("/{id}")
     public ResponseVO<Boolean> deleteCustomerInfo(@PathVariable @Valid @Min(value = 1, message = "param.invalid") Long id){
         boolean isSuccess = customerInfoService.deleteCustomerInfo(id);

@@ -9,11 +9,11 @@ import com.jy.stock.dao.entity.supplier.SupplierInfo;
 import com.jy.stock.dao.mapper.supplier.SupplierInfoMapper;
 import com.jy.stock.pojo.dto.PageDTO;
 import com.jy.stock.pojo.dto.supplier.SupplierInfoDTO;
-import com.jy.stock.pojo.dto.user.UserInfoDTO;
+import com.jy.stock.pojo.dto.system.user.UserInfoDTO;
 import com.jy.stock.pojo.request.supplier.AddModifySupplierInfoReq;
 import com.jy.stock.pojo.request.supplier.QuerySupplierInfoReq;
 import com.jy.stock.service.supplier.SupplierInfoService;
-import com.jy.stock.service.user.UserInfoService;
+import com.jy.stock.service.system.user.UserInfoService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

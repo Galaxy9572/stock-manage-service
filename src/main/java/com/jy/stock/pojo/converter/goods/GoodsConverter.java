@@ -2,14 +2,14 @@ package com.jy.stock.pojo.converter.goods;
 
 import com.jy.stock.common.util.StreamUtils;
 import com.jy.stock.common.util.bean.BeanCopyUtils;
-import com.jy.stock.pojo.converter.user.UserConverter;
+import com.jy.stock.pojo.converter.system.user.UserConverter;
 import com.jy.stock.pojo.dto.goods.GoodsInfoDTO;
 import com.jy.stock.pojo.dto.goods.GoodsTypeDTO;
 import com.jy.stock.pojo.dto.goods.GoodsUnitDTO;
 import com.jy.stock.pojo.response.goods.GoodsInfoVO;
 import com.jy.stock.pojo.response.goods.GoodsTypeVO;
 import com.jy.stock.pojo.response.goods.GoodsUnitVO;
-import com.jy.stock.pojo.response.user.UserInfoVO;
+import com.jy.stock.pojo.response.system.user.UserInfoVO;
 import org.springframework.util.CollectionUtils;
 
 import java.util.ArrayList;

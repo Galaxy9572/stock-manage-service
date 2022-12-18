@@ -9,11 +9,11 @@ import com.jy.stock.dao.entity.customer.CustomerInfo;
 import com.jy.stock.dao.mapper.customer.CustomerInfoMapper;
 import com.jy.stock.pojo.dto.PageDTO;
 import com.jy.stock.pojo.dto.customer.CustomerInfoDTO;
-import com.jy.stock.pojo.dto.user.UserInfoDTO;
+import com.jy.stock.pojo.dto.system.user.UserInfoDTO;
 import com.jy.stock.pojo.request.customer.AddModifyCustomerInfoReq;
 import com.jy.stock.pojo.request.customer.QueryCustomerInfoReq;
 import com.jy.stock.service.customer.CustomerInfoService;
-import com.jy.stock.service.user.UserInfoService;
+import com.jy.stock.service.system.user.UserInfoService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

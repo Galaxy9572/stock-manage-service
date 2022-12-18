@@ -21,6 +21,12 @@ public class StreamUtils {
                 .stream().map(mapper).filter(predicate).collect(Collectors.toList());
     }
 
+    public static <IN, OUT> Set<OUT> mapFilterCollectToSet(List<IN> list, Function<? super IN, ? extends OUT> mapper,
+        Predicate<? super OUT> predicate) {
+        return Optional.ofNullable(list).orElse(new ArrayList<>())
+                .stream().map(mapper).filter(predicate).collect(Collectors.toSet());
+    }
+
     public static <IN, OUT> Set<OUT> mapCollectToSet(List<IN> list, Function<? super IN, ? extends OUT> mapper) {
         return Optional.ofNullable(list).orElse(new ArrayList<>())
                 .stream().map(mapper).collect(Collectors.toSet());

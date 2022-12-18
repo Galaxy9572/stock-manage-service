@@ -43,6 +43,8 @@ spring:
   messages:
     basename: i18n/Messages
   redis:
+    redisson:
+      file: classpath:redisson.yaml
     database: 0
     # Redis服务器地址
     host: localhost

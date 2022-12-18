@@ -3,7 +3,9 @@ package com.jy.stock.pojo.request.supplier;
 import com.jy.stock.common.validate.annotation.customer.ValidateEmail;
 import com.jy.stock.common.validate.annotation.customer.ValidateQQ;
 import com.jy.stock.common.validate.annotation.customer.ValidateWechat;
+import com.jy.stock.pojo.request.AddModifyRequest;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import javax.validation.constraints.NotBlank;
 
@@ -12,12 +14,9 @@ import javax.validation.constraints.NotBlank;
  *
  * @author liaojunyao
  */
+@EqualsAndHashCode(callSuper = true)
 @Data
-public class AddModifySupplierInfoReq {
-    /**
-     * 主键
-     */
-    private Long id;
+public class AddModifySupplierInfoReq extends AddModifyRequest {
 
     /**
      * 客户名称

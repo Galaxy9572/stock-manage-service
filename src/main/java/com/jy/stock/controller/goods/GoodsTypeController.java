@@ -1,7 +1,13 @@
 package com.jy.stock.controller.goods;
 
+import com.jy.stock.common.aspect.annotation.AuthCheck;
+import com.jy.stock.common.aspect.annotation.OperationLog;
 import com.jy.stock.common.enhance.EnhancedController;
 import com.jy.stock.common.response.ResponseVO;
+import com.jy.stock.enums.system.operation.ModuleEnum;
+import com.jy.stock.enums.system.operation.OperationTypeEnum;
+import com.jy.stock.enums.system.operation.SubModuleEnum;
+import com.jy.stock.enums.system.user.UserRoleEnum;
 import com.jy.stock.pojo.converter.goods.GoodsConverter;
 import com.jy.stock.pojo.dto.goods.GoodsTypeDTO;
 import com.jy.stock.pojo.request.goods.AddModifyGoodsTypeReq;
@@ -23,12 +29,16 @@ public class GoodsTypeController extends EnhancedController<GoodsTypeVO, GoodsTy
     @Resource
     private GoodsTypeService goodsTypeService;
 
+    @AuthCheck(roles = UserRoleEnum.ADMIN)
+    @OperationLog(module = ModuleEnum.GOODS, subModule = SubModuleEnum.GOODS_TYPE, operationType = OperationTypeEnum.ADD_MODIFY)
     @PostMapping("")
-    public ResponseVO<Boolean> addModifyGoodsType(@RequestBody AddModifyGoodsTypeReq request) {
-        Boolean isSuccess = goodsTypeService.addModifyGoodsType(request);
-        return ResponseVO.success(isSuccess);
+    public ResponseVO<GoodsTypeVO> addModifyGoodsType(@RequestBody AddModifyGoodsTypeReq request) {
+        GoodsTypeDTO goodsTypeDTO = goodsTypeService.addModifyGoodsType(request);
+        return ResponseVO.success(toVo(goodsTypeDTO));
     }
 
+    @AuthCheck(roles = UserRoleEnum.ADMIN)
+    @OperationLog(module = ModuleEnum.GOODS, subModule = SubModuleEnum.GOODS_TYPE, operationType = OperationTypeEnum.DELETE)
     @DeleteMapping("/{id}")
     public ResponseVO<Boolean> deleteGoodsType(@PathVariable Long id) {
         Boolean isSuccess = goodsTypeService.deleteGoodsType(id);

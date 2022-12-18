@@ -1,11 +1,15 @@
 package com.jy.stock.controller.goods;
 
 import com.jy.stock.common.aspect.annotation.AuthCheck;
+import com.jy.stock.common.aspect.annotation.OperationLog;
 import com.jy.stock.common.enhance.EnhancedController;
 import com.jy.stock.common.response.PageVO;
 import com.jy.stock.common.response.ResponseVO;
 import com.jy.stock.common.util.bean.BeanCopyUtils;
-import com.jy.stock.enums.user.UserRoleEnum;
+import com.jy.stock.enums.system.operation.ModuleEnum;
+import com.jy.stock.enums.system.operation.OperationTypeEnum;
+import com.jy.stock.enums.system.operation.SubModuleEnum;
+import com.jy.stock.enums.system.user.UserRoleEnum;
 import com.jy.stock.pojo.converter.goods.GoodsConverter;
 import com.jy.stock.pojo.dto.PageDTO;
 import com.jy.stock.pojo.dto.goods.GoodsInfoDTO;
@@ -30,6 +34,7 @@ public class GoodsInfoController extends EnhancedController<GoodsInfoVO, GoodsIn
     private GoodsInfoService goodsInfoService;
 
     @AuthCheck(roles = UserRoleEnum.ADMIN)
+    @OperationLog(module = ModuleEnum.GOODS, subModule = SubModuleEnum.GOODS_INFO, operationType = OperationTypeEnum.ADD_MODIFY)
     @PostMapping("")
     public ResponseVO<GoodsInfoVO> addModifyGoodsInfo(@RequestBody @Valid AddModifyGoodsInfoReq req){
         GoodsInfoDTO goodsInfoDTO = goodsInfoService.addModifyGoodsInfo(req);
@@ -45,6 +50,8 @@ public class GoodsInfoController extends EnhancedController<GoodsInfoVO, GoodsIn
         return ResponseVO.success(pageVO);
     }
 
+    @AuthCheck(roles = UserRoleEnum.ADMIN)
+    @OperationLog(module = ModuleEnum.GOODS, subModule = SubModuleEnum.GOODS_INFO, operationType = OperationTypeEnum.DELETE)
     @DeleteMapping("/{id}")
     public ResponseVO<Boolean> deleteGoodsInfo(@PathVariable Long id){
         boolean isSuccess = goodsInfoService.deleteGoodsInfo(id);

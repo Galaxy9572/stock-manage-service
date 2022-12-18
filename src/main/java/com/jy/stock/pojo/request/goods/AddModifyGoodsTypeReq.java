@@ -1,17 +1,16 @@
 package com.jy.stock.pojo.request.goods;
 
+import com.jy.stock.pojo.request.AddModifyRequest;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * 商品类别
  * @author liaojunyao
  */
+@EqualsAndHashCode(callSuper = true)
 @Data
-public class AddModifyGoodsTypeReq {
-    /**
-     * 主键
-     */
-    private Long id;
+public class AddModifyGoodsTypeReq extends AddModifyRequest {
 
     /**
      * 父节点ID

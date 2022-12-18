@@ -2,7 +2,7 @@ package com.jy.stock.common.util.bean;
 
 import com.github.benmanes.caffeine.cache.Cache;
 import com.github.benmanes.caffeine.cache.Caffeine;
-import com.maimai.miwuyou.user.common.util.bean.converter.CommonConverter;
+import com.jy.stock.common.util.bean.converter.CommonConverter;
 import org.springframework.cglib.beans.BeanCopier;
 
 import javax.validation.constraints.NotNull;

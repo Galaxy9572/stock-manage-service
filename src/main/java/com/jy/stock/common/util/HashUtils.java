@@ -44,7 +44,7 @@ public class HashUtils {
     }
 
     public static String randomSalt() {
-        return String.valueOf((int) (Math.random() * 9 + 1) * 100000);
+        return String.valueOf((int) ((Math.random() * 9 + 1) * 100000));
     }
 
     /**

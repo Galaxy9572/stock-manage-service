@@ -1,9 +1,11 @@
 package com.jy.stock.common.util;
 
 import com.jy.stock.common.exception.BusinessException;
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.HttpStatus;
 
+import java.util.Collection;
 import java.util.Objects;
 
 /**
@@ -32,8 +34,18 @@ public class AssertUtils {
      * @param i18nCode 错误信息编码
      */
     public static void isNotNull(Object object, String i18nCode) {
+        isNotNull(object, HttpStatus.EXPECTATION_FAILED, i18nCode);
+    }
+
+    /**
+     * 断言对象不为空，否则抛出业务异常
+     *
+     * @param object   对象
+     * @param i18nCode 错误信息编码
+     */
+    public static void isNotNull(Object object, HttpStatus httpStatus, String i18nCode) {
         if (object == null) {
-            throw BusinessException.of(i18nCode);
+            throw BusinessException.of(httpStatus, i18nCode);
         }
     }
 
@@ -81,9 +93,7 @@ public class AssertUtils {
      * @param i18nCode 错误信息编码
      */
     public static void isTrue(boolean bool, String i18nCode){
-        if (!bool) {
-            throw BusinessException.of(i18nCode);
-        }
+        isTrue(bool, HttpStatus.EXPECTATION_FAILED, i18nCode);
     }
 
     /**
@@ -99,12 +109,32 @@ public class AssertUtils {
     }
 
     /**
-     * 断言为true，否则抛出业务异常
-     * @param bool 布尔值
+     * 断言集合为空，否则抛出业务异常
+     * @param collection 集合
      * @param i18nCode 错误信息编码
      */
-    public static void isFalse(boolean bool, String i18nCode){
-        if (bool) {
+    public static <T> void isEmpty(Collection<T> collection, String i18nCode){
+        if (CollectionUtils.isNotEmpty(collection)) {
+            throw BusinessException.of(i18nCode);
+        }
+    }
+
+    /**
+     * 断言集合不为空，否则抛出业务异常
+     * @param collection 集合
+     * @param i18nCode 错误信息编码
+     */
+    public static <T> void isNotEmpty(Collection<T> collection, String i18nCode){
+        isNotEmpty(collection, HttpStatus.EXPECTATION_FAILED, i18nCode);
+    }
+
+    /**
+     * 断言集合不为空，否则抛出业务异常
+     * @param collection 集合
+     * @param i18nCode 错误信息编码
+     */
+    public static <T> void isNotEmpty(Collection<T> collection, HttpStatus httpStatus, String i18nCode){
+        if (CollectionUtils.isEmpty(collection)) {
             throw BusinessException.of(i18nCode);
         }
     }

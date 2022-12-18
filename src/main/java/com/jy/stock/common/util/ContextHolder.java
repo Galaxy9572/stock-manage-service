@@ -1,6 +1,6 @@
 package com.jy.stock.common.util;
 
-import com.jy.stock.constants.user.UserConstants;
+import com.jy.stock.constants.system.user.UserConstants;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -13,9 +13,6 @@ import javax.servlet.http.HttpServletRequest;
  */
 @Slf4j
 public class ContextHolder {
-
-    /** 用户登录注册后的session key */
-    public static final String USER_SESSION_KEY = "user_session";
 
     /**
      * 获取当前 HttpServletRequest

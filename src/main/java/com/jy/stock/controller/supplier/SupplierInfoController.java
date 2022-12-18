@@ -1,8 +1,14 @@
 package com.jy.stock.controller.supplier;
 
+import com.jy.stock.common.aspect.annotation.AuthCheck;
+import com.jy.stock.common.aspect.annotation.OperationLog;
 import com.jy.stock.common.enhance.EnhancedController;
 import com.jy.stock.common.response.PageVO;
 import com.jy.stock.common.response.ResponseVO;
+import com.jy.stock.enums.system.operation.ModuleEnum;
+import com.jy.stock.enums.system.operation.OperationTypeEnum;
+import com.jy.stock.enums.system.operation.SubModuleEnum;
+import com.jy.stock.enums.system.user.UserRoleEnum;
 import com.jy.stock.pojo.converter.supplier.SupplierConverter;
 import com.jy.stock.pojo.dto.PageDTO;
 import com.jy.stock.pojo.dto.supplier.SupplierInfoDTO;
@@ -28,6 +34,8 @@ public class SupplierInfoController extends EnhancedController<SupplierInfoVO, S
     @Resource
     private SupplierInfoService supplierInfoService;
 
+    @AuthCheck(roles = UserRoleEnum.ADMIN)
+    @OperationLog(module = ModuleEnum.SUPPLIER, subModule = SubModuleEnum.SUPPLIER, operationType = OperationTypeEnum.ADD_MODIFY)
     @PostMapping("")
     public ResponseVO<SupplierInfoVO> addModifySupplierInfo(@RequestBody @Valid AddModifySupplierInfoReq request){
         SupplierInfoDTO customerInfo = supplierInfoService.addModifySupplierInfo(request);
@@ -42,6 +50,8 @@ public class SupplierInfoController extends EnhancedController<SupplierInfoVO, S
         return ResponseVO.success(customerInfoVO);
     }
 
+    @AuthCheck(roles = UserRoleEnum.ADMIN)
+    @OperationLog(module = ModuleEnum.SUPPLIER, subModule = SubModuleEnum.SUPPLIER, operationType = OperationTypeEnum.DELETE)
     @DeleteMapping("/{id}")
     public ResponseVO<Boolean> deleteSupplierInfo(@PathVariable @Valid @Min(value = 1, message = "param.invalid") Long id){
         boolean isSuccess = supplierInfoService.deleteSupplierInfo(id);

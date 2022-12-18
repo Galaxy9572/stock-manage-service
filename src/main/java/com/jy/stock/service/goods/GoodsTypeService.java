@@ -12,7 +12,7 @@ import java.util.Map;
 public interface GoodsTypeService extends IService<GoodsType>{
 
 
-    Boolean addModifyGoodsType(AddModifyGoodsTypeReq request);
+    GoodsTypeDTO addModifyGoodsType(AddModifyGoodsTypeReq request);
 
     List<GoodsTypeDTO> listAllGoodsTypes(Long parentTypeId);
 

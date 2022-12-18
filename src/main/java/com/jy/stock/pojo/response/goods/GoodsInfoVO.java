@@ -1,7 +1,7 @@
 package com.jy.stock.pojo.response.goods;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.jy.stock.pojo.response.user.UserInfoVO;
+import com.jy.stock.pojo.response.system.user.UserInfoVO;
 import lombok.Data;
 
 import java.math.BigDecimal;

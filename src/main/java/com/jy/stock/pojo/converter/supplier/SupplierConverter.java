@@ -1,10 +1,10 @@
 package com.jy.stock.pojo.converter.supplier;
 
 import com.jy.stock.common.util.bean.BeanCopyUtils;
-import com.jy.stock.pojo.converter.user.UserConverter;
+import com.jy.stock.pojo.converter.system.user.UserConverter;
 import com.jy.stock.pojo.dto.supplier.SupplierInfoDTO;
 import com.jy.stock.pojo.response.supplier.SupplierInfoVO;
-import com.jy.stock.pojo.response.user.UserInfoVO;
+import com.jy.stock.pojo.response.system.user.UserInfoVO;
 
 /**
  * @author liaojunyao

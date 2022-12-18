@@ -1,16 +1,17 @@
 package com.jy.stock.pojo.request.order;
 
+import com.jy.stock.pojo.request.AddModifyRequest;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.math.BigDecimal;
 
 /**
  * @author liaojunyao
  */
+@EqualsAndHashCode(callSuper = true)
 @Data
-public class AddModifyOrderRecordDetailReq {
-
-    private Long id;
+public class AddModifyOrderRecordDetailReq extends AddModifyRequest {
 
     private Long goodsId;
 

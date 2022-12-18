@@ -1,6 +1,8 @@
 package com.jy.stock.pojo.request.order;
 
+import com.jy.stock.pojo.request.AddModifyRequest;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -8,10 +10,9 @@ import java.util.List;
 /**
  * @author liaojunyao
  */
+@EqualsAndHashCode(callSuper = true)
 @Data
-public class AddModifyOrderRecordReq {
-
-    private Long id;
+public class AddModifyOrderRecordReq extends AddModifyRequest {
 
     private String orderType;
 

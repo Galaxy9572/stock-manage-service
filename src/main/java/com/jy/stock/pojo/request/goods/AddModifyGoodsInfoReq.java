@@ -1,18 +1,22 @@
 package com.jy.stock.pojo.request.goods;
 
 import com.jy.stock.common.validate.annotation.goods.ValidateWholesalePrice;
+import com.jy.stock.pojo.request.AddModifyRequest;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
-import javax.validation.constraints.*;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
 /**
  * @author liaojunyao
  */
+@EqualsAndHashCode(callSuper = true)
 @Data
-public class AddModifyGoodsInfoReq {
-
-    private Long id;
+public class AddModifyGoodsInfoReq extends AddModifyRequest {
 
     /**
      * 品名

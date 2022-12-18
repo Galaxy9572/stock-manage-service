@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jy.stock.dao.mapper.operation.OperationLogMapper">
+
+  <resultMap id="BaseResultMap" type="com.jy.stock.dao.entity.system.operation.OperationLog">
+    <!--@mbg.generated-->
+    <!--@Table operation_log-->
+    <id column="id" property="id" />
+    <result column="user_id" property="userId" />
+    <result column="module" property="module" />
+    <result column="sub_module" property="subModule" />
+    <result column="module_business_id" property="moduleBusinessId" />
+    <result column="operation_type" property="operationType" />
+    <result column="operation_desc" property="operationDesc" />
+    <result column="create_time" property="createTime" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, user_id, "module", sub_module, module_business_id, operation_type, operation_desc, create_time
+  </sql>
+
+  <select id="listOperationLogByPage" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/>
+    from operation_log
+    <where>
+      <if test="param.module != null and param.module != ''">
+        module = #{param.module}
+      </if>
+      <if test="param.subModule != null and param.subModule != ''">
+        and sub_module = #{param.subModule}
+      </if>
+      <if test="param.operationType != null and param.operationType != ''">
+        and operation_type = #{param.operationType}
+      </if>
+      <if test="param.operateUserId != null">
+        and user_id = #{param.operateUserId}
+      </if>
+      <if test="param.operationStartTime != null">
+        and create_time::date &gt;= #{param.operationStartTime}
+      </if>
+      <if test="param.operationEndTime != null">
+        and create_time::date &lt;= #{param.operationEndTime}
+      </if>
+    </where>
+    order by create_time desc
+  </select>
+</mapper>

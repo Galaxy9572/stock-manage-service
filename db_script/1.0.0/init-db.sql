@@ -525,3 +525,37 @@ comment on column order_record_detail.create_time is '创建时间';
 comment on column order_record_detail.update_time is '更新时间';
 
 comment on column order_record_detail.logic_delete is '逻辑删除';
+
+create table if not exists public.operation_log
+(
+    id                 bigint                  not null
+        constraint operation_log_pk
+            primary key,
+    user_id            bigint                  not null,
+    module             varchar(256)            not null,
+    module_business_id bigint                  not null,
+    operation_type     varchar(256)            not null,
+    operation_desc             text,
+    create_time        timestamp default now() not null
+);
+
+alter table public.operation_log
+    owner to stock_manage;
+
+comment on table public.operation_log is '操作记录表';
+
+comment on column public.operation_log.id is '主键';
+
+comment on column public.operation_log.user_id is '用户ID';
+
+comment on column public.operation_log.module is '模块';
+
+comment on column public.operation_log.module_business_id is '模块业务主键';
+
+comment on column public.operation_log.operation_type is '操作类型';
+
+comment on column public.operation_log.operation_desc is '描述';
+
+comment on column public.operation_log.create_time is '创建时间';
+
+

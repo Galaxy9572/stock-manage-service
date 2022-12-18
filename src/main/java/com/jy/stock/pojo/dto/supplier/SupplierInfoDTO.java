@@ -1,7 +1,7 @@
 package com.jy.stock.pojo.dto.supplier;
 
 import com.baomidou.mybatisplus.annotation.*;
-import com.jy.stock.pojo.dto.user.UserInfoDTO;
+import com.jy.stock.pojo.dto.system.user.UserInfoDTO;
 import lombok.Data;
 
 import java.util.Date;

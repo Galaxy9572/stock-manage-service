@@ -5,7 +5,7 @@ import com.jy.stock.service.customer.CustomerInfoService;
 import com.jy.stock.service.dashboard.DashboardService;
 import com.jy.stock.service.goods.GoodsInfoService;
 import com.jy.stock.service.supplier.SupplierInfoService;
-import com.jy.stock.service.user.UserInfoService;
+import com.jy.stock.service.system.user.UserInfoService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

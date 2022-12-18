@@ -2,7 +2,7 @@ package com.jy.stock.pojo.response.supplier;
 
 import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.jy.stock.pojo.response.user.UserInfoVO;
+import com.jy.stock.pojo.response.system.user.UserInfoVO;
 import lombok.Data;
 
 import java.util.Date;

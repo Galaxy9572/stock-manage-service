@@ -1,4 +1,4 @@
-package com.maimai.miwuyou.user.common.util;
+package com.jy.stock.common.util;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -23,6 +23,8 @@ public class TimeUtils {
     public static final String TIME_FORMAT = "HH:mm:ss";
 
     public static final String DATE_TIME_FORMAT = "yyyy-MM-dd HH:mm:ss";
+
+    public static final DateTimeFormatter ORDER_ID_PREFIX_FORMATTER = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
 
     private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern(DATE_FORMAT);
 
@@ -98,6 +100,13 @@ public class TimeUtils {
             throw new IllegalArgumentException("timestamp cannot null");
         }
         return LocalDateTime.ofEpochSecond(timestamp, 0, OffsetDateTime.now().getOffset());
+    }
+
+    public static String toTimeString(LocalDateTime time, DateTimeFormatter formatter) {
+        if(time == null) {
+            throw new IllegalArgumentException("time cannot null");
+        }
+        return time.format(formatter);
     }
 
 }

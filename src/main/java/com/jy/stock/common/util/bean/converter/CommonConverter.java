@@ -1,6 +1,6 @@
-package com.maimai.miwuyou.user.common.util.bean.converter;
+package com.jy.stock.common.util.bean.converter;
 
-import com.maimai.miwuyou.user.common.util.TimeUtils;
+import com.jy.stock.common.util.TimeUtils;
 import org.springframework.cglib.core.Converter;
 
 import java.time.LocalDate;
