@@ -1,6 +1,6 @@
 package com.jy.stock.pojo.dto.order;
 
-import com.jy.stock.pojo.dto.supplier.SupplierInfoDTO;
+import com.jy.stock.pojo.dto.info.supplier.SupplierInfoDTO;
 import com.jy.stock.pojo.dto.system.user.UserInfoDTO;
 import lombok.Data;
 

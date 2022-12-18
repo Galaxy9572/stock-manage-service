@@ -1,7 +1,7 @@
 package com.jy.stock.common.validate.validator.customer;
 
 import com.jy.stock.common.validate.annotation.customer.ValidateBankInfo;
-import com.jy.stock.pojo.request.customer.AddModifyCustomerInfoReq;
+import com.jy.stock.pojo.request.info.customer.AddModifyCustomerInfoReq;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.lang3.StringUtils;
 

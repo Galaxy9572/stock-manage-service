@@ -1,10 +1,10 @@
 package com.jy.stock.service.dashboard.impl;
 
 import com.jy.stock.pojo.response.dashboard.DashboardStatisticVO;
-import com.jy.stock.service.customer.CustomerInfoService;
+import com.jy.stock.service.info.customer.CustomerInfoService;
 import com.jy.stock.service.dashboard.DashboardService;
 import com.jy.stock.service.goods.GoodsInfoService;
-import com.jy.stock.service.supplier.SupplierInfoService;
+import com.jy.stock.service.info.supplier.SupplierInfoService;
 import com.jy.stock.service.system.user.UserInfoService;
 import org.springframework.stereotype.Service;
 
