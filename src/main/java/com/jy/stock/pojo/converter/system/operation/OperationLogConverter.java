@@ -1,12 +1,12 @@
 package com.jy.stock.pojo.converter.system.operation;
 
-import com.jy.stock.enums.system.operation.ModuleEnum;
-import com.jy.stock.enums.system.operation.OperationTypeEnum;
-import com.jy.stock.enums.system.operation.SubModuleEnum;
+import com.jy.stock.enums.system.ModuleEnum;
+import com.jy.stock.enums.system.OperationTypeEnum;
+import com.jy.stock.enums.system.SubModuleEnum;
 import com.jy.stock.pojo.converter.system.user.UserConverter;
-import com.jy.stock.pojo.dto.system.operation.OperationLogDTO;
-import com.jy.stock.pojo.response.system.operation.OperationLogVO;
-import com.jy.stock.pojo.response.system.user.UserInfoVO;
+import com.jy.stock.pojo.dto.system.OperationLogDTO;
+import com.jy.stock.pojo.response.system.OperationLogVO;
+import com.jy.stock.pojo.response.system.UserInfoVO;
 
 /**
  * @author liaojunyao

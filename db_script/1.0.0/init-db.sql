@@ -559,3 +559,106 @@ comment on column public.operation_log.operation_desc is '描述';
 comment on column public.operation_log.create_time is '创建时间';
 
 
+create table if not exists public.shop_info
+(
+    id           bigint             not null
+        constraint shop_info_pk
+            primary key,
+    shop_name    varchar(256)       not null,
+    default_shop bool default false not null,
+    country                     varchar(256)            not null,
+    state                       varchar(256)            not null,
+    city                        varchar(256)            not null,
+    district                    varchar(256)            not null,
+    address                     text                    not null,
+    post_code                   varchar(256),
+    create_user_id bigint                  not null,
+    update_user_id bigint                  not null,
+    create_time    timestamp default now() not null,
+    update_time    timestamp default now() not null,
+    logic_delete   boolean   default false
+);
+
+comment on table public.shop_info is '门店信息';
+
+comment on column public.shop_info.id is '主键';
+
+comment on column public.shop_info.shop_name is '门店名称';
+
+comment on column public.shop_info.default_shop is '是否为默认门店';
+
+comment on column public.shop_info.country is '国家';
+
+comment on column public.shop_info.state is '州、省';
+
+comment on column public.shop_info.city is '市';
+
+comment on column public.shop_info.district is '区';
+
+comment on column public.shop_info.address is '地址';
+
+comment on column public.shop_info.post_code is '邮政编码';
+
+comment on column public.shop_info.create_user_id is '创建人ID';
+
+comment on column public.shop_info.update_user_id is '更新人ID';
+
+comment on column public.shop_info.create_time is '创建时间';
+
+comment on column public.shop_info.update_time is '更新时间';
+
+comment on column public.shop_info.logic_delete is '逻辑删除';
+
+alter table public.shop_info
+    owner to stock_manage;
+
+
+create table if not exists public.warehouse_info
+(
+    id           bigint             not null
+        constraint warehouse_info_pk
+            primary key,
+    warehouse_name    varchar(256)       not null,
+    country                     varchar(256)            not null,
+    state                       varchar(256)            not null,
+    city                        varchar(256)            not null,
+    district                    varchar(256)            not null,
+    address                     text                    not null,
+    post_code                   varchar(256),
+    create_user_id bigint                  not null,
+    update_user_id bigint                  not null,
+    create_time    timestamp default now() not null,
+    update_time    timestamp default now() not null,
+    logic_delete   boolean   default false
+);
+
+comment on table public.warehouse_info is '门店信息';
+
+comment on column public.warehouse_info.id is '主键';
+
+comment on column public.warehouse_info.warehouse_name is '仓库名称';
+
+comment on column public.warehouse_info.country is '国家';
+
+comment on column public.warehouse_info.state is '州、省';
+
+comment on column public.warehouse_info.city is '市';
+
+comment on column public.warehouse_info.district is '区';
+
+comment on column public.warehouse_info.address is '地址';
+
+comment on column public.warehouse_info.post_code is '邮政编码';
+
+comment on column public.warehouse_info.create_user_id is '创建人ID';
+
+comment on column public.warehouse_info.update_user_id is '更新人ID';
+
+comment on column public.warehouse_info.create_time is '创建时间';
+
+comment on column public.warehouse_info.update_time is '更新时间';
+
+comment on column public.warehouse_info.logic_delete is '逻辑删除';
+
+alter table public.warehouse_info
+    owner to stock_manage;

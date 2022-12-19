@@ -1,7 +1,7 @@
 package com.jy.stock.pojo.dto.order;
 
-import com.jy.stock.pojo.dto.info.supplier.SupplierInfoDTO;
-import com.jy.stock.pojo.dto.system.user.UserInfoDTO;
+import com.jy.stock.pojo.dto.info.SupplierInfoDTO;
+import com.jy.stock.pojo.dto.system.UserInfoDTO;
 import lombok.Data;
 
 import java.math.BigDecimal;

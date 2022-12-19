@@ -1,6 +1,6 @@
 package com.jy.stock.common.aspect.annotation;
 
-import com.jy.stock.enums.system.user.UserRoleEnum;
+import com.jy.stock.enums.system.UserRoleEnum;
 
 import java.lang.annotation.*;
 

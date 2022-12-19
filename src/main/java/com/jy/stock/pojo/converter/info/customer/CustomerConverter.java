@@ -2,9 +2,9 @@ package com.jy.stock.pojo.converter.info.customer;
 
 import com.jy.stock.common.util.bean.BeanCopyUtils;
 import com.jy.stock.pojo.converter.system.user.UserConverter;
-import com.jy.stock.pojo.dto.info.customer.CustomerInfoDTO;
-import com.jy.stock.pojo.response.info.customer.CustomerInfoVO;
-import com.jy.stock.pojo.response.system.user.UserInfoVO;
+import com.jy.stock.pojo.dto.info.CustomerInfoDTO;
+import com.jy.stock.pojo.response.info.CustomerInfoVO;
+import com.jy.stock.pojo.response.system.UserInfoVO;
 
 /**
  * @author liaojunyao

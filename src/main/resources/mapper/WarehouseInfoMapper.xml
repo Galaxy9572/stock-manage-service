@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jy.stock.dao.mapper.info.WarehouseInfoMapper">
+
+  <resultMap id="BaseResultMap" type="com.jy.stock.dao.entity.info.WarehouseInfo">
+    <!--@mbg.generated-->
+    <!--@Table warehouse_info-->
+    <id column="id" property="id" />
+    <result column="warehouse_name" property="warehouseName" />
+    <result column="country" property="country" />
+    <result column="state" property="state" />
+    <result column="city" property="city" />
+    <result column="district" property="district" />
+    <result column="address" property="address" />
+    <result column="post_code" property="postCode" />
+    <result column="create_user_id" property="createUserId" />
+    <result column="update_user_id" property="updateUserId" />
+    <result column="create_time" property="createTime" />
+    <result column="update_time" property="updateTime" />
+    <result column="logic_delete" property="logicDelete" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, warehouse_name, country, "state", city, district, address, post_code, create_user_id, 
+    update_user_id, create_time, update_time, logic_delete
+  </sql>
+
+</mapper>

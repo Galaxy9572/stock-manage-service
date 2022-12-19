@@ -1,6 +1,6 @@
 package com.jy.stock.common.util;
 
-import com.jy.stock.constants.system.user.UserConstants;
+import com.jy.stock.constants.system.UserConstants;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;

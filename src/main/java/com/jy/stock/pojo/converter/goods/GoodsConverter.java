@@ -9,7 +9,7 @@ import com.jy.stock.pojo.dto.goods.GoodsUnitDTO;
 import com.jy.stock.pojo.response.goods.GoodsInfoVO;
 import com.jy.stock.pojo.response.goods.GoodsTypeVO;
 import com.jy.stock.pojo.response.goods.GoodsUnitVO;
-import com.jy.stock.pojo.response.system.user.UserInfoVO;
+import com.jy.stock.pojo.response.system.UserInfoVO;
 import org.springframework.util.CollectionUtils;
 
 import java.util.ArrayList;

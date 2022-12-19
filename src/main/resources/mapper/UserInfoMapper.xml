@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.jy.stock.dao.mapper.user.UserInfoMapper">
-  <resultMap id="BaseResultMap" type="com.jy.stock.dao.entity.system.user.UserInfo">
+<mapper namespace="com.jy.stock.dao.mapper.system.UserInfoMapper">
+  <resultMap id="BaseResultMap" type="com.jy.stock.dao.entity.system.UserInfo">
     <!--@mbg.generated-->
     <!--@Table user_info-->
     <id column="id" property="id" />
@@ -15,7 +15,7 @@
     <result column="logic_delete" property="logicDelete" />
   </resultMap>
 
-  <resultMap id="WithRoleResultMap" type="com.jy.stock.pojo.dto.system.user.UserInfoDTO">
+  <resultMap id="WithRoleResultMap" type="com.jy.stock.pojo.dto.system.UserInfoDTO">
     <id column="id" property="id" />
     <result column="user_name" property="userName" />
     <result column="avatar_url" property="avatarUrl" />
@@ -25,7 +25,7 @@
     <result column="create_time" property="createTime" />
     <result column="update_time" property="updateTime" />
     <result column="logic_delete" property="logicDelete" />
-    <collection column="id" property="roles" ofType="java.lang.String" select="com.jy.stock.dao.mapper.user.UserRoleMapper.selectRoleCodesByUserId"/>
+    <collection column="id" property="roles" ofType="java.lang.String" select="com.jy.stock.dao.mapper.system.UserRoleMapper.selectRoleCodesByUserId"/>
   </resultMap>
 
   <sql id="Base_Column_List">

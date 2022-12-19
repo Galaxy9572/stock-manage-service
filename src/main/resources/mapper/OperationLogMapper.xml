@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.jy.stock.dao.mapper.operation.OperationLogMapper">
+<mapper namespace="com.jy.stock.dao.mapper.system.OperationLogMapper">
 
-  <resultMap id="BaseResultMap" type="com.jy.stock.dao.entity.system.operation.OperationLog">
+  <resultMap id="BaseResultMap" type="com.jy.stock.dao.entity.system.OperationLog">
     <!--@mbg.generated-->
     <!--@Table operation_log-->
     <id column="id" property="id" />

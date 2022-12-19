@@ -1,8 +1,8 @@
 package com.jy.stock.common.aspect.annotation;
 
-import com.jy.stock.enums.system.operation.ModuleEnum;
-import com.jy.stock.enums.system.operation.OperationTypeEnum;
-import com.jy.stock.enums.system.operation.SubModuleEnum;
+import com.jy.stock.enums.system.ModuleEnum;
+import com.jy.stock.enums.system.OperationTypeEnum;
+import com.jy.stock.enums.system.SubModuleEnum;
 
 import java.lang.annotation.*;
 

@@ -1,7 +1,7 @@
 package com.jy.stock.pojo.dto.goods;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.jy.stock.pojo.dto.system.user.UserInfoDTO;
+import com.jy.stock.pojo.dto.system.UserInfoDTO;
 import lombok.Data;
 
 import java.util.Date;

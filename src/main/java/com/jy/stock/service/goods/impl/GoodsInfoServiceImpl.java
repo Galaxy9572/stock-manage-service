@@ -13,13 +13,13 @@ import com.jy.stock.pojo.dto.PageDTO;
 import com.jy.stock.pojo.dto.goods.GoodsInfoDTO;
 import com.jy.stock.pojo.dto.goods.GoodsTypeDTO;
 import com.jy.stock.pojo.dto.goods.GoodsUnitDTO;
-import com.jy.stock.pojo.dto.system.user.UserInfoDTO;
+import com.jy.stock.pojo.dto.system.UserInfoDTO;
 import com.jy.stock.pojo.request.goods.AddModifyGoodsInfoReq;
 import com.jy.stock.pojo.request.goods.QueryGoodsInfoReq;
 import com.jy.stock.service.goods.GoodsInfoService;
 import com.jy.stock.service.goods.GoodsTypeService;
 import com.jy.stock.service.goods.GoodsUnitService;
-import com.jy.stock.service.system.user.UserInfoService;
+import com.jy.stock.service.system.UserInfoService;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
