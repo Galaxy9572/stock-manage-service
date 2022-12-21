@@ -1,22 +1,18 @@
 package com.jy.stock.pojo.dto.info;
 
-import com.baomidou.mybatisplus.annotation.*;
-import com.jy.stock.pojo.dto.system.UserInfoDTO;
+import com.jy.stock.pojo.dto.BaseDTO;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.math.BigDecimal;
-import java.util.Date;
 
 /**
  * 客户信息
  * @author liaojunyao
  */
+@EqualsAndHashCode(callSuper = true)
 @Data
-public class CustomerInfoDTO {
-    /**
-     * 主键
-     */
-    private Long id;
+public class CustomerInfoDTO extends BaseDTO {
 
     /**
      * 客户名称
@@ -113,29 +109,4 @@ public class CustomerInfoDTO {
      */
     private String taxpayerId;
 
-    /**
-     * 创建时间
-     */
-    private Date createTime;
-
-    /**
-     * 更新时间
-     */
-    private Date updateTime;
-
-    /**
-     * 创建人
-     */
-    private UserInfoDTO createUser;
-
-    /**
-     * 更新人
-     */
-    private UserInfoDTO updateUser;
-
-    /**
-     * 逻辑删除
-     */
-    @TableLogic
-    private Boolean logicDelete;
 }

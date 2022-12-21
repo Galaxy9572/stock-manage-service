@@ -1,6 +1,6 @@
 package com.jy.stock.service.dashboard.impl;
 
-import com.jy.stock.pojo.response.dashboard.DashboardStatisticVO;
+import com.jy.stock.pojo.vo.dashboard.DashboardStatisticVO;
 import com.jy.stock.service.info.CustomerInfoService;
 import com.jy.stock.service.dashboard.DashboardService;
 import com.jy.stock.service.goods.GoodsInfoService;

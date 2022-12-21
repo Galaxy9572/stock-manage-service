@@ -1,6 +1,6 @@
-package com.jy.stock.pojo.dto.goods;
+package com.jy.stock.pojo.vo.goods;
 
-import com.jy.stock.pojo.dto.BaseDTO;
+import com.jy.stock.pojo.vo.BaseVO;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -10,7 +10,7 @@ import lombok.EqualsAndHashCode;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class GoodsStockDTO extends BaseDTO {
+public class GoodsStockVO extends BaseVO {
 
     /**
      * 商品ID
@@ -33,13 +33,13 @@ public class GoodsStockDTO extends BaseDTO {
     private Long maxStockNum;
 
     /**
-     * 当前库存数量
-     */
-    private Long currentStockNum;
-
-    /**
      * 是否允许库存告警
      */
     private Boolean allowStockWarning;
+
+    /**
+     * 当前库存数量
+     */
+    private Long currentStockNum;
 
 }

@@ -1,7 +1,7 @@
 package com.jy.stock.controller.dashboard;
 
 import com.jy.stock.common.response.ResponseVO;
-import com.jy.stock.pojo.response.dashboard.DashboardStatisticVO;
+import com.jy.stock.pojo.vo.dashboard.DashboardStatisticVO;
 import com.jy.stock.service.dashboard.DashboardService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

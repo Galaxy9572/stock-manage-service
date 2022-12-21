@@ -1,23 +1,16 @@
-package com.jy.stock.pojo.response.info;
+package com.jy.stock.pojo.vo.info;
 
-import com.baomidou.mybatisplus.annotation.TableLogic;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.jy.stock.pojo.response.system.UserInfoVO;
+import com.jy.stock.pojo.vo.BaseVO;
 import lombok.Data;
-
-import java.util.Date;
+import lombok.EqualsAndHashCode;
 
 /**
  * 供应商信息
  * @author liaojunyao
  */
+@EqualsAndHashCode(callSuper = true)
 @Data
-public class SupplierInfoVO {
-    /**
-     * 主键
-     */
-    @JsonFormat(shape = JsonFormat.Shape.STRING)
-    private Long id;
+public class SupplierInfoVO extends BaseVO {
 
     /**
      * 供应商名称
@@ -89,29 +82,4 @@ public class SupplierInfoVO {
      */
     private String memo;
 
-    /**
-     * 创建时间
-     */
-    private Date createTime;
-
-    /**
-     * 更新时间
-     */
-    private Date updateTime;
-
-    /**
-     * 创建人
-     */
-    private UserInfoVO createUser;
-
-    /**
-     * 更新人
-     */
-    private UserInfoVO updateUser;
-
-    /**
-     * 逻辑删除
-     */
-    @TableLogic
-    private Boolean logicDelete;
 }

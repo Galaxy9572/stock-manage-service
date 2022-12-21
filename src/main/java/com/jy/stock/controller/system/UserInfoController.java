@@ -16,7 +16,7 @@ import com.jy.stock.pojo.dto.system.UserInfoDTO;
 import com.jy.stock.pojo.request.system.AddModifyUserInfoReq;
 import com.jy.stock.pojo.request.system.QueryUserInfoReq;
 import com.jy.stock.pojo.request.system.UserLoginReq;
-import com.jy.stock.pojo.response.system.UserInfoVO;
+import com.jy.stock.pojo.vo.system.UserInfoVO;
 import com.jy.stock.service.system.UserInfoService;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;

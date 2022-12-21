@@ -1,19 +1,18 @@
 package com.jy.stock.pojo.dto.goods;
 
-import com.jy.stock.pojo.dto.system.UserInfoDTO;
+import com.jy.stock.pojo.dto.BaseDTO;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.math.BigDecimal;
-import java.util.Date;
 
 /**
  * 商品
  * @author liaojunyao
  */
+@EqualsAndHashCode(callSuper = true)
 @Data
-public class GoodsInfoDTO {
-
-    private Long id;
+public class GoodsInfoDTO extends BaseDTO {
 
     /**
      * 品名
@@ -50,28 +49,4 @@ public class GoodsInfoDTO {
      */
     private String memo;
 
-    /**
-     * 创建人
-     */
-    private UserInfoDTO createUser;
-
-    /**
-     * 更新用户
-     */
-    private UserInfoDTO updateUser;
-
-    /**
-     * 创建时间
-     */
-    private Date createTime;
-
-    /**
-     * 更新时间
-     */
-    private Date updateTime;
-
-    /**
-     * 逻辑删除
-     */
-    private Boolean logicDelete;
 }

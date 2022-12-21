@@ -1,20 +1,16 @@
-package com.jy.stock.pojo.response.info;
+package com.jy.stock.pojo.vo.info;
 
-import com.jy.stock.pojo.response.system.UserInfoVO;
+import com.jy.stock.pojo.vo.BaseVO;
 import lombok.Data;
-
-import java.util.Date;
+import lombok.EqualsAndHashCode;
 
 /**
     * 门店信息
  * @author liaojunyao
  */
+@EqualsAndHashCode(callSuper = true)
 @Data
-public class WarehouseInfoVO {
-    /**
-     * 主键
-     */
-    private Long id;
+public class WarehouseInfoVO extends BaseVO {
 
     /**
      * 仓库名称
@@ -50,25 +46,5 @@ public class WarehouseInfoVO {
      * 邮政编码
      */
     private String postCode;
-
-    /**
-     * 创建人
-     */
-    private UserInfoVO createUser;
-
-    /**
-     * 更新人
-     */
-    private UserInfoVO updateUser;
-
-    /**
-     * 创建时间
-     */
-    private Date createTime;
-
-    /**
-     * 更新时间
-     */
-    private Date updateTime;
 
 }

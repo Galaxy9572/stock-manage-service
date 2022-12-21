@@ -14,7 +14,7 @@ import com.jy.stock.pojo.dto.PageDTO;
 import com.jy.stock.pojo.dto.info.CustomerInfoDTO;
 import com.jy.stock.pojo.request.info.AddModifyCustomerInfoReq;
 import com.jy.stock.pojo.request.info.QueryCustomerInfoReq;
-import com.jy.stock.pojo.response.info.CustomerInfoVO;
+import com.jy.stock.pojo.vo.info.CustomerInfoVO;
 import com.jy.stock.service.info.CustomerInfoService;
 import org.springframework.web.bind.annotation.*;
 

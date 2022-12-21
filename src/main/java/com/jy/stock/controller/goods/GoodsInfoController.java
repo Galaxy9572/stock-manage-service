@@ -15,7 +15,7 @@ import com.jy.stock.pojo.dto.PageDTO;
 import com.jy.stock.pojo.dto.goods.GoodsInfoDTO;
 import com.jy.stock.pojo.request.goods.AddModifyGoodsInfoReq;
 import com.jy.stock.pojo.request.goods.QueryGoodsInfoReq;
-import com.jy.stock.pojo.response.goods.GoodsInfoVO;
+import com.jy.stock.pojo.vo.goods.GoodsInfoVO;
 import com.jy.stock.service.goods.GoodsInfoService;
 import org.springframework.web.bind.annotation.*;
 

@@ -5,7 +5,7 @@ import com.jy.stock.common.response.ResponseVO;
 import com.jy.stock.common.util.StreamUtils;
 import com.jy.stock.pojo.dto.region.RegionInfoDTO;
 import com.jy.stock.pojo.request.region.QueryRegionRequest;
-import com.jy.stock.pojo.response.region.RegionInfoVO;
+import com.jy.stock.pojo.vo.region.RegionInfoVO;
 import com.jy.stock.service.region.RegionInfoService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

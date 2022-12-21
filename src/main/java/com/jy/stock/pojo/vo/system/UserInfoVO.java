@@ -1,4 +1,4 @@
-package com.jy.stock.pojo.response.system;
+package com.jy.stock.pojo.vo.system;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;

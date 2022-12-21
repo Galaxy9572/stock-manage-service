@@ -7,6 +7,8 @@
     <!--@Table shop_info-->
     <id column="id" property="id" />
     <result column="shop_name" property="shopName" />
+    <result column="contact_person" property="contactPerson" />
+    <result column="phone" property="phone" />
     <result column="default_shop" property="defaultShop" />
     <result column="country" property="country" />
     <result column="state" property="state" />
@@ -23,7 +25,7 @@
 
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    id, shop_name, default_shop, country, "state", city, district, address, post_code, 
+    id, shop_name, contact_person, phone, default_shop, country, "state", city, district, address, post_code,
     create_user_id, update_user_id, create_time, update_time, logic_delete
   </sql>
 

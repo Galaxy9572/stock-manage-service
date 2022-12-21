@@ -11,7 +11,7 @@ import com.jy.stock.enums.system.UserRoleEnum;
 import com.jy.stock.pojo.converter.goods.GoodsConverter;
 import com.jy.stock.pojo.dto.goods.GoodsTypeDTO;
 import com.jy.stock.pojo.request.goods.AddModifyGoodsTypeReq;
-import com.jy.stock.pojo.response.goods.GoodsTypeVO;
+import com.jy.stock.pojo.vo.goods.GoodsTypeVO;
 import com.jy.stock.service.goods.GoodsTypeService;
 import org.springframework.web.bind.annotation.*;
 

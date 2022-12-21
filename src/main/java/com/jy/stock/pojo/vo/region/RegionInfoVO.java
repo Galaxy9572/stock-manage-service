@@ -1,4 +1,4 @@
-package com.jy.stock.pojo.response.region;
+package com.jy.stock.pojo.vo.region;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;

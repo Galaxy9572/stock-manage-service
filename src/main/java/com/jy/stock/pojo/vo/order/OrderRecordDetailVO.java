@@ -1,21 +1,18 @@
-package com.jy.stock.pojo.response.order;
+package com.jy.stock.pojo.vo.order;
 
-import com.jy.stock.pojo.response.info.SupplierInfoVO;
-import com.jy.stock.pojo.response.system.UserInfoVO;
+import com.jy.stock.pojo.vo.BaseVO;
+import com.jy.stock.pojo.vo.info.SupplierInfoVO;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.math.BigDecimal;
-import java.util.Date;
 
 /**
  * @author liaojunyao
  */
+@EqualsAndHashCode(callSuper = true)
 @Data
-public class OrderRecordDetailVO {
-    /**
-     * 主键
-     */
-    private Long id;
+public class OrderRecordDetailVO extends BaseVO {
 
     /**
      * 订单号
@@ -56,25 +53,5 @@ public class OrderRecordDetailVO {
      * 客户
      */
     private SupplierInfoVO customer;
-
-    /**
-     * 创建人
-     */
-    private UserInfoVO createUser;
-
-    /**
-     * 更新人
-     */
-    private UserInfoVO updateUser;
-
-    /**
-     * 创建时间
-     */
-    private Date createTime;
-
-    /**
-     * 更新时间
-     */
-    private Date updateTime;
 
 }

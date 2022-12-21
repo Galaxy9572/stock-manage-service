@@ -1,21 +1,18 @@
-package com.jy.stock.pojo.response.goods;
+package com.jy.stock.pojo.vo.goods;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.jy.stock.pojo.response.system.UserInfoVO;
+import com.jy.stock.pojo.vo.BaseVO;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.math.BigDecimal;
-import java.util.Date;
 
 /**
  * 商品
  * @author liaojunyao
  */
+@EqualsAndHashCode(callSuper = true)
 @Data
-public class GoodsInfoVO {
-
-    @JsonFormat(shape = JsonFormat.Shape.STRING)
-    private Long id;
+public class GoodsInfoVO extends BaseVO {
 
     /**
      * 品名
@@ -51,25 +48,5 @@ public class GoodsInfoVO {
      * 备注
      */
     private String memo;
-
-    /**
-     * 创建人
-     */
-    private UserInfoVO createUser;
-
-    /**
-     * 更新用户
-     */
-    private UserInfoVO updateUser;
-
-    /**
-     * 创建时间
-     */
-    private Date createTime;
-
-    /**
-     * 更新时间
-     */
-    private Date updateTime;
 
 }

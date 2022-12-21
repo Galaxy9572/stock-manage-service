@@ -6,7 +6,7 @@ import com.jy.stock.common.response.ResponseVO;
 import com.jy.stock.enums.order.OrderTypeEnum;
 import com.jy.stock.enums.order.PaymentMethodEnum;
 import com.jy.stock.pojo.request.order.AddModifyOrderRecordReq;
-import com.jy.stock.pojo.response.order.OrderRecordVO;
+import com.jy.stock.pojo.vo.order.OrderRecordVO;
 import com.jy.stock.service.order.OrderRecordService;
 import org.springframework.web.bind.annotation.*;
 

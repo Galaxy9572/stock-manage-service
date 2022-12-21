@@ -24,6 +24,16 @@ public class WarehouseInfo {
     private String warehouseName;
 
     /**
+     * 联系人
+     */
+    private String contactPerson;
+
+    /**
+     * 联系电话
+     */
+    private String phone;
+
+    /**
      * 国家
      */
     private String country;

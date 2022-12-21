@@ -1,6 +1,6 @@
-package com.jy.stock.pojo.dto.goods;
+package com.jy.stock.pojo.vo.goods;
 
-import com.jy.stock.pojo.dto.BaseDTO;
+import com.jy.stock.pojo.vo.BaseVO;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -10,7 +10,7 @@ import lombok.EqualsAndHashCode;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class GoodsUnitDTO extends BaseDTO {
+public class GoodsUnitVO extends BaseVO {
 
     /**
      * 计量单位
@@ -21,5 +21,4 @@ public class GoodsUnitDTO extends BaseDTO {
      * 是否允许小数
      */
     private Boolean allowDecimal;
-
 }

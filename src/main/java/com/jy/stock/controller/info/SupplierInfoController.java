@@ -14,7 +14,7 @@ import com.jy.stock.pojo.dto.PageDTO;
 import com.jy.stock.pojo.dto.info.SupplierInfoDTO;
 import com.jy.stock.pojo.request.info.AddModifySupplierInfoReq;
 import com.jy.stock.pojo.request.info.QuerySupplierInfoReq;
-import com.jy.stock.pojo.response.info.SupplierInfoVO;
+import com.jy.stock.pojo.vo.info.SupplierInfoVO;
 import com.jy.stock.service.info.SupplierInfoService;
 import org.springframework.web.bind.annotation.*;
 

@@ -5,8 +5,8 @@ import com.jy.stock.enums.system.OperationTypeEnum;
 import com.jy.stock.enums.system.SubModuleEnum;
 import com.jy.stock.pojo.converter.system.user.UserConverter;
 import com.jy.stock.pojo.dto.system.OperationLogDTO;
-import com.jy.stock.pojo.response.system.OperationLogVO;
-import com.jy.stock.pojo.response.system.UserInfoVO;
+import com.jy.stock.pojo.vo.system.OperationLogVO;
+import com.jy.stock.pojo.vo.system.UserInfoVO;
 
 /**
  * @author liaojunyao

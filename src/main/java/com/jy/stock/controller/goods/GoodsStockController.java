@@ -5,7 +5,7 @@ import com.jy.stock.common.response.ResponseVO;
 import com.jy.stock.common.util.bean.BeanCopyUtils;
 import com.jy.stock.pojo.dto.goods.GoodsStockDTO;
 import com.jy.stock.pojo.request.goods.ModifyGoodsStockWarningReq;
-import com.jy.stock.pojo.response.goods.GoodsStockVO;
+import com.jy.stock.pojo.vo.goods.GoodsStockVO;
 import com.jy.stock.service.goods.GoodsStockService;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;

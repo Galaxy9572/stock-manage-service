@@ -1,8 +1,7 @@
-package com.jy.stock.pojo.dto.goods;
+package com.jy.stock.pojo.vo.goods;
 
-import com.jy.stock.pojo.dto.BaseDTO;
+import com.jy.stock.pojo.vo.BaseVO;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
 import java.util.List;
 
@@ -10,9 +9,8 @@ import java.util.List;
  * 商品类别
  * @author liaojunyao
  */
-@EqualsAndHashCode(callSuper = true)
 @Data
-public class GoodsTypeDTO extends BaseDTO {
+public class GoodsTypeVO extends BaseVO {
 
     /**
      * 商品类别名称
@@ -37,6 +35,6 @@ public class GoodsTypeDTO extends BaseDTO {
     /**
      * 孩子节点
      */
-    private List<GoodsTypeDTO> children;
+    private List<GoodsTypeVO> children;
 
 }

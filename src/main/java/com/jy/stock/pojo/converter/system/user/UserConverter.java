@@ -2,7 +2,7 @@ package com.jy.stock.pojo.converter.system.user;
 
 import com.jy.stock.common.util.bean.BeanCopyUtils;
 import com.jy.stock.pojo.dto.system.UserInfoDTO;
-import com.jy.stock.pojo.response.system.UserInfoVO;
+import com.jy.stock.pojo.vo.system.UserInfoVO;
 
 /**
  * @author liaojunyao

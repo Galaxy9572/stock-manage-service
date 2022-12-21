@@ -6,10 +6,10 @@ import com.jy.stock.pojo.converter.system.user.UserConverter;
 import com.jy.stock.pojo.dto.goods.GoodsInfoDTO;
 import com.jy.stock.pojo.dto.goods.GoodsTypeDTO;
 import com.jy.stock.pojo.dto.goods.GoodsUnitDTO;
-import com.jy.stock.pojo.response.goods.GoodsInfoVO;
-import com.jy.stock.pojo.response.goods.GoodsTypeVO;
-import com.jy.stock.pojo.response.goods.GoodsUnitVO;
-import com.jy.stock.pojo.response.system.UserInfoVO;
+import com.jy.stock.pojo.vo.goods.GoodsInfoVO;
+import com.jy.stock.pojo.vo.goods.GoodsTypeVO;
+import com.jy.stock.pojo.vo.goods.GoodsUnitVO;
+import com.jy.stock.pojo.vo.system.UserInfoVO;
 import org.springframework.util.CollectionUtils;
 
 import java.util.ArrayList;

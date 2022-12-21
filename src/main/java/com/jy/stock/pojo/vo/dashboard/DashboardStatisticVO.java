@@ -1,4 +1,4 @@
-package com.jy.stock.pojo.response.dashboard;
+package com.jy.stock.pojo.vo.dashboard;
 
 import lombok.Data;
 

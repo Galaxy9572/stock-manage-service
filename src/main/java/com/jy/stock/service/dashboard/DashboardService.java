@@ -1,6 +1,6 @@
 package com.jy.stock.service.dashboard;
 
-import com.jy.stock.pojo.response.dashboard.DashboardStatisticVO;
+import com.jy.stock.pojo.vo.dashboard.DashboardStatisticVO;
 
 /**
  * @author liaojunyao

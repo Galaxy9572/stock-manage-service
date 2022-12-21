@@ -12,7 +12,7 @@ import com.jy.stock.pojo.converter.system.operation.OperationLogConverter;
 import com.jy.stock.pojo.dto.PageDTO;
 import com.jy.stock.pojo.dto.system.OperationLogDTO;
 import com.jy.stock.pojo.request.system.QueryOperationLogReq;
-import com.jy.stock.pojo.response.system.OperationLogVO;
+import com.jy.stock.pojo.vo.system.OperationLogVO;
 import com.jy.stock.service.system.OperationLogService;
 import org.springframework.web.bind.annotation.*;
 
