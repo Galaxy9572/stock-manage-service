@@ -1,5 +1,6 @@
 package com.jy.stock.common.enhance;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -53,6 +54,10 @@ public abstract class EnhancedServiceImpl<M extends BaseMapper<T>, T, DTO> exten
         List<DTO> dtoList = toDtoList(page.getRecords());
         dto.setList(dtoList);
         return dto;
+    }
+
+    protected LambdaQueryWrapper<T> getQueryWrapper() {
+        return new LambdaQueryWrapper<>();
     }
 
     public abstract Class<DTO> getDtoClass();

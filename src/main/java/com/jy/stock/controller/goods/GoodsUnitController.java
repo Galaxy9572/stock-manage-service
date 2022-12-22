@@ -10,7 +10,7 @@ import com.jy.stock.enums.system.ModuleEnum;
 import com.jy.stock.enums.system.OperationTypeEnum;
 import com.jy.stock.enums.system.SubModuleEnum;
 import com.jy.stock.enums.system.UserRoleEnum;
-import com.jy.stock.pojo.converter.system.user.UserConverter;
+import com.jy.stock.pojo.converter.system.UserConverter;
 import com.jy.stock.pojo.dto.PageDTO;
 import com.jy.stock.pojo.dto.goods.GoodsUnitDTO;
 import com.jy.stock.pojo.request.goods.AddModifyGoodsUnitReq;

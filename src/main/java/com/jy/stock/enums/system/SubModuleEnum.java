@@ -40,6 +40,16 @@ public enum SubModuleEnum {
     USER(ModuleEnum.SYSTEM,"USER", "用户管理"),
 
     /**
+     * 门店管理
+     */
+    SHOP_INFO(ModuleEnum.INFO,"SHOP_INFO", "门店管理"),
+
+    /**
+     * 仓库管理
+     */
+    WAREHOUSE_INFO(ModuleEnum.INFO,"WAREHOUSE_INFO", "仓库管理"),
+
+    /**
      * 客户信息
      */
     CUSTOMER(ModuleEnum.INFO,"CUSTOMER", "客户信息管理"),

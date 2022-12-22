@@ -9,7 +9,7 @@ import com.jy.stock.enums.system.ModuleEnum;
 import com.jy.stock.enums.system.OperationTypeEnum;
 import com.jy.stock.enums.system.SubModuleEnum;
 import com.jy.stock.enums.system.UserRoleEnum;
-import com.jy.stock.pojo.converter.info.customer.CustomerConverter;
+import com.jy.stock.pojo.converter.info.CustomerConverter;
 import com.jy.stock.pojo.dto.PageDTO;
 import com.jy.stock.pojo.dto.info.CustomerInfoDTO;
 import com.jy.stock.pojo.request.info.AddModifyCustomerInfoReq;

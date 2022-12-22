@@ -2,7 +2,7 @@ package com.jy.stock.pojo.converter.goods;
 
 import com.jy.stock.common.util.StreamUtils;
 import com.jy.stock.common.util.bean.BeanCopyUtils;
-import com.jy.stock.pojo.converter.system.user.UserConverter;
+import com.jy.stock.pojo.converter.system.UserConverter;
 import com.jy.stock.pojo.dto.goods.GoodsInfoDTO;
 import com.jy.stock.pojo.dto.goods.GoodsTypeDTO;
 import com.jy.stock.pojo.dto.goods.GoodsUnitDTO;

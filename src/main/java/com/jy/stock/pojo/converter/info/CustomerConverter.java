@@ -1,7 +1,7 @@
-package com.jy.stock.pojo.converter.info.customer;
+package com.jy.stock.pojo.converter.info;
 
 import com.jy.stock.common.util.bean.BeanCopyUtils;
-import com.jy.stock.pojo.converter.system.user.UserConverter;
+import com.jy.stock.pojo.converter.system.UserConverter;
 import com.jy.stock.pojo.dto.info.CustomerInfoDTO;
 import com.jy.stock.pojo.vo.info.CustomerInfoVO;
 import com.jy.stock.pojo.vo.system.UserInfoVO;

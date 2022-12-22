@@ -29,4 +29,18 @@
     create_user_id, update_user_id, create_time, update_time, logic_delete
   </sql>
 
+  <select id="listShopInfoByPage" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/>
+    from shop_info
+    <where>
+      <if test="param.keyword != null and param.keyword != ''">
+        (
+            shop_name like concat('%', #{param.keyword}, '%')
+            or
+            contact_person like concat('%', #{param.keyword}, '%')
+        )
+      </if>
+    </where>
+    order by create_time desc
+  </select>
 </mapper>

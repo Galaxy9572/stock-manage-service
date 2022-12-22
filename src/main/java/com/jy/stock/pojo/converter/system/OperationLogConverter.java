@@ -1,9 +1,8 @@
-package com.jy.stock.pojo.converter.system.operation;
+package com.jy.stock.pojo.converter.system;
 
 import com.jy.stock.enums.system.ModuleEnum;
 import com.jy.stock.enums.system.OperationTypeEnum;
 import com.jy.stock.enums.system.SubModuleEnum;
-import com.jy.stock.pojo.converter.system.user.UserConverter;
 import com.jy.stock.pojo.dto.system.OperationLogDTO;
 import com.jy.stock.pojo.vo.system.OperationLogVO;
 import com.jy.stock.pojo.vo.system.UserInfoVO;

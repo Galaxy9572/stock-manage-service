@@ -8,7 +8,7 @@ import com.jy.stock.common.util.AssertUtils;
 import com.jy.stock.enums.system.ModuleEnum;
 import com.jy.stock.enums.system.OperationTypeEnum;
 import com.jy.stock.enums.system.SubModuleEnum;
-import com.jy.stock.pojo.converter.system.operation.OperationLogConverter;
+import com.jy.stock.pojo.converter.system.OperationLogConverter;
 import com.jy.stock.pojo.dto.PageDTO;
 import com.jy.stock.pojo.dto.system.OperationLogDTO;
 import com.jy.stock.pojo.request.system.QueryOperationLogReq;
