@@ -6,8 +6,10 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.jy.stock.common.enhance.EnhancedServiceImpl;
 import com.jy.stock.common.util.AssertUtils;
+import com.jy.stock.common.util.DistributedLocker;
 import com.jy.stock.common.util.StreamUtils;
 import com.jy.stock.common.util.bean.BeanCopyUtils;
+import com.jy.stock.constants.info.InfoLockKey;
 import com.jy.stock.dao.entity.info.ShopInfo;
 import com.jy.stock.dao.mapper.info.ShopInfoMapper;
 import com.jy.stock.pojo.dto.PageDTO;
@@ -28,25 +30,43 @@ import java.util.*;
  * @author liaojunyao
  */
 @Service
-public class ShopInfoServiceImpl extends EnhancedServiceImpl<ShopInfoMapper, ShopInfo, ShopInfoDTO> implements ShopInfoService{
+public class ShopInfoServiceImpl extends EnhancedServiceImpl<ShopInfoMapper, ShopInfo, ShopInfoDTO> implements ShopInfoService {
 
     @Resource
     private UserInfoService userInfoService;
+
+    @Resource
+    private DistributedLocker locker;
 
     @Override
     @Transactional(rollbackFor = Exception.class)
     public ShopInfoDTO addModifyShopInfo(AddModifyShopInfoReq request) {
         var id = request.getId();
         var isSuccess = false;
+        Boolean isDefaultShop = request.getDefaultShop();
         if (id == null) {
             var shopName = request.getShopName();
             checkExistenceByName(shopName, false);
             var entity = new ShopInfo();
             BeanCopyUtils.copy(request, entity);
             isSuccess = save(entity);
+            if (isDefaultShop) {
+                boolean isLocked = locker.tryLock(InfoLockKey.DEFAULT_SHOP_KEY, 3, -1);
+                try {
+                    if (isLocked) {
+                        baseMapper.disableDefaultShopException(entity.getId());
+                    }
+                } finally {
+                    if (isLocked) {
+                        locker.unlock(InfoLockKey.DEFAULT_SHOP_KEY);
+                    }
+                }
+            }
+            AssertUtils.isTrue(isSuccess, "operate.failed");
+            return toDto(getById(entity.getId()));
         } else {
             var shopInfoDTO = checkExistenceById(id, true);
-            if(StringUtils.equals(shopInfoDTO.getShopName(), request.getShopName())) {
+            if (StringUtils.equals(shopInfoDTO.getShopName(), request.getShopName())) {
                 return shopInfoDTO;
             }
             var queryWrapper = getQueryWrapper();
@@ -56,9 +76,42 @@ public class ShopInfoServiceImpl extends EnhancedServiceImpl<ShopInfoMapper, Sho
             shopInfo = new ShopInfo();
             BeanCopyUtils.copy(request, shopInfo);
             isSuccess = updateById(shopInfo);
+            if (isDefaultShop) {
+                boolean isLocked = locker.tryLock(InfoLockKey.DEFAULT_SHOP_KEY, 3, -1);
+                try {
+                    if (isLocked) {
+                        baseMapper.disableDefaultShopException(id);
+                    }
+                } finally {
+                    if (isLocked) {
+                        locker.unlock(InfoLockKey.DEFAULT_SHOP_KEY);
+                    }
+                }
+            }
+            AssertUtils.isTrue(isSuccess, "operate.failed");
+            return toDto(getById(id));
         }
-        AssertUtils.isTrue(isSuccess, "operate.failed");
-        return toDto(getById(id));
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public boolean setDefaultShop(Long id, boolean isDefault) {
+        checkExistenceById(id, true);
+        boolean isSuccess;
+        boolean isLocked = locker.tryLock(InfoLockKey.DEFAULT_SHOP_KEY, 3, -1);
+        AssertUtils.isTrue(isLocked, "system.is.busy");
+        try {
+            ShopInfo updateEntity = new ShopInfo();
+            updateEntity.setId(id);
+            updateEntity.setDefaultShop(isDefault);
+            isSuccess = updateById(updateEntity);
+            if (isDefault) {
+                baseMapper.disableDefaultShopException(id);
+            }
+        } finally {
+            locker.unlock(InfoLockKey.DEFAULT_SHOP_KEY);
+        }
+        return isSuccess;
     }
 
     @Override

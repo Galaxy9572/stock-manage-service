@@ -1,6 +1,5 @@
 package com.jy.stock.pojo.request.info;
 
-import com.jy.stock.common.validate.annotation.info.ValidateBankInfo;
 import com.jy.stock.pojo.request.AddModifyRequest;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -14,7 +13,6 @@ import javax.validation.constraints.NotBlank;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-@ValidateBankInfo
 public class AddModifyWarehouseInfoReq extends AddModifyRequest {
 
     /**

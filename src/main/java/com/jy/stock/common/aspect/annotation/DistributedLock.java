@@ -12,7 +12,7 @@ public @interface DistributedLock {
 
     String lockKey();
 
-    int waitTime();
+    int waitTime() default 3;
 
     int releaseTime() default -1;
 

@@ -43,4 +43,11 @@
     </where>
     order by create_time desc
   </select>
+
+  <update id="disableDefaultShopException">
+    update shop_info
+    set default_shop = false
+    where logic_delete = false
+    and id != #{id}
+  </update>
 </mapper>

@@ -6,10 +6,14 @@ import com.jy.stock.pojo.dto.PageDTO;
 import com.jy.stock.pojo.dto.info.ShopInfoDTO;
 import com.jy.stock.pojo.request.info.AddModifyShopInfoReq;
 import com.jy.stock.pojo.request.info.QueryShopInfoReq;
+import org.springframework.transaction.annotation.Transactional;
 
 public interface ShopInfoService extends IService<ShopInfo>{
 
     ShopInfoDTO addModifyShopInfo(AddModifyShopInfoReq request);
+
+    @Transactional(rollbackFor = Exception.class)
+    boolean setDefaultShop(Long id, boolean isDefault);
 
     boolean deleteShopInfo(Long id);
 

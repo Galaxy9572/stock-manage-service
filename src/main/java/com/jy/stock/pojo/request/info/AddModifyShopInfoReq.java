@@ -1,11 +1,11 @@
 package com.jy.stock.pojo.request.info;
 
-import com.jy.stock.common.validate.annotation.info.ValidateBankInfo;
 import com.jy.stock.pojo.request.AddModifyRequest;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 /**
  * 门店信息
@@ -14,7 +14,6 @@ import javax.validation.constraints.NotBlank;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-@ValidateBankInfo
 public class AddModifyShopInfoReq extends AddModifyRequest {
 
     /**
@@ -34,6 +33,9 @@ public class AddModifyShopInfoReq extends AddModifyRequest {
      */
     @NotBlank(message = "{phone.cannot.empty}")
     private String phone;
+
+    @NotNull(message = "{default.shop.can.not.empty}")
+    private Boolean defaultShop;
 
     /**
      * 国家

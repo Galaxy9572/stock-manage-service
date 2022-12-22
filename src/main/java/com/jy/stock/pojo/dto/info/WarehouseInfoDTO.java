@@ -1,25 +1,31 @@
 package com.jy.stock.pojo.dto.info;
 
-import com.jy.stock.pojo.dto.system.UserInfoDTO;
+import com.jy.stock.pojo.dto.BaseDTO;
 import lombok.Data;
-
-import java.util.Date;
+import lombok.EqualsAndHashCode;
 
 /**
     * 门店信息
  * @author liaojunyao
  */
+@EqualsAndHashCode(callSuper = true)
 @Data
-public class WarehouseInfoDTO {
-    /**
-     * 主键
-     */
-    private Long id;
+public class WarehouseInfoDTO extends BaseDTO {
 
     /**
      * 仓库名称
      */
     private String warehouseName;
+
+    /**
+     * 联系人
+     */
+    private String contactPerson;
+
+    /**
+     * 联系电话
+     */
+    private String phone;
 
     /**
      * 国家
@@ -51,28 +57,4 @@ public class WarehouseInfoDTO {
      */
     private String postCode;
 
-    /**
-     * 创建人
-     */
-    private UserInfoDTO createUser;
-
-    /**
-     * 更新人
-     */
-    private UserInfoDTO updateUser;
-
-    /**
-     * 创建时间
-     */
-    private Date createTime;
-
-    /**
-     * 更新时间
-     */
-    private Date updateTime;
-
-    /**
-     * 逻辑删除
-     */
-    private Boolean logicDelete;
 }

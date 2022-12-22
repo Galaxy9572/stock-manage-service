@@ -14,4 +14,6 @@ public interface ShopInfoMapper extends BaseMapper<ShopInfo> {
 
     IPage<ShopInfo> listShopInfoByPage(@Param("page") Page<ShopInfo> pageParam, @Param("param") QueryShopInfoReq param);
 
+    int disableDefaultShopException(Long id);
+
 }

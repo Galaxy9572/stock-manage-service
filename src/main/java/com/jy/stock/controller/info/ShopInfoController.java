@@ -13,6 +13,7 @@ import com.jy.stock.pojo.converter.info.ShopInfoConverter;
 import com.jy.stock.pojo.dto.PageDTO;
 import com.jy.stock.pojo.dto.info.ShopInfoDTO;
 import com.jy.stock.pojo.request.info.AddModifyShopInfoReq;
+import com.jy.stock.pojo.request.info.ModifyDefaultShopReq;
 import com.jy.stock.pojo.request.info.QueryShopInfoReq;
 import com.jy.stock.pojo.vo.info.ShopInfoVO;
 import com.jy.stock.service.info.ShopInfoService;
@@ -47,6 +48,14 @@ public class ShopInfoController extends EnhancedController<ShopInfoVO, ShopInfoD
     @DeleteMapping("/{id}")
     public ResponseVO<Boolean> deleteShopInfo(@PathVariable Long id) {
         boolean isSuccess = shopInfoService.deleteShopInfo(id);
+        return ResponseVO.success(isSuccess);
+    }
+
+    @AuthCheck(roles = UserRoleEnum.ADMIN)
+    @OperationLog(module = ModuleEnum.INFO, subModule = SubModuleEnum.SHOP_INFO, operationType = OperationTypeEnum.UPDATE)
+    @PutMapping("/default-shop")
+    public ResponseVO<Boolean> setDefaultShop(@Valid @RequestBody ModifyDefaultShopReq request) {
+        boolean isSuccess = shopInfoService.setDefaultShop(request.getId(), request.getDefaultShop());
         return ResponseVO.success(isSuccess);
     }
 

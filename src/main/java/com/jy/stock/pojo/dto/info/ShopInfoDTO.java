@@ -18,6 +18,16 @@ public class ShopInfoDTO extends BaseDTO {
     private String shopName;
 
     /**
+     * 联系人
+     */
+    private String contactPerson;
+
+    /**
+     * 联系电话
+     */
+    private String phone;
+
+    /**
      * 是否为默认门店
      */
     private Boolean defaultShop;
