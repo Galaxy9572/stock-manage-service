@@ -36,7 +36,7 @@ public class ShopInfoController extends EnhancedController<ShopInfoVO, ShopInfoD
     @AuthCheck(roles = UserRoleEnum.ADMIN)
     @OperationLog(module = ModuleEnum.INFO, subModule = SubModuleEnum.SHOP_INFO, operationType = OperationTypeEnum.ADD_MODIFY)
     @PostMapping("")
-    public ResponseVO<ShopInfoVO> addModifyShopInfoService(@Valid @RequestBody AddModifyShopInfoReq request) {
+    public ResponseVO<ShopInfoVO> addModifyShopInfo(@Valid @RequestBody AddModifyShopInfoReq request) {
         ShopInfoDTO shopInfoDTO = shopInfoService.addModifyShopInfo(request);
         ShopInfoVO shopInfoVO = toVo(shopInfoDTO);
         return ResponseVO.success(shopInfoVO);

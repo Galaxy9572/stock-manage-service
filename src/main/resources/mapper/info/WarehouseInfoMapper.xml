@@ -28,4 +28,18 @@
     update_user_id, create_time, update_time, logic_delete
   </sql>
 
+  <select id="listWarehouseInfoByPage" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/>
+    from warehouse_info
+    <where>
+      <if test="param.keyword != null and param.keyword != ''">
+        (
+        warehouse_info.warehouse_name like concat('%', #{param.keyword}, '%')
+        or
+        contact_person like concat('%', #{param.keyword}, '%')
+        )
+      </if>
+    </where>
+    order by create_time desc
+  </select>
 </mapper>
