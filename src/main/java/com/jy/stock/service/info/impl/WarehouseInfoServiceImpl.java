@@ -44,6 +44,8 @@ public class WarehouseInfoServiceImpl extends EnhancedServiceImpl<WarehouseInfoM
             var entity = new WarehouseInfo();
             BeanCopyUtils.copy(request, entity);
             isSuccess = save(entity);
+            AssertUtils.isTrue(isSuccess, "operate.failed");
+            return toDto(getById(entity.getId()));
         } else {
             var warehouseInfoDTO = checkExistenceById(id, true);
             if(StringUtils.equals(warehouseInfoDTO.getWarehouseName(), request.getWarehouseName())) {
@@ -56,9 +58,9 @@ public class WarehouseInfoServiceImpl extends EnhancedServiceImpl<WarehouseInfoM
             warehouseInfo = new WarehouseInfo();
             BeanCopyUtils.copy(request, warehouseInfo);
             isSuccess = updateById(warehouseInfo);
+            AssertUtils.isTrue(isSuccess, "operate.failed");
+            return toDto(getById(id));
         }
-        AssertUtils.isTrue(isSuccess, "operate.failed");
-        return toDto(getById(id));
     }
 
     @Override

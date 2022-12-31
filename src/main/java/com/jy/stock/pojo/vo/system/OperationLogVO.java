@@ -44,6 +44,11 @@ public class OperationLogVO {
     private String operationType;
 
     /**
+     * 操作类型描述
+     */
+    private String operationTypeDesc;
+
+    /**
      * 描述
      */
     private String operationDesc;

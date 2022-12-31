@@ -1,13 +1,13 @@
 package com.jy.stock.service.region.impl;
 
 import com.jy.stock.common.enhance.EnhancedServiceImpl;
-import com.jy.stock.enums.region.RegionLevelEnum;
 import com.jy.stock.common.exception.BusinessException;
 import com.jy.stock.common.util.AssertUtils;
 import com.jy.stock.common.util.StreamUtils;
 import com.jy.stock.common.util.bean.BeanCopyUtils;
 import com.jy.stock.dao.entity.region.RegionInfo;
 import com.jy.stock.dao.mapper.region.RegionInfoMapper;
+import com.jy.stock.enums.region.RegionLevelEnum;
 import com.jy.stock.pojo.dto.region.RegionInfoDTO;
 import com.jy.stock.pojo.request.region.QueryRegionRequest;
 import com.jy.stock.service.region.RegionInfoService;
@@ -46,6 +46,10 @@ public class RegionInfoServiceImpl extends EnhancedServiceImpl<RegionInfoMapper,
         List<RegionInfoDTO> dtoList = StreamUtils.mapCollect(regionInfoList, this::toDto);
         flushToCache(param, dtoList);
         return sort(dtoList, request.getLevel());
+    }
+
+    public void updateGeoData() {
+
     }
 
     @Override

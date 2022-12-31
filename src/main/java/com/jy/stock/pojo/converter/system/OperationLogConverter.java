@@ -21,7 +21,8 @@ public class OperationLogConverter {
         vo.setModule(ModuleEnum.getByCode(dto.getModule()).getDesc());
         vo.setSubModule(SubModuleEnum.getByCode(dto.getSubModule()).getDesc());
         vo.setModuleBusinessId(dto.getModuleBusinessId());
-        vo.setOperationType(OperationTypeEnum.getByCode(dto.getOperationType()).getDesc());
+        vo.setOperationType(dto.getOperationType());
+        vo.setOperationTypeDesc(OperationTypeEnum.getByCode(dto.getOperationType()).getDesc());
         vo.setOperationDesc(dto.getOperationDesc());
         UserInfoVO operateUser = UserConverter.dtoToVo(dto.getOperateUser());
         vo.setOperateUser(operateUser);
