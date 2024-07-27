@@ -4,8 +4,8 @@ import com.jy.stock.common.validate.annotation.system.ValidateSubModule;
 import com.jy.stock.enums.system.SubModuleEnum;
 import org.apache.commons.lang3.StringUtils;
 
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 
 /**
  * @author liaojunyao

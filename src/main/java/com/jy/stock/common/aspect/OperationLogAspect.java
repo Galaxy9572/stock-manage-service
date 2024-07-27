@@ -1,11 +1,11 @@
 package com.jy.stock.common.aspect;
 
 import com.jy.stock.common.aspect.annotation.OperationLog;
-import com.jy.stock.common.response.ResponseVO;
+import com.jy.stock.common.response.HttpResult;
 import com.jy.stock.common.util.ContextHolder;
 import com.jy.stock.enums.system.OperationTypeEnum;
-import com.jy.stock.pojo.request.AddModifyRequest;
-import com.jy.stock.pojo.request.system.AddOperationLogReq;
+import com.jy.stock.model.request.AddModifyRequest;
+import com.jy.stock.model.request.system.AddOperationLogReq;
 import com.jy.stock.service.system.OperationLogService;
 import org.apache.commons.beanutils.BeanUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -13,12 +13,12 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.CodeSignature;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 
-import javax.annotation.Resource;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -31,10 +31,10 @@ import java.util.Map;
 @Order(1)
 public class OperationLogAspect {
 
-    @Resource
+    @Autowired
     private OperationLogService operationLogService;
 
-    @Pointcut("execution(public com.jy.stock.common.response.ResponseVO com.jy.stock.controller..*.*.*(..))" +
+    @Pointcut("execution(public com.jy.stock.common.response.HttpResult com.jy.stock.controller..*.*.*(..))" +
             " && @annotation(com.jy.stock.common.aspect.annotation.OperationLog)")
     public void pointCut() {
 
@@ -53,7 +53,7 @@ public class OperationLogAspect {
         OperationTypeEnum operationType = log.operationType();
         Long id = null;
         AddOperationLogReq request = new AddOperationLogReq();
-        ResponseVO<?> result = (ResponseVO<?>) point.proceed();
+        HttpResult<?> result = (HttpResult<?>) point.proceed();
         if(result.getCode() != HttpStatus.OK.value()){
             return result;
         }

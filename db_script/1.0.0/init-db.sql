@@ -157,6 +157,7 @@ create table if not exists goods_stock
     id                  bigint                  not null
         constraint goods_stock_pk
             primary key,
+    warehouse_id        bigint not null,
     goods_id            bigint                  not null,
     init_stock_num      bigint    default 0     not null,
     min_stock_num       bigint    default 0     not null,
@@ -173,6 +174,8 @@ create table if not exists goods_stock
 comment on table goods_stock is '商品库存';
 
 comment on column goods_stock.id is '商品库存ID';
+
+comment on column goods_stock.warehouse_id is '仓库ID';
 
 comment on column goods_stock.goods_id is '商品ID';
 
@@ -402,7 +405,9 @@ create table if not exists region_info
     city_desc     varchar(256),
     district_code varchar(256),
     district_desc varchar(256),
-    level         varchar(256) not null
+    level         varchar(256) not null,
+    longitude     numeric,
+    latitude      numeric
 );
 
 comment on table region_info is '区域信息';
@@ -426,6 +431,9 @@ comment on column region_info.district_code is '区县编码';
 comment on column region_info.district_desc is '区县描述';
 
 comment on column region_info.level is '区域等级';
+
+create index if not exists region_info_code_index
+    on region_info (country_code, state_code, city_code, district_code, level);
 
 alter table region_info
     owner to stock_manage;

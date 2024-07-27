@@ -6,21 +6,21 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.jy.stock.common.enhance.EnhancedServiceImpl;
 import com.jy.stock.common.util.AssertUtils;
 import com.jy.stock.common.util.StreamUtils;
-import com.jy.stock.dao.entity.goods.GoodsUnit;
-import com.jy.stock.dao.mapper.goods.GoodsUnitMapper;
-import com.jy.stock.pojo.dto.PageDTO;
-import com.jy.stock.pojo.dto.goods.GoodsUnitDTO;
-import com.jy.stock.pojo.dto.system.UserInfoDTO;
-import com.jy.stock.pojo.request.goods.AddModifyGoodsUnitReq;
-import com.jy.stock.pojo.request.goods.QueryGoodsUnitReq;
+import com.jy.stock.mapper.goods.GoodsUnitMapper;
+import com.jy.stock.model.dto.PageDTO;
+import com.jy.stock.model.dto.goods.GoodsUnitDTO;
+import com.jy.stock.model.dto.system.UserInfoDTO;
+import com.jy.stock.model.entity.goods.GoodsUnit;
+import com.jy.stock.model.request.goods.AddModifyGoodsUnitReq;
+import com.jy.stock.model.request.goods.QueryGoodsUnitReq;
 import com.jy.stock.service.goods.GoodsUnitService;
 import com.jy.stock.service.system.UserInfoService;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
-import javax.annotation.Resource;
 import java.util.*;
 
 /**
@@ -30,7 +30,7 @@ import java.util.*;
 @Service
 public class GoodsUnitServiceImpl extends EnhancedServiceImpl<GoodsUnitMapper, GoodsUnit, GoodsUnitDTO> implements GoodsUnitService{
 
-    @Resource
+    @Autowired
     private UserInfoService userInfoService;
 
     @Override

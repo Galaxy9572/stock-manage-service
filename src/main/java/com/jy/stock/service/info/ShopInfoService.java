@@ -1,11 +1,11 @@
 package com.jy.stock.service.info;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.jy.stock.dao.entity.info.ShopInfo;
-import com.jy.stock.pojo.dto.PageDTO;
-import com.jy.stock.pojo.dto.info.ShopInfoDTO;
-import com.jy.stock.pojo.request.info.AddModifyShopInfoReq;
-import com.jy.stock.pojo.request.info.QueryShopInfoReq;
+import com.jy.stock.model.entity.info.ShopInfo;
+import com.jy.stock.model.dto.PageDTO;
+import com.jy.stock.model.dto.info.ShopInfoDTO;
+import com.jy.stock.model.request.info.AddModifyShopInfoReq;
+import com.jy.stock.model.request.info.QueryShopInfoReq;
 import org.springframework.transaction.annotation.Transactional;
 
 public interface ShopInfoService extends IService<ShopInfo>{

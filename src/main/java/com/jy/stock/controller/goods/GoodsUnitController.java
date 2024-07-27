@@ -3,24 +3,23 @@ package com.jy.stock.controller.goods;
 import com.jy.stock.common.aspect.annotation.AuthCheck;
 import com.jy.stock.common.aspect.annotation.OperationLog;
 import com.jy.stock.common.enhance.EnhancedController;
+import com.jy.stock.common.response.HttpResult;
 import com.jy.stock.common.response.PageVO;
-import com.jy.stock.common.response.ResponseVO;
 import com.jy.stock.common.util.bean.BeanCopyUtils;
 import com.jy.stock.enums.system.ModuleEnum;
 import com.jy.stock.enums.system.OperationTypeEnum;
 import com.jy.stock.enums.system.SubModuleEnum;
 import com.jy.stock.enums.system.UserRoleEnum;
-import com.jy.stock.pojo.converter.system.UserConverter;
-import com.jy.stock.pojo.dto.PageDTO;
-import com.jy.stock.pojo.dto.goods.GoodsUnitDTO;
-import com.jy.stock.pojo.request.goods.AddModifyGoodsUnitReq;
-import com.jy.stock.pojo.request.goods.QueryGoodsUnitReq;
-import com.jy.stock.pojo.vo.goods.GoodsUnitVO;
+import com.jy.stock.model.converter.system.UserConverter;
+import com.jy.stock.model.dto.PageDTO;
+import com.jy.stock.model.dto.goods.GoodsUnitDTO;
+import com.jy.stock.model.request.goods.AddModifyGoodsUnitReq;
+import com.jy.stock.model.request.goods.QueryGoodsUnitReq;
+import com.jy.stock.model.vo.goods.GoodsUnitVO;
 import com.jy.stock.service.goods.GoodsUnitService;
+import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import javax.annotation.Resource;
-import javax.validation.Valid;
 
 /**
  * 商品单位控制层
@@ -30,32 +29,32 @@ import javax.validation.Valid;
 @RequestMapping("/goods/unit")
 public class GoodsUnitController extends EnhancedController<GoodsUnitVO, GoodsUnitDTO> {
 
-    @Resource
+    @Autowired
     private GoodsUnitService goodsUnitService;
 
     @AuthCheck(roles = UserRoleEnum.ADMIN)
     @OperationLog(module = ModuleEnum.GOODS, subModule = SubModuleEnum.GOODS_UNIT, operationType = OperationTypeEnum.ADD_MODIFY)
     @PostMapping("")
-    public ResponseVO<GoodsUnitVO> addModifyGoodsUnit(@RequestBody @Valid AddModifyGoodsUnitReq req){
+    public HttpResult<GoodsUnitVO> addModifyGoodsUnit(@RequestBody @Valid AddModifyGoodsUnitReq req){
         GoodsUnitDTO goodsUnitDTO = goodsUnitService.addModifyGoodsUnit(req);
         GoodsUnitVO goodsUnitVO = new GoodsUnitVO();
         BeanCopyUtils.copy(goodsUnitDTO, goodsUnitVO);
-        return ResponseVO.success(goodsUnitVO);
+        return HttpResult.success(goodsUnitVO);
     }
 
     @PostMapping("/list")
-    public ResponseVO<PageVO<GoodsUnitVO>> listGoodsUnit(@RequestBody @Valid QueryGoodsUnitReq req){
+    public HttpResult<PageVO<GoodsUnitVO>> listGoodsUnit(@RequestBody @Valid QueryGoodsUnitReq req){
         PageDTO<GoodsUnitDTO> pageDTO = goodsUnitService.listGoodsUnit(req);
         PageVO<GoodsUnitVO> pageVO = toPageVO(pageDTO);
-        return ResponseVO.success(pageVO);
+        return HttpResult.success(pageVO);
     }
 
     @AuthCheck(roles = UserRoleEnum.ADMIN)
     @OperationLog(module = ModuleEnum.GOODS, subModule = SubModuleEnum.GOODS_UNIT, operationType = OperationTypeEnum.DELETE)
     @DeleteMapping("/{id}")
-    public ResponseVO<Boolean> deleteGoodsUnit(@PathVariable Long id){
+    public HttpResult<Boolean> deleteGoodsUnit(@PathVariable Long id){
         boolean isSuccess = goodsUnitService.deleteGoodsUnit(id);
-        return ResponseVO.success(isSuccess);
+        return HttpResult.success(isSuccess);
     }
 
     @Override

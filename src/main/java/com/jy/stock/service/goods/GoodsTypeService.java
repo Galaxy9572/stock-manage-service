@@ -1,9 +1,9 @@
 package com.jy.stock.service.goods;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.jy.stock.dao.entity.goods.GoodsType;
-import com.jy.stock.pojo.dto.goods.GoodsTypeDTO;
-import com.jy.stock.pojo.request.goods.AddModifyGoodsTypeReq;
+import com.jy.stock.model.entity.goods.GoodsType;
+import com.jy.stock.model.dto.goods.GoodsTypeDTO;
+import com.jy.stock.model.request.goods.AddModifyGoodsTypeReq;
 
 import java.util.Collection;
 import java.util.List;

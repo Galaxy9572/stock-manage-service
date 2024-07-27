@@ -4,7 +4,7 @@ package com.jy.stock.common.util;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.jy.stock.common.response.PageVO;
-import com.jy.stock.pojo.dto.PageDTO;
+import com.jy.stock.model.dto.PageDTO;
 
 /**
  * 分页工具

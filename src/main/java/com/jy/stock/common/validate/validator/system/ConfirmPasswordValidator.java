@@ -1,11 +1,11 @@
 package com.jy.stock.common.validate.validator.system;
 
 import com.jy.stock.common.validate.annotation.system.ValidateConfirmPassword;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
 
 /**
  * @author liaojunyao

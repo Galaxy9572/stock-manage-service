@@ -1,6 +1,6 @@
 package com.jy.stock.enums.order;
 
-import com.jy.stock.common.response.EnumCodeDescVO;
+import com.jy.stock.common.response.CodeDescVO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -47,8 +47,8 @@ public enum PaymentMethodEnum {
         return Arrays.stream(PaymentMethodEnum.values()).filter(e -> e.getCode().equals(code)).findFirst().orElse(null);
     }
 
-    public static List<EnumCodeDescVO> listAll(){
-        return Arrays.stream(PaymentMethodEnum.values()).map(e -> new EnumCodeDescVO(e.getCode(), e.getDesc())).toList();
+    public static List<CodeDescVO> listAll(){
+        return Arrays.stream(PaymentMethodEnum.values()).map(e -> new CodeDescVO(e.getCode(), e.getDesc())).toList();
     }
 
 }

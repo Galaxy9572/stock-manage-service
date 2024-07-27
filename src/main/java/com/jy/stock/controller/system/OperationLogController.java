@@ -1,23 +1,23 @@
 package com.jy.stock.controller.system;
 
 import com.jy.stock.common.enhance.EnhancedController;
-import com.jy.stock.common.response.EnumCodeDescVO;
+import com.jy.stock.common.response.CodeDescVO;
+import com.jy.stock.common.response.HttpResult;
 import com.jy.stock.common.response.PageVO;
-import com.jy.stock.common.response.ResponseVO;
 import com.jy.stock.common.util.AssertUtils;
 import com.jy.stock.enums.system.ModuleEnum;
 import com.jy.stock.enums.system.OperationTypeEnum;
 import com.jy.stock.enums.system.SubModuleEnum;
-import com.jy.stock.pojo.converter.system.OperationLogConverter;
-import com.jy.stock.pojo.dto.PageDTO;
-import com.jy.stock.pojo.dto.system.OperationLogDTO;
-import com.jy.stock.pojo.request.system.QueryOperationLogReq;
-import com.jy.stock.pojo.vo.system.OperationLogVO;
+import com.jy.stock.model.converter.system.OperationLogConverter;
+import com.jy.stock.model.dto.PageDTO;
+import com.jy.stock.model.dto.system.OperationLogDTO;
+import com.jy.stock.model.request.system.QueryOperationLogReq;
+import com.jy.stock.model.vo.system.OperationLogVO;
 import com.jy.stock.service.system.OperationLogService;
+import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.Resource;
-import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -29,34 +29,34 @@ import java.util.List;
 @RequestMapping("/system/operation-log")
 public class OperationLogController extends EnhancedController<OperationLogVO, OperationLogDTO> {
 
-    @Resource
+    @Autowired
     private OperationLogService operationLogService;
 
     @PostMapping("/list")
-    public ResponseVO<PageVO<OperationLogVO>> listOperationLogByPage(@RequestBody @Valid QueryOperationLogReq request) {
+    public HttpResult<PageVO<OperationLogVO>> listOperationLogByPage(@RequestBody @Valid QueryOperationLogReq request) {
         PageDTO<OperationLogDTO> pageDTO = operationLogService.listOperationLogByPage(request);
         PageVO<OperationLogVO> pageVO = toPageVO(pageDTO);
-        return ResponseVO.success(pageVO);
+        return HttpResult.success(pageVO);
     }
 
     @GetMapping("/module/list")
-    public ResponseVO<List<EnumCodeDescVO>> listAllModules() {
-        List<EnumCodeDescVO> list = ModuleEnum.listAll();
-        return ResponseVO.success(list);
+    public HttpResult<List<CodeDescVO>> listAllModules() {
+        List<CodeDescVO> list = ModuleEnum.listAll();
+        return HttpResult.success(list);
     }
 
     @GetMapping("/module/{module}/sub-module/list")
-    public ResponseVO<List<EnumCodeDescVO>> listAllSubModules(@PathVariable String module) {
+    public HttpResult<List<CodeDescVO>> listAllSubModules(@PathVariable String module) {
         ModuleEnum moduleEnum = ModuleEnum.getByCode(module);
         AssertUtils.isNotNull(moduleEnum, "param.invalid");
-        List<EnumCodeDescVO> list = SubModuleEnum.listByModule(moduleEnum);
-        return ResponseVO.success(list);
+        List<CodeDescVO> list = SubModuleEnum.listByModule(moduleEnum);
+        return HttpResult.success(list);
     }
 
     @GetMapping("/operation-type/list")
-    public ResponseVO<List<EnumCodeDescVO>> listAllOperationTypes() {
-        List<EnumCodeDescVO> list = OperationTypeEnum.listAll();
-        return ResponseVO.success(list);
+    public HttpResult<List<CodeDescVO>> listAllOperationTypes() {
+        List<CodeDescVO> list = OperationTypeEnum.listAll();
+        return HttpResult.success(list);
     }
 
     @Override

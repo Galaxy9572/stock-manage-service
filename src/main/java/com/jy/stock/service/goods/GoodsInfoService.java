@@ -1,11 +1,11 @@
 package com.jy.stock.service.goods;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.jy.stock.dao.entity.goods.GoodsInfo;
-import com.jy.stock.pojo.dto.PageDTO;
-import com.jy.stock.pojo.dto.goods.GoodsInfoDTO;
-import com.jy.stock.pojo.request.goods.AddModifyGoodsInfoReq;
-import com.jy.stock.pojo.request.goods.QueryGoodsInfoReq;
+import com.jy.stock.model.entity.goods.GoodsInfo;
+import com.jy.stock.model.dto.PageDTO;
+import com.jy.stock.model.dto.goods.GoodsInfoDTO;
+import com.jy.stock.model.request.goods.AddModifyGoodsInfoReq;
+import com.jy.stock.model.request.goods.QueryGoodsInfoReq;
 
 public interface GoodsInfoService extends IService<GoodsInfo>{
 

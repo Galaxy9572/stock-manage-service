@@ -5,7 +5,7 @@ import com.github.benmanes.caffeine.cache.Caffeine;
 import com.jy.stock.common.util.bean.converter.CommonConverter;
 import org.springframework.cglib.beans.BeanCopier;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 
 
 /**

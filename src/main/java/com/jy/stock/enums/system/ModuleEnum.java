@@ -1,6 +1,6 @@
 package com.jy.stock.enums.system;
 
-import com.jy.stock.common.response.EnumCodeDescVO;
+import com.jy.stock.common.response.CodeDescVO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -42,8 +42,8 @@ public enum ModuleEnum {
         return Arrays.stream(ModuleEnum.values()).filter(e -> e.code.equals(code)).findFirst().orElse(null);
     }
 
-    public static List<EnumCodeDescVO> listAll(){
-        return Arrays.stream(ModuleEnum.values()).map(e -> new EnumCodeDescVO(e.getCode(), e.getDesc())).toList();
+    public static List<CodeDescVO> listAll(){
+        return Arrays.stream(ModuleEnum.values()).map(e -> new CodeDescVO(e.getCode(), e.getDesc())).toList();
     }
 
 }

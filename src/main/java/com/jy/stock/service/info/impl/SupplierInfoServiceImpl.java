@@ -5,18 +5,18 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.jy.stock.common.enhance.EnhancedServiceImpl;
 import com.jy.stock.common.util.AssertUtils;
 import com.jy.stock.common.util.bean.BeanCopyUtils;
-import com.jy.stock.dao.entity.info.SupplierInfo;
-import com.jy.stock.dao.mapper.info.SupplierInfoMapper;
-import com.jy.stock.pojo.dto.PageDTO;
-import com.jy.stock.pojo.dto.info.SupplierInfoDTO;
-import com.jy.stock.pojo.dto.system.UserInfoDTO;
-import com.jy.stock.pojo.request.info.AddModifySupplierInfoReq;
-import com.jy.stock.pojo.request.info.QuerySupplierInfoReq;
+import com.jy.stock.mapper.info.SupplierInfoMapper;
+import com.jy.stock.model.dto.PageDTO;
+import com.jy.stock.model.dto.info.SupplierInfoDTO;
+import com.jy.stock.model.dto.system.UserInfoDTO;
+import com.jy.stock.model.entity.info.SupplierInfo;
+import com.jy.stock.model.request.info.AddModifySupplierInfoReq;
+import com.jy.stock.model.request.info.QuerySupplierInfoReq;
 import com.jy.stock.service.info.SupplierInfoService;
 import com.jy.stock.service.system.UserInfoService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -27,7 +27,7 @@ import java.util.Map;
 @Service
 public class SupplierInfoServiceImpl extends EnhancedServiceImpl<SupplierInfoMapper, SupplierInfo, SupplierInfoDTO> implements SupplierInfoService {
 
-    @Resource
+    @Autowired
     private UserInfoService userInfoService;
 
     @Override

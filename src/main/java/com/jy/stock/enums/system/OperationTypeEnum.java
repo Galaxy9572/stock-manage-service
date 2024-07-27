@@ -1,6 +1,6 @@
 package com.jy.stock.enums.system;
 
-import com.jy.stock.common.response.EnumCodeDescVO;
+import com.jy.stock.common.response.CodeDescVO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -44,8 +44,8 @@ public enum OperationTypeEnum {
         return Arrays.stream(OperationTypeEnum.values()).filter(e -> e.code.equals(code)).findFirst().orElse(null);
     }
 
-    public static List<EnumCodeDescVO> listAll(){
-        return Arrays.stream(OperationTypeEnum.values()).filter(OperationTypeEnum::isShowInUI).map(e -> new EnumCodeDescVO(e.getCode(), e.getDesc())).toList();
+    public static List<CodeDescVO> listAll(){
+        return Arrays.stream(OperationTypeEnum.values()).filter(OperationTypeEnum::isShowInUI).map(e -> new CodeDescVO(e.getCode(), e.getDesc())).toList();
     }
 
     public static boolean isAddOrModify(String code) {

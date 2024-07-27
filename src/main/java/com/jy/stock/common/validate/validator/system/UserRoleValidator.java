@@ -1,13 +1,13 @@
 package com.jy.stock.common.validate.validator.system;
 
-import com.jy.stock.common.response.EnumCodeDescVO;
+import com.jy.stock.common.response.CodeDescVO;
 import com.jy.stock.common.util.StreamUtils;
 import com.jy.stock.common.validate.annotation.system.ValidateUserRole;
 import com.jy.stock.enums.system.UserRoleEnum;
 import org.springframework.util.CollectionUtils;
 
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 import java.util.List;
 import java.util.Set;
 
@@ -20,7 +20,7 @@ public class UserRoleValidator implements ConstraintValidator<ValidateUserRole, 
 
     @Override
     public void initialize(ValidateUserRole constraintAnnotation) {
-        roleSet = StreamUtils.mapCollectToSet(UserRoleEnum.listAllRoles(), EnumCodeDescVO::getCode);
+        roleSet = StreamUtils.mapCollectToSet(UserRoleEnum.listAllRoles(), CodeDescVO::getCode);
     }
 
     @Override

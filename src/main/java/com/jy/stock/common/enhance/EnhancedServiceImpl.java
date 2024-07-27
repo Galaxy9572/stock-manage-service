@@ -7,7 +7,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.jy.stock.common.util.AssertUtils;
 import com.jy.stock.common.util.StreamUtils;
 import com.jy.stock.common.util.bean.BeanCopyUtils;
-import com.jy.stock.pojo.dto.PageDTO;
+import com.jy.stock.model.dto.PageDTO;
 import org.springframework.util.ReflectionUtils;
 
 import java.lang.reflect.InvocationTargetException;

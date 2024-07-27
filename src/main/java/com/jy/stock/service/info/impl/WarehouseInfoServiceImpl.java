@@ -8,20 +8,20 @@ import com.jy.stock.common.enhance.EnhancedServiceImpl;
 import com.jy.stock.common.util.AssertUtils;
 import com.jy.stock.common.util.StreamUtils;
 import com.jy.stock.common.util.bean.BeanCopyUtils;
-import com.jy.stock.dao.entity.info.WarehouseInfo;
-import com.jy.stock.dao.mapper.info.WarehouseInfoMapper;
-import com.jy.stock.pojo.dto.PageDTO;
-import com.jy.stock.pojo.dto.info.WarehouseInfoDTO;
-import com.jy.stock.pojo.dto.system.UserInfoDTO;
-import com.jy.stock.pojo.request.info.AddModifyWarehouseInfoReq;
-import com.jy.stock.pojo.request.info.QueryWarehouseInfoReq;
+import com.jy.stock.mapper.info.WarehouseInfoMapper;
+import com.jy.stock.model.dto.PageDTO;
+import com.jy.stock.model.dto.info.WarehouseInfoDTO;
+import com.jy.stock.model.dto.system.UserInfoDTO;
+import com.jy.stock.model.entity.info.WarehouseInfo;
+import com.jy.stock.model.request.info.AddModifyWarehouseInfoReq;
+import com.jy.stock.model.request.info.QueryWarehouseInfoReq;
 import com.jy.stock.service.info.WarehouseInfoService;
 import com.jy.stock.service.system.UserInfoService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
-import javax.annotation.Resource;
 import java.util.*;
 
 /**
@@ -30,7 +30,7 @@ import java.util.*;
 @Service
 public class WarehouseInfoServiceImpl extends EnhancedServiceImpl<WarehouseInfoMapper, WarehouseInfo, WarehouseInfoDTO> implements WarehouseInfoService{
 
-    @Resource
+    @Autowired
     private UserInfoService userInfoService;
 
     @Override

@@ -1,5 +1,7 @@
 package com.jy.stock.common.util;
 
+import org.apache.commons.lang3.ArrayUtils;
+
 import java.util.*;
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -13,6 +15,10 @@ public class StreamUtils {
     public static <IN, OUT> List<OUT> mapCollect(List<IN> list, Function<? super IN, ? extends OUT> mapper) {
         return Optional.ofNullable(list).orElse(new ArrayList<>())
                 .stream().map(mapper).collect(Collectors.toList());
+    }
+
+    public static <IN, OUT> List<OUT> mapCollect(IN[] array, Function<? super IN, ? extends OUT> mapper) {
+        return ArrayUtils.isEmpty(array) ? new ArrayList<>() : Arrays.stream(array).map(mapper).collect(Collectors.toList());
     }
 
     public static <IN, OUT> List<OUT> mapFilterCollect(List<IN> list, Function<? super IN, ? extends OUT> mapper,
@@ -40,6 +46,10 @@ public class StreamUtils {
     public static <IN> IN findFirst(List<IN> list, Predicate<? super IN> predicate) {
         return Optional.ofNullable(list).orElse(new ArrayList<>())
                 .stream().filter(predicate).findFirst().orElse(null);
+    }
+
+    public static <IN> IN findFirst(IN[] array, Predicate<? super IN> predicate) {
+        return ArrayUtils.isEmpty(array) ? null : Arrays.stream(array).filter(predicate).findFirst().orElse(null);
     }
 
     public static <IN> boolean allMatch(List<IN> list, Predicate<? super IN> predicate) {

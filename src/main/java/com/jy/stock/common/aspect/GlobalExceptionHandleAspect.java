@@ -1,7 +1,7 @@
 package com.jy.stock.common.aspect;
 
 import com.jy.stock.common.exception.BusinessException;
-import com.jy.stock.common.response.ResponseVO;
+import com.jy.stock.common.response.HttpResult;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.ObjectError;
@@ -26,11 +26,11 @@ public class GlobalExceptionHandleAspect {
      * @return ResponseVO
      */
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseVO<String> handleValidationException(MethodArgumentNotValidException e){
+    public HttpResult<String> handleValidationException(MethodArgumentNotValidException e){
         StringBuilder builder = new StringBuilder();
         List<ObjectError> allErrors = e.getBindingResult().getAllErrors();
         allErrors.forEach(error -> builder.append(error.getDefaultMessage()).append("\n"));
-        return ResponseVO.failed(HttpStatus.BAD_REQUEST, builder.toString());
+        return HttpResult.failed(HttpStatus.BAD_REQUEST, builder.toString());
     }
 
     /**
@@ -39,9 +39,9 @@ public class GlobalExceptionHandleAspect {
      * @return ResponseVO
      */
     @ExceptionHandler(MissingServletRequestParameterException.class)
-    public ResponseVO<String> handleMissingServletRequestParameterException(MissingServletRequestParameterException e){
+    public HttpResult<String> handleMissingServletRequestParameterException(MissingServletRequestParameterException e){
         String parameterName = e.getParameterName();
-        return ResponseVO.failed(HttpStatus.BAD_REQUEST, "missing.parameter", parameterName);
+        return HttpResult.failed(HttpStatus.BAD_REQUEST, "missing.parameter", parameterName);
     }
 
     /**
@@ -50,8 +50,8 @@ public class GlobalExceptionHandleAspect {
      * @return ResponseVO
      */
     @ExceptionHandler(BusinessException.class)
-    public ResponseVO<String> handleBusinessException(BusinessException e){
-        return ResponseVO.failed(e.getHttpStatus(), e.getMessage());
+    public HttpResult<String> handleBusinessException(BusinessException e){
+        return HttpResult.failed(e.getHttpStatus(), e.getMessage());
     }
 
     /**
@@ -60,9 +60,9 @@ public class GlobalExceptionHandleAspect {
      * @return ResponseVO
      */
     @ExceptionHandler(Exception.class)
-    public ResponseVO<String> handleOtherException(Exception e){
+    public HttpResult<String> handleOtherException(Exception e){
         log.error("Global Exception Handler Caught Exception", e);
-        return ResponseVO.failed(HttpStatus.INTERNAL_SERVER_ERROR);
+        return HttpResult.failed(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
 }

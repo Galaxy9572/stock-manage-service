@@ -1,9 +1,9 @@
 package com.jy.stock.service.order.impl;
 
 import com.jy.stock.common.enhance.EnhancedServiceImpl;
-import com.jy.stock.dao.entity.order.OrderRecordDetail;
-import com.jy.stock.dao.mapper.order.OrderRecordDetailMapper;
-import com.jy.stock.pojo.dto.order.OrderRecordDetailDTO;
+import com.jy.stock.model.entity.order.OrderRecordDetail;
+import com.jy.stock.mapper.order.OrderRecordDetailMapper;
+import com.jy.stock.model.dto.order.OrderRecordDetailDTO;
 import com.jy.stock.service.order.OrderRecordDetailService;
 import org.springframework.stereotype.Service;
 

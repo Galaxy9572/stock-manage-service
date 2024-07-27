@@ -3,7 +3,7 @@ package com.jy.stock.common.enhance;
 import com.jy.stock.common.response.PageVO;
 import com.jy.stock.common.util.StreamUtils;
 import com.jy.stock.common.util.bean.BeanCopyUtils;
-import com.jy.stock.pojo.dto.PageDTO;
+import com.jy.stock.model.dto.PageDTO;
 import org.apache.ibatis.logging.Log;
 import org.apache.ibatis.logging.LogFactory;
 import org.springframework.util.ReflectionUtils;

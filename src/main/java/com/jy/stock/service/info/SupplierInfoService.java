@@ -1,11 +1,11 @@
 package com.jy.stock.service.info;
 
-import com.jy.stock.dao.entity.info.SupplierInfo;
+import com.jy.stock.model.entity.info.SupplierInfo;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.jy.stock.pojo.dto.PageDTO;
-import com.jy.stock.pojo.dto.info.SupplierInfoDTO;
-import com.jy.stock.pojo.request.info.AddModifySupplierInfoReq;
-import com.jy.stock.pojo.request.info.QuerySupplierInfoReq;
+import com.jy.stock.model.dto.PageDTO;
+import com.jy.stock.model.dto.info.SupplierInfoDTO;
+import com.jy.stock.model.request.info.AddModifySupplierInfoReq;
+import com.jy.stock.model.request.info.QuerySupplierInfoReq;
 
 /**
  * @author liaojunyao

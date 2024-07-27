@@ -10,22 +10,22 @@ import com.jy.stock.common.util.HashUtils;
 import com.jy.stock.common.util.PageUtils;
 import com.jy.stock.common.util.bean.BeanCopyUtils;
 import com.jy.stock.constants.system.UserConstants;
-import com.jy.stock.dao.entity.system.UserInfo;
-import com.jy.stock.dao.mapper.system.UserInfoMapper;
-import com.jy.stock.pojo.dto.PageDTO;
-import com.jy.stock.pojo.dto.system.UserInfoDTO;
-import com.jy.stock.pojo.request.system.AddModifyUserInfoReq;
-import com.jy.stock.pojo.request.system.QueryUserInfoReq;
-import com.jy.stock.pojo.request.system.UserLoginReq;
+import com.jy.stock.mapper.system.UserInfoMapper;
+import com.jy.stock.model.dto.PageDTO;
+import com.jy.stock.model.dto.system.UserInfoDTO;
+import com.jy.stock.model.entity.system.UserInfo;
+import com.jy.stock.model.request.system.AddModifyUserInfoReq;
+import com.jy.stock.model.request.system.QueryUserInfoReq;
+import com.jy.stock.model.request.system.UserLoginReq;
 import com.jy.stock.service.system.UserInfoService;
 import com.jy.stock.service.system.UserRoleService;
+import jakarta.servlet.http.HttpSession;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.annotation.Resource;
-import javax.servlet.http.HttpSession;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -38,7 +38,7 @@ import java.util.Map;
 @Service
 public class UserInfoServiceImpl extends EnhancedServiceImpl<UserInfoMapper, UserInfo, UserInfoDTO> implements UserInfoService {
 
-    @Resource
+    @Autowired
     private UserRoleService userRoleService;
 
     @Override
@@ -66,7 +66,6 @@ public class UserInfoServiceImpl extends EnhancedServiceImpl<UserInfoMapper, Use
         String encryptedPassword = HashUtils.sha256(request.getPassword() + salt);
         UserInfo userInfo = new UserInfo();
         BeanCopyUtils.copy(request, userInfo);
-        userInfo.setId(null);
         userInfo.setSalt(salt);
         userInfo.setEncryptedPassword(encryptedPassword);
         boolean isSuccess = save(userInfo);
@@ -145,6 +144,11 @@ public class UserInfoServiceImpl extends EnhancedServiceImpl<UserInfoMapper, Use
         UserInfoDTO userInfo = baseMapper.getUserInfoByName(userName);
         AssertUtils.isNotNull(userInfo, "user.not.exist");
         return userInfo;
+    }
+
+    @Override
+    public long countAllUsers() {
+        return count();
     }
 
     @Override

@@ -1,11 +1,11 @@
 package com.jy.stock.service.info;
 
-import com.jy.stock.dao.entity.info.CustomerInfo;
+import com.jy.stock.model.entity.info.CustomerInfo;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.jy.stock.pojo.dto.PageDTO;
-import com.jy.stock.pojo.dto.info.CustomerInfoDTO;
-import com.jy.stock.pojo.request.info.AddModifyCustomerInfoReq;
-import com.jy.stock.pojo.request.info.QueryCustomerInfoReq;
+import com.jy.stock.model.dto.PageDTO;
+import com.jy.stock.model.dto.info.CustomerInfoDTO;
+import com.jy.stock.model.request.info.AddModifyCustomerInfoReq;
+import com.jy.stock.model.request.info.QueryCustomerInfoReq;
 
 public interface CustomerInfoService extends IService<CustomerInfo>{
 

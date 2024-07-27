@@ -1,14 +1,14 @@
 package com.jy.stock.controller.system;
 
-import com.jy.stock.common.response.EnumCodeDescVO;
+import com.jy.stock.common.response.CodeDescVO;
+import com.jy.stock.common.response.HttpResult;
 import com.jy.stock.enums.system.UserRoleEnum;
-import com.jy.stock.common.response.ResponseVO;
 import com.jy.stock.service.system.UserRoleService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -20,7 +20,7 @@ import java.util.List;
 @RequestMapping("/system/user/role")
 public class UserRoleController {
 
-    @Resource
+    @Autowired
     private UserRoleService userRoleService;
 
     /**
@@ -29,8 +29,8 @@ public class UserRoleController {
      * @return List<UserRoleEnumVO>
      */
     @GetMapping("/all")
-    public ResponseVO<List<EnumCodeDescVO>> listAllRoles() {
-        return ResponseVO.success(UserRoleEnum.listAllRoles());
+    public HttpResult<List<CodeDescVO>> listAllRoles() {
+        return HttpResult.success(UserRoleEnum.listAllRoles());
     }
 
 }

@@ -1,9 +1,9 @@
 package com.jy.stock.service.region;
 
-import com.jy.stock.dao.entity.region.RegionInfo;
+import com.jy.stock.model.entity.region.RegionInfo;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.jy.stock.pojo.dto.region.RegionInfoDTO;
-import com.jy.stock.pojo.request.region.QueryRegionRequest;
+import com.jy.stock.model.dto.region.RegionInfoDTO;
+import com.jy.stock.model.request.region.QueryRegionRequest;
 
 import java.util.List;
 

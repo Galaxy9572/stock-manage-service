@@ -2,8 +2,8 @@ package com.jy.stock.common.validate.validator.goods;
 
 import com.jy.stock.common.validate.annotation.goods.ValidateWholesalePrice;
 
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 import java.math.BigDecimal;
 
 /**

@@ -3,8 +3,8 @@ package com.jy.stock.common.validate.validator.info;
 import com.jy.stock.common.validate.annotation.info.ValidateEmail;
 import org.apache.commons.lang3.StringUtils;
 
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 import java.util.regex.Pattern;
 
 /**

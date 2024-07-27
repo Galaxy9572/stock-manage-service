@@ -1,11 +1,11 @@
 package com.jy.stock.service.system;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.jy.stock.dao.entity.system.OperationLog;
-import com.jy.stock.pojo.dto.PageDTO;
-import com.jy.stock.pojo.dto.system.OperationLogDTO;
-import com.jy.stock.pojo.request.system.AddOperationLogReq;
-import com.jy.stock.pojo.request.system.QueryOperationLogReq;
+import com.jy.stock.model.entity.system.OperationLog;
+import com.jy.stock.model.dto.PageDTO;
+import com.jy.stock.model.dto.system.OperationLogDTO;
+import com.jy.stock.model.request.system.AddOperationLogReq;
+import com.jy.stock.model.request.system.QueryOperationLogReq;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.transaction.annotation.Transactional;
 

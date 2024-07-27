@@ -1,23 +1,23 @@
 package com.jy.stock.service.region.impl;
 
+import com.alibaba.fastjson.JSONObject;
 import com.jy.stock.common.enhance.EnhancedServiceImpl;
 import com.jy.stock.common.exception.BusinessException;
 import com.jy.stock.common.util.AssertUtils;
 import com.jy.stock.common.util.StreamUtils;
 import com.jy.stock.common.util.bean.BeanCopyUtils;
-import com.jy.stock.dao.entity.region.RegionInfo;
-import com.jy.stock.dao.mapper.region.RegionInfoMapper;
 import com.jy.stock.enums.region.RegionLevelEnum;
-import com.jy.stock.pojo.dto.region.RegionInfoDTO;
-import com.jy.stock.pojo.request.region.QueryRegionRequest;
+import com.jy.stock.mapper.region.RegionInfoMapper;
+import com.jy.stock.model.dto.region.RegionInfoDTO;
+import com.jy.stock.model.entity.region.RegionInfo;
+import com.jy.stock.model.request.region.QueryRegionRequest;
 import com.jy.stock.service.region.RegionInfoService;
 import org.apache.commons.collections.CollectionUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisCallback;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -28,8 +28,8 @@ import java.util.List;
 @Service
 public class RegionInfoServiceImpl extends EnhancedServiceImpl<RegionInfoMapper, RegionInfo, RegionInfoDTO> implements RegionInfoService{
 
-    @Resource
-    private RedisTemplate<String, Object> redisTemplate;
+    @Autowired
+    private RedisTemplate<String, String> redisTemplate;
 
     @Override
     public List<RegionInfoDTO> listRegions(QueryRegionRequest request) {
@@ -59,11 +59,11 @@ public class RegionInfoServiceImpl extends EnhancedServiceImpl<RegionInfoMapper,
 
     private List<RegionInfoDTO> listRegionsFromCache(RegionInfo param) {
         String cacheKey = getCacheKey(param);
-        List<Object> list = redisTemplate.opsForList().range(cacheKey, 0, -1);
+        List<String> list = redisTemplate.opsForList().range(cacheKey, 0, -1);
         if(CollectionUtils.isEmpty(list)){
             return new ArrayList<>();
         }
-        return StreamUtils.mapCollect(list, e -> (RegionInfoDTO) e);
+        return StreamUtils.mapCollect(list, e -> JSONObject.parseObject(e, RegionInfoDTO.class));
     }
 
     @SuppressWarnings("unchecked")
@@ -72,10 +72,8 @@ public class RegionInfoServiceImpl extends EnhancedServiceImpl<RegionInfoMapper,
             return;
         }
         String cacheKey = getCacheKey(param);
-        RedisSerializer<Object> keySerializer = (RedisSerializer<Object>) redisTemplate.getKeySerializer();
-        RedisSerializer<Object> valueSerializer = (RedisSerializer<Object>) redisTemplate.getValueSerializer();
         redisTemplate.executePipelined((RedisCallback<?>) connection -> {
-            regionInfoList.forEach(e -> connection.listCommands().lPush(keySerializer.serialize(cacheKey), valueSerializer.serialize(e)));
+            regionInfoList.forEach(e -> connection.listCommands().lPush(cacheKey.getBytes(), JSONObject.toJSONString(e).getBytes()));
             return null;
         });
     }

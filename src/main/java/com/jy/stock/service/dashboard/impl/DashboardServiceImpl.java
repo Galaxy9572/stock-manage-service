@@ -1,14 +1,13 @@
 package com.jy.stock.service.dashboard.impl;
 
-import com.jy.stock.pojo.vo.dashboard.DashboardStatisticVO;
-import com.jy.stock.service.info.CustomerInfoService;
+import com.jy.stock.model.vo.dashboard.DashboardStatisticVO;
 import com.jy.stock.service.dashboard.DashboardService;
 import com.jy.stock.service.goods.GoodsInfoService;
+import com.jy.stock.service.info.CustomerInfoService;
 import com.jy.stock.service.info.SupplierInfoService;
 import com.jy.stock.service.system.UserInfoService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import javax.annotation.Resource;
 
 /**
  * @author liaojunyao
@@ -16,16 +15,16 @@ import javax.annotation.Resource;
 @Service
 public class DashboardServiceImpl implements DashboardService {
 
-    @Resource
+    @Autowired
     private UserInfoService userInfoService;
 
-    @Resource
+    @Autowired
     private GoodsInfoService goodsInfoService;
 
-    @Resource
+    @Autowired
     private CustomerInfoService customerInfoService;
 
-    @Resource
+    @Autowired
     private SupplierInfoService supplierInfoService;
 
     @Override

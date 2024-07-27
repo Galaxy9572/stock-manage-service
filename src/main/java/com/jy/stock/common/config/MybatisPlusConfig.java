@@ -10,20 +10,20 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 /**
  * @author liaojunyao
  */
 @Configuration
-@MapperScan("com.jy.stock.dao.mapper")
+@MapperScan("com.jy.stock.mapper")
 public class MybatisPlusConfig implements MetaObjectHandler {
 
     @Override
     public void insertFill(MetaObject metaObject) {
         Long userId = ContextHolder.currentUserId();
-        this.strictInsertFill(metaObject, "createTime", Date.class, new Date());
-        this.strictInsertFill(metaObject, "updateTime", Date.class, new Date());
+        this.strictInsertFill(metaObject, "createTime", LocalDateTime.class, LocalDateTime.now());
+        this.strictInsertFill(metaObject, "updateTime", LocalDateTime.class, LocalDateTime.now());
         this.strictInsertFill(metaObject, "createUserId", Long.class, userId);
         this.strictInsertFill(metaObject, "updateUserId", Long.class, userId);
         this.strictInsertFill(metaObject, "logicDelete", Boolean.class, false);
@@ -32,7 +32,7 @@ public class MybatisPlusConfig implements MetaObjectHandler {
     @Override
     public void updateFill(MetaObject metaObject) {
         Long userId = ContextHolder.currentUserId();
-        this.strictUpdateFill(metaObject, "updateTime", Date.class, new Date());
+        this.strictUpdateFill(metaObject, "updateTime", LocalDateTime.class, LocalDateTime.now());
         this.strictUpdateFill(metaObject, "updateUserId", Long.class, userId);
     }
 

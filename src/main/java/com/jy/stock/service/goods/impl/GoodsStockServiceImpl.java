@@ -2,15 +2,14 @@ package com.jy.stock.service.goods.impl;
 
 import com.jy.stock.common.enhance.EnhancedServiceImpl;
 import com.jy.stock.common.util.AssertUtils;
-import com.jy.stock.dao.entity.goods.GoodsStock;
-import com.jy.stock.dao.mapper.goods.GoodsStockMapper;
-import com.jy.stock.pojo.dto.goods.GoodsStockDTO;
-import com.jy.stock.pojo.request.goods.ModifyGoodsStockWarningReq;
+import com.jy.stock.mapper.goods.GoodsStockMapper;
+import com.jy.stock.model.dto.goods.GoodsStockDTO;
+import com.jy.stock.model.entity.goods.GoodsStock;
+import com.jy.stock.model.request.goods.ModifyGoodsStockWarningReq;
 import com.jy.stock.service.goods.GoodsInfoService;
 import com.jy.stock.service.goods.GoodsStockService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import javax.annotation.Resource;
 
 /**
  * 商品库存服务
@@ -19,7 +18,7 @@ import javax.annotation.Resource;
 @Service
 public class GoodsStockServiceImpl extends EnhancedServiceImpl<GoodsStockMapper, GoodsStock, GoodsStockDTO> implements GoodsStockService{
 
-    @Resource
+    @Autowired
     private GoodsInfoService goodsInfoService;
 
     @Override

@@ -6,19 +6,19 @@ import com.jy.stock.common.enhance.EnhancedServiceImpl;
 import com.jy.stock.common.util.AssertUtils;
 import com.jy.stock.common.util.StreamUtils;
 import com.jy.stock.common.util.bean.BeanCopyUtils;
-import com.jy.stock.dao.entity.goods.GoodsType;
-import com.jy.stock.dao.mapper.goods.GoodsTypeMapper;
-import com.jy.stock.pojo.dto.goods.GoodsTypeDTO;
-import com.jy.stock.pojo.dto.system.UserInfoDTO;
-import com.jy.stock.pojo.request.goods.AddModifyGoodsTypeReq;
+import com.jy.stock.mapper.goods.GoodsTypeMapper;
+import com.jy.stock.model.dto.goods.GoodsTypeDTO;
+import com.jy.stock.model.dto.system.UserInfoDTO;
+import com.jy.stock.model.entity.goods.GoodsType;
+import com.jy.stock.model.request.goods.AddModifyGoodsTypeReq;
 import com.jy.stock.service.goods.GoodsTypeService;
 import com.jy.stock.service.system.UserInfoService;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
-import javax.annotation.Resource;
 import java.util.*;
 
 /**
@@ -29,7 +29,7 @@ import java.util.*;
 @Service
 public class GoodsTypeServiceImpl extends EnhancedServiceImpl<GoodsTypeMapper, GoodsType, GoodsTypeDTO> implements GoodsTypeService {
 
-    @Resource
+    @Autowired
     private UserInfoService userInfoService;
 
     @Override

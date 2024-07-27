@@ -10,20 +10,20 @@ import com.jy.stock.common.util.DistributedLocker;
 import com.jy.stock.common.util.StreamUtils;
 import com.jy.stock.common.util.bean.BeanCopyUtils;
 import com.jy.stock.constants.info.InfoLockKey;
-import com.jy.stock.dao.entity.info.ShopInfo;
-import com.jy.stock.dao.mapper.info.ShopInfoMapper;
-import com.jy.stock.pojo.dto.PageDTO;
-import com.jy.stock.pojo.dto.info.ShopInfoDTO;
-import com.jy.stock.pojo.dto.system.UserInfoDTO;
-import com.jy.stock.pojo.request.info.AddModifyShopInfoReq;
-import com.jy.stock.pojo.request.info.QueryShopInfoReq;
+import com.jy.stock.mapper.info.ShopInfoMapper;
+import com.jy.stock.model.dto.PageDTO;
+import com.jy.stock.model.dto.info.ShopInfoDTO;
+import com.jy.stock.model.dto.system.UserInfoDTO;
+import com.jy.stock.model.entity.info.ShopInfo;
+import com.jy.stock.model.request.info.AddModifyShopInfoReq;
+import com.jy.stock.model.request.info.QueryShopInfoReq;
 import com.jy.stock.service.info.ShopInfoService;
 import com.jy.stock.service.system.UserInfoService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
-import javax.annotation.Resource;
 import java.util.*;
 
 /**
@@ -32,10 +32,10 @@ import java.util.*;
 @Service
 public class ShopInfoServiceImpl extends EnhancedServiceImpl<ShopInfoMapper, ShopInfo, ShopInfoDTO> implements ShopInfoService {
 
-    @Resource
+    @Autowired
     private UserInfoService userInfoService;
 
-    @Resource
+    @Autowired
     private DistributedLocker locker;
 
     @Override

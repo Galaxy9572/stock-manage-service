@@ -2,14 +2,13 @@ server:
   port: 8080
   servlet:
     context-path: /stock-manage-service/api
+    session:
+      timeout: 1h
 
 spring:
   application:
     name: stock-manage-service
-  # 支持 swagger3
-  mvc:
-    pathmatch:
-      matching-strategy: ant_path_matcher
+
   # 数据库配置
   datasource:
     driver-class-name: org.postgresql.Driver
@@ -38,32 +37,24 @@ spring:
         session-stat-enable: true
         url-pattern: /*
 
-  session:
-    store-type: redis
   messages:
     basename: i18n/Messages
-  redis:
-    redisson:
-      file: classpath:redisson.yaml
-    database: 0
-    # Redis服务器地址
-    host: localhost
-    # Redis服务器连接端口
-    port: 6379
-    # Redis服务器连接密码（默认为空）
-    password: abcd123456
-    # 连接池最大连接数（使用负值表示没有限制）
-    jedis:
-      pool:
-        max-active: 10
-        # 连接池最大阻塞等待时间（使用负值表示没有限制）
-        max-wait: 60000
-        # 连接池中的最大空闲连接
-        max-idle: 10
-        # 连接池中的最小空闲连接
-        min-idle: 0
-    # 连接超时时间（毫秒）
-    timeout: 10000
+  data:
+    redis:
+      database: 0
+      host: localhost
+      port: 6379
+      password: abcd123456
+      timeout: 10000
+      jedis:
+        pool:
+          max-active: 10
+          # 连接池最大阻塞等待时间（使用负值表示没有限制）
+          max-wait: 60000
+          # 连接池中的最大空闲连接
+          max-idle: 10
+          # 连接池中的最小空闲连接
+          min-idle: 0
 
 mybatis-plus:
   configuration:

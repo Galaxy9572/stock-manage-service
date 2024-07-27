@@ -1,14 +1,14 @@
 package com.jy.stock.service.system;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.jy.stock.dao.entity.system.UserInfo;
-import com.jy.stock.pojo.dto.PageDTO;
-import com.jy.stock.pojo.dto.system.UserInfoDTO;
-import com.jy.stock.pojo.request.system.AddModifyUserInfoReq;
-import com.jy.stock.pojo.request.system.QueryUserInfoReq;
-import com.jy.stock.pojo.request.system.UserLoginReq;
+import com.jy.stock.model.entity.system.UserInfo;
+import com.jy.stock.model.dto.PageDTO;
+import com.jy.stock.model.dto.system.UserInfoDTO;
+import com.jy.stock.model.request.system.AddModifyUserInfoReq;
+import com.jy.stock.model.request.system.QueryUserInfoReq;
+import com.jy.stock.model.request.system.UserLoginReq;
 
-import javax.servlet.http.HttpSession;
+import jakarta.servlet.http.HttpSession;
 import java.util.Collection;
 import java.util.Map;
 
@@ -29,4 +29,6 @@ public interface UserInfoService extends IService<UserInfo>{
     UserInfoDTO getUserInfoById(Long userId);
 
     UserInfoDTO getUserInfoByName(String userName);
+
+    long countAllUsers();
 }
